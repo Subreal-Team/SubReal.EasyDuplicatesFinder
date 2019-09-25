@@ -16,7 +16,6 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Xml.XPath;
 using static SubReal.EasyDublicateFinder.Program;
-
 namespace SubReal.EasyDublicateFinder
 {
     public partial class FindForm : Form
@@ -25,7 +24,6 @@ namespace SubReal.EasyDublicateFinder
         {
             InitializeComponent();          
         }
-
           /// <summary>
         /// Показывает или скрывает панель ожидания.
         /// </summary>
@@ -35,7 +33,6 @@ namespace SubReal.EasyDublicateFinder
             // Обрабатываем кнопки.
             btnStartFind.Enabled = !b;
             chkSelectAllFiles.Enabled = !b;
-
             // Устанавливаем курсор.
             if (b)
             {
@@ -46,7 +43,6 @@ namespace SubReal.EasyDublicateFinder
                 Cursor = Cursors.Default;
             }
         }
-
         private void BtnSelectDirectory_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
@@ -54,124 +50,51 @@ namespace SubReal.EasyDublicateFinder
                 tbFolderPath.Text = folderBrowserDialog1.SelectedPath;
             }
         }
-
         private void BtnStartFind_Click(object sender, EventArgs e)
         {
             var watch = System.Diagnostics.Stopwatch.StartNew();
             BlockHeadControls(true);
-
             try
             {
                 string path = tbFolderPath.Text;
-
                 if (!Directory.Exists(path))
                 {
                     MessageBox.Show(
                         "Указанный путь не существует. Поиск невозможен.",
                         "Ошибка имени пути",
                         MessageBoxButtons.OK);
-
                     return;
                 }
-
                 //todo: Insert check filename 
-
                 // Получаем все файлы.
-                var files = new List<FileDesc>();
+                EdfFiles.GetFiles(path);
 
-                foreach (var fileName in Directory.GetFiles(path, "*", SearchOption.AllDirectories))
-                {
-                    var fileInfo = new FileInfo(fileName);
-                    var fileDesc = new FileDesc { Name = fileName, Size = fileInfo.Length, CreationTime = fileInfo.CreationTime, MD5Summ = "", CountDublicates = 0 };
-                    files.Add(fileDesc);
-                }
+                EdfFiles.FindDublicatedBySize();
 
-                EdfFiles.FullListFiles = files;
-
-
-                var groupBySize = files
-                      .GroupBy(f => new { f.Size })//, f.Name 
-                      .Select(g => new { size = g.Key.Size, count = g.Count() }) //name = g.Key.Name,
-                      .Where(_ => _.count > 1)
-                      .ToArray();
-
-                // FillListFiles(listViewCandidate, groupBySize);
-                // Перебор полученных файлов.
-                foreach (var info in groupBySize)
-                {
-                    //foreach (ref var item in EdfFiles.FullListFiles)
-                    for (int i = 0; i < EdfFiles.FullListFiles.Count; i++)
-                    {
-                        if (EdfFiles.FullListFiles[i].Size.ToString() == (info.size.ToString()))
-                        {
-                            EdfFiles.FullListFiles[i].MD5Summ = GetMD5HashFromFile(EdfFiles.FullListFiles[i].Name);
-                        }
-
-                    }
-
-                }
-
-                var groupByMD5 = EdfFiles.FullListFiles
-                     .GroupBy(f => new {f.MD5Summ, f.Size })//, f.Name 
-                     .Select(g => new { md5 = g.Key.MD5Summ, size = g.Key.Size, count = g.Count() }) //name = g.Key.Name,
-                     .Where(_ => _.count > 1)
-                     .ToArray();
-
-                foreach (var info in groupByMD5)
-                {
-                    //foreach (ref var item in EdfFiles.FullListFiles)
-                    for (int i = 0; i < EdfFiles.FullListFiles.Count; i++)
-                    {
-                        if (EdfFiles.FullListFiles[i].MD5Summ.ToString() == (info.md5.ToString()))
-                        {
-                            EdfFiles.FullListFiles[i].CountDublicates = info.count;
-                        }
-
-                    }
-
-                }
-
+                EdfFiles.FindDublicatedBySize();
+                
             }
             finally
             {
                 EdfFiles.ShowListFiles(listView);
-
                 BlockHeadControls(false);
-
                 // Выводим информацию о найденых файлах.
                 lblCountFindedFiles.Text = string.Format("Find {0} file(s)", listView.Items.Count);
                 // Устанавливаем параметры общего выделения.
                 CheckAllFiles(false);
             }
-
             watch.Stop();
             lblTimeWork.Text = String.Format($"Время работы: {watch.ElapsedMilliseconds}");
         }
-
-        protected string GetMD5HashFromFile(string fileName)
-        {
-            using (var md5 = MD5.Create())
-            {
-                using (var stream = File.OpenRead(fileName))
-                {
-                    return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", string.Empty);
-                }
-            }
-        }
-
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
             var watch = System.Diagnostics.Stopwatch.StartNew();
             BlockHeadControls(true);
-
             CheckAllFiles(chkSelectAllFiles.Checked);
-
             BlockHeadControls(false);
-
             watch.Stop();
             lblTimeWork.Text = String.Format($"Время работы: {watch.ElapsedMilliseconds / 1000 }");
         }
-
         /// <summary>
         /// Установка или снятие флага отметки файлов в списке.
         /// </summary>
@@ -181,18 +104,14 @@ namespace SubReal.EasyDublicateFinder
             // Меняем статус checkBox в зависимости от задачи.
             chkSelectAllFiles.Text = (checkAll) ? "Снять чек со всех" : "Выбрать все";
             chkSelectAllFiles.CheckState = (checkAll) ? CheckState.Checked : CheckState.Unchecked;
-
             listView.BeginUpdate();
-
             // Обходим список и устанавливаем/снимаем флаг.
             foreach (ListViewItem l in listView.Items)
             {
                 l.Checked = checkAll;
             }
-
             listView.EndUpdate();
         }
-
         /// <summary>
         /// Получение количества отмеченных файлов.
         /// </summary>
@@ -210,7 +129,6 @@ namespace SubReal.EasyDublicateFinder
             }
             return count;
         }
-
         /// <summary>
         /// Получаем список отмеченных файлов.
         /// </summary>
@@ -229,18 +147,14 @@ namespace SubReal.EasyDublicateFinder
                 }
             }
             return fileLists;
-
         }
-
         class ListViewColumnComparer : IComparer
         {
             public int ColumnIndex { get; set; }
-
             public ListViewColumnComparer(int columnIndex)
             {
                 ColumnIndex = columnIndex;
             }
-
             public int Compare(object x, object y)
             {
                 try
@@ -255,12 +169,10 @@ namespace SubReal.EasyDublicateFinder
                 }
             }
         }
-
         public class Part : IEquatable<Part>
         {
             public string PartName { get; set; }
             public int PartId { get; set; }
-
             public override string ToString()
             {
                 return "ID: " + PartId + "   Name: " + PartName;
@@ -283,19 +195,15 @@ namespace SubReal.EasyDublicateFinder
             }
             // Should also override == and != operators.
         }
-
         private void Button1_Click(object sender, EventArgs e)
         {
         }
-
         private void ListView_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             this.listView.ListViewItemSorter = new ListViewColumnComparer(e.Column);
         }
-
         private void ShowFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
             if (File.Exists(listView.SelectedItems[0].SubItems[0].Text))
             {
                 Process.Start(new ProcessStartInfo("explorer.exe", @" /select, " + listView.SelectedItems[0].SubItems[0].Text));

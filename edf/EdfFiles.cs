@@ -1,16 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace SubReal.EasyDublicateFinder
 {
     internal class EdfFiles
     {
         public static List<FileDesc> FullListFiles { get; set; }
-
+        public static void GetFiles(string path)
+        {
+            var files = new List<FileDesc>();
+            foreach (var fileName in Directory.GetFiles(path, "*", SearchOption.AllDirectories))
+            {
+                var fileInfo = new FileInfo(fileName);
+                var fileDesc = new FileDesc { Name = fileName, Size = fileInfo.Length, CreationTime = fileInfo.CreationTime, MD5Summ = "", CountDublicates = 0 };
+                files.Add(fileDesc);
+            }
+            FullListFiles = files;
+        }
+        public static void FindDublicatedBySize()
+        {
+            var groupBySize = EdfFiles.FullListFiles
+                      .GroupBy(f => new { f.Size })//, f.Name 
+                      .Select(g => new { size = g.Key.Size, count = g.Count() }) //name = g.Key.Name,
+                      .Where(_ => _.count > 1)
+                      .ToArray();
+            // FillListFiles(listViewCandidate, groupBySize);
+            // Перебор полученных файлов.
+            foreach (var info in groupBySize)
+            {
+                //foreach (ref var item in EdfFiles.FullListFiles)
+                for (int i = 0; i < EdfFiles.FullListFiles.Count; i++)
+                {
+                    if (EdfFiles.FullListFiles[i].Size.ToString() == (info.size.ToString()))
+                    {
+                        EdfFiles.FullListFiles[i].MD5Summ = GetMD5HashFromFile(FullListFiles[i].Name);
+                    }
+                }
+            }
+        }
+        public static void CalculateMD5ForDublicated()
+        {
+            var groupByMD5 = FullListFiles
+                     .GroupBy(f => new { f.MD5Summ, f.Size })//, f.Name 
+                     .Select(g => new { md5 = g.Key.MD5Summ, size = g.Key.Size, count = g.Count() }) //name = g.Key.Name,
+                     .Where(_ => _.count > 1)
+                     .ToArray();
+            foreach (var info in groupByMD5)
+            {
+                for (int i = 0; i < FullListFiles.Count; i++)
+                {
+                    if (FullListFiles[i].MD5Summ.ToString() == (info.md5.ToString()))
+                    {
+                        FullListFiles[i].CountDublicates = info.count;
+                    }
+                }
+            }
+        }
         private static void FormatListView(ListView listView)
         {
             listView.BeginUpdate();
@@ -22,7 +72,6 @@ namespace SubReal.EasyDublicateFinder
             listView.Columns.Add("Dublicates", 120);    //4          
             listView.CheckBoxes = true;
             listView.GridLines = true;
-
             listView.EndUpdate();
         }
         public static void ShowListFiles(ListView listView)
@@ -32,7 +81,6 @@ namespace SubReal.EasyDublicateFinder
             listView.BeginUpdate();
             // Очищаем список.
             listView.Items.Clear();
-
             // Перебор полученных файлов.
             foreach (var file in FullListFiles)
             {
@@ -52,13 +100,20 @@ namespace SubReal.EasyDublicateFinder
                 // Добавляем элемент в ListView.
                 listView.Items.Add(lvi);
             }
-
             // Включаем обновление списка.
             listView.EndUpdate();
         }
-
+        private static string GetMD5HashFromFile(string fileName)
+        {
+            using (var md5 = MD5.Create())
+            {
+                using (var stream = File.OpenRead(fileName))
+                {
+                    return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", string.Empty);
+                }
+            }
+        }
     }
-
     internal class FileDesc
     {
         public string Name { get; set; }
