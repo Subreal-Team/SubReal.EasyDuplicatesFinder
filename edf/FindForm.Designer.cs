@@ -30,10 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.listView = new System.Windows.Forms.ListView();
-            this.FileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextMenuListView = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tbFolderPath = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.btnStartFind = new System.Windows.Forms.Button();
@@ -44,21 +42,14 @@
             this.btnSelectDirectory = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.lblTimeWork = new System.Windows.Forms.Label();
-            this.contextMenuListView = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.showFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tableLayoutPanel1.SuspendLayout();
             this.contextMenuListView.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // listView
             // 
             this.listView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listView.CheckBoxes = true;
-            this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.FileName,
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
             this.listView.ContextMenuStrip = this.contextMenuListView;
             this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView.FullRowSelect = true;
@@ -73,22 +64,19 @@
             this.listView.View = System.Windows.Forms.View.Details;
             this.listView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListView_ColumnClick);
             // 
-            // FileName
+            // contextMenuListView
             // 
-            this.FileName.Text = "Name of Files";
-            this.FileName.Width = 162;
+            this.contextMenuListView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showFileToolStripMenuItem});
+            this.contextMenuListView.Name = "contextMenuListView";
+            this.contextMenuListView.Size = new System.Drawing.Size(123, 26);
             // 
-            // columnHeader1
+            // showFileToolStripMenuItem
             // 
-            this.columnHeader1.Width = 144;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Width = 152;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Width = 156;
+            this.showFileToolStripMenuItem.Name = "showFileToolStripMenuItem";
+            this.showFileToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.showFileToolStripMenuItem.Text = "Show file";
+            this.showFileToolStripMenuItem.Click += new System.EventHandler(this.ShowFileToolStripMenuItem_Click);
             // 
             // tbFolderPath
             // 
@@ -188,20 +176,6 @@
             this.lblTimeWork.TabIndex = 10;
             this.lblTimeWork.Text = "label1";
             // 
-            // contextMenuListView
-            // 
-            this.contextMenuListView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showFileToolStripMenuItem});
-            this.contextMenuListView.Name = "contextMenuListView";
-            this.contextMenuListView.Size = new System.Drawing.Size(181, 48);
-            // 
-            // showFileToolStripMenuItem
-            // 
-            this.showFileToolStripMenuItem.Name = "showFileToolStripMenuItem";
-            this.showFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.showFileToolStripMenuItem.Text = "Show file";
-            this.showFileToolStripMenuItem.Click += new System.EventHandler(this.ShowFileToolStripMenuItem_Click);
-            // 
             // FindForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -218,9 +192,9 @@
             this.Name = "FindForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "win.edf";
+            this.contextMenuListView.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.contextMenuListView.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,7 +203,6 @@
         #endregion
 
         private System.Windows.Forms.ListView listView;
-        private System.Windows.Forms.ColumnHeader FileName;
         private System.Windows.Forms.TextBox tbFolderPath;
         private System.Windows.Forms.Button btnSelectDirectory;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
@@ -238,9 +211,6 @@
         private System.Windows.Forms.CheckBox chkSelectAllFiles;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblTimeWork;
         private System.Windows.Forms.ContextMenuStrip contextMenuListView;

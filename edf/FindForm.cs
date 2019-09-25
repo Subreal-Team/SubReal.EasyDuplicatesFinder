@@ -23,26 +23,10 @@ namespace SubReal.EasyDublicateFinder
     {
         public FindForm()
         {
-            InitializeComponent();
-            SetUpListViewParams();
+            InitializeComponent();          
         }
 
-        private void SetUpListViewParams()
-        {
-            listView.BeginUpdate();
-            listView.Columns.Clear();
-            listView.Columns.Add("Full File name", 370);  //0
-            listView.Columns.Add("File size", 90);       //1
-            listView.Columns.Add("Data Create", 110);   //2
-            listView.Columns.Add("MD5", 220);           //3
-            listView.Columns.Add("Dublicates", 120);    //4          
-            listView.CheckBoxes = true;
-            listView.GridLines = true;
-
-            listView.EndUpdate();
-        }
-
-        /// <summary>
+          /// <summary>
         /// Показывает или скрывает панель ожидания.
         /// </summary>
         /// <param name="b"><see langword="true"/> Показать панель.; <see langword="false"/> Скрыть панель.</param>
@@ -73,6 +57,7 @@ namespace SubReal.EasyDublicateFinder
 
         private void BtnStartFind_Click(object sender, EventArgs e)
         {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
             BlockHeadControls(true);
 
             try
@@ -149,7 +134,7 @@ namespace SubReal.EasyDublicateFinder
             }
             finally
             {
-                FillListFiles(listView, EdfFiles.FullListFiles);
+                EdfFiles.ShowListFiles(listView);
 
                 BlockHeadControls(false);
 
@@ -158,6 +143,9 @@ namespace SubReal.EasyDublicateFinder
                 // Устанавливаем параметры общего выделения.
                 CheckAllFiles(false);
             }
+
+            watch.Stop();
+            lblTimeWork.Text = String.Format($"Время работы: {watch.ElapsedMilliseconds}");
         }
 
         protected string GetMD5HashFromFile(string fileName)
@@ -169,40 +157,6 @@ namespace SubReal.EasyDublicateFinder
                     return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", string.Empty);
                 }
             }
-        }
-
-        private void FillListFiles(ListView listView, List<FileDesc> files)
-        {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
-            // Отключаем обновление списка.
-            listView.BeginUpdate();
-            // Очищаем список.
-            listView.Items.Clear();
-
-            // Перебор полученных файлов.
-            foreach (var file in files)
-            {
-                ListViewItem lvi = new ListViewItem
-                {
-                    // установка названия файла.
-                    Text = file.Name,
-                    //   lvi.SubItems.Add(file.Length.ToString());
-                    // Установка картинки для файла.
-                    ImageIndex = 0
-                };
-                lvi.SubItems.Add(file.Size.ToString());
-                lvi.SubItems.Add(file.CreationTime.ToString());
-                lvi.SubItems.Add(file.MD5Summ.ToString());
-                lvi.SubItems.Add(file.CountDublicates.ToString());
-                //lvi.SubItems.Add(fileInf.LastWriteTime.ToString());
-                // Добавляем элемент в ListView.
-                listView.Items.Add(lvi);
-            }
-
-            // Включаем обновление списка.
-            listView.EndUpdate();
-            watch.Stop();
-            lblTimeWork.Text = String.Format($"Время работы: {watch.ElapsedMilliseconds}");
         }
 
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
