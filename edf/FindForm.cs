@@ -24,7 +24,7 @@ namespace SubReal.EasyDublicateFinder
         {
             InitializeComponent();          
         }
-          /// <summary>
+        /// <summary>
         /// Показывает или скрывает панель ожидания.
         /// </summary>
         /// <param name="b"><see langword="true"/> Показать панель.; <see langword="false"/> Скрыть панель.</param>
@@ -66,7 +66,7 @@ namespace SubReal.EasyDublicateFinder
                     return;
                 }
                 //todo: Insert check filename 
-                // Получаем все файлы.
+
                 EdfFiles.GetFiles(path);
 
                 EdfFiles.FindDublicatedBySize();
@@ -195,9 +195,7 @@ namespace SubReal.EasyDublicateFinder
             }
             // Should also override == and != operators.
         }
-        private void Button1_Click(object sender, EventArgs e)
-        {
-        }
+
         private void ListView_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             this.listView.ListViewItemSorter = new ListViewColumnComparer(e.Column);

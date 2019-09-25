@@ -10,7 +10,11 @@ namespace SubReal.EasyDublicateFinder
 {
     internal class EdfFiles
     {
-        public static List<FileDesc> FullListFiles { get; set; }
+        private static List<FileDesc> FullListFiles { get; set; }
+        /// <summary>
+        /// Получить список файлов из указанного пути.
+        /// </summary>
+        /// <param name="path">Путь поиска.</param>
         public static void GetFiles(string path)
         {
             var files = new List<FileDesc>();
@@ -22,11 +26,14 @@ namespace SubReal.EasyDublicateFinder
             }
             FullListFiles = files;
         }
+        /// <summary>
+        /// Отбор дубликатов по размеру файла и расчет для них контрольной суммы.
+        /// </summary>
         public static void FindDublicatedBySize()
         {
-            var groupBySize = EdfFiles.FullListFiles
-                      .GroupBy(f => new { f.Size })//, f.Name 
-                      .Select(g => new { size = g.Key.Size, count = g.Count() }) //name = g.Key.Name,
+            var groupBySize = FullListFiles
+                      .GroupBy(f => new { f.Size })
+                      .Select(g => new { size = g.Key.Size, count = g.Count() })
                       .Where(_ => _.count > 1)
                       .ToArray();
             // FillListFiles(listViewCandidate, groupBySize);
@@ -34,26 +41,31 @@ namespace SubReal.EasyDublicateFinder
             foreach (var info in groupBySize)
             {
                 //foreach (ref var item in EdfFiles.FullListFiles)
-                for (int i = 0; i < EdfFiles.FullListFiles.Count; i++)
+                for (int i = 0; i <FullListFiles.Count; i++)
                 {
-                    if (EdfFiles.FullListFiles[i].Size.ToString() == (info.size.ToString()))
+                    if (FullListFiles[i].Size.ToString() == (info.size.ToString()))
                     {
-                        EdfFiles.FullListFiles[i].MD5Summ = GetMD5HashFromFile(FullListFiles[i].Name);
+                        FullListFiles[i].MD5Summ = GetMD5HashFromFile(FullListFiles[i].Name);
                     }
                 }
             }
         }
-        public static void CalculateMD5ForDublicated()
+
+        /// <summary>
+        /// Подсчет дубликатов по контрольной сумме и размеру.
+        /// </summary>
+        public static void CountDublicated()
         {
             var groupByMD5 = FullListFiles
-                     .GroupBy(f => new { f.MD5Summ, f.Size })//, f.Name 
-                     .Select(g => new { md5 = g.Key.MD5Summ, size = g.Key.Size, count = g.Count() }) //name = g.Key.Name,
+                     .GroupBy(f => new { f.MD5Summ, f.Size })
+                     .Select(g => new { md5 = g.Key.MD5Summ, size = g.Key.Size, count = g.Count() })
                      .Where(_ => _.count > 1)
                      .ToArray();
             foreach (var info in groupByMD5)
             {
                 for (int i = 0; i < FullListFiles.Count; i++)
                 {
+                    // Устанавливаем количество, есть MD5 совпадают.
                     if (FullListFiles[i].MD5Summ.ToString() == (info.md5.ToString()))
                     {
                         FullListFiles[i].CountDublicates = info.count;
@@ -61,6 +73,11 @@ namespace SubReal.EasyDublicateFinder
                 }
             }
         }
+        
+        /// <summary>
+        /// Настройка объекта ListView для показа результатов.
+        /// </summary>
+        /// <param name="listView"></param>
         private static void FormatListView(ListView listView)
         {
             listView.BeginUpdate();
@@ -74,9 +91,14 @@ namespace SubReal.EasyDublicateFinder
             listView.GridLines = true;
             listView.EndUpdate();
         }
+        /// <summary>
+        /// Показ результата в ListView.
+        /// </summary>
+        /// <param name="listView"></param>
         public static void ShowListFiles(ListView listView)
         {
             FormatListView(listView);
+            
             // Отключаем обновление списка.
             listView.BeginUpdate();
             // Очищаем список.
@@ -88,21 +110,28 @@ namespace SubReal.EasyDublicateFinder
                 {
                     // установка названия файла.
                     Text = file.Name,
-                    //   lvi.SubItems.Add(file.Length.ToString());
                     // Установка картинки для файла.
                     ImageIndex = 0
                 };
+                // Размер.
                 lvi.SubItems.Add(file.Size.ToString());
+                // Время создания файла.
                 lvi.SubItems.Add(file.CreationTime.ToString());
+                // Контрольная сумма.
                 lvi.SubItems.Add(file.MD5Summ.ToString());
+                // Число повторений.
                 lvi.SubItems.Add(file.CountDublicates.ToString());
-                //lvi.SubItems.Add(fileInf.LastWriteTime.ToString());
                 // Добавляем элемент в ListView.
                 listView.Items.Add(lvi);
             }
             // Включаем обновление списка.
             listView.EndUpdate();
         }
+        /// <summary>
+        /// Получение MD5 для файла.
+        /// </summary>
+        /// <param name="fileName">Имя файла.</param>
+        /// <returns></returns>
         private static string GetMD5HashFromFile(string fileName)
         {
             using (var md5 = MD5.Create())
