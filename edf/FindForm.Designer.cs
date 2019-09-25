@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.listView = new System.Windows.Forms.ListView();
             this.FileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -43,7 +44,10 @@
             this.btnSelectDirectory = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.lblTimeWork = new System.Windows.Forms.Label();
+            this.contextMenuListView = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
+            this.contextMenuListView.SuspendLayout();
             this.SuspendLayout();
             // 
             // listView
@@ -55,6 +59,7 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
+            this.listView.ContextMenuStrip = this.contextMenuListView;
             this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView.FullRowSelect = true;
             this.listView.GridLines = true;
@@ -183,6 +188,20 @@
             this.lblTimeWork.TabIndex = 10;
             this.lblTimeWork.Text = "label1";
             // 
+            // contextMenuListView
+            // 
+            this.contextMenuListView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showFileToolStripMenuItem});
+            this.contextMenuListView.Name = "contextMenuListView";
+            this.contextMenuListView.Size = new System.Drawing.Size(181, 48);
+            // 
+            // showFileToolStripMenuItem
+            // 
+            this.showFileToolStripMenuItem.Name = "showFileToolStripMenuItem";
+            this.showFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showFileToolStripMenuItem.Text = "Show file";
+            this.showFileToolStripMenuItem.Click += new System.EventHandler(this.ShowFileToolStripMenuItem_Click);
+            // 
             // FindForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -201,6 +220,7 @@
             this.Text = "win.edf";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.contextMenuListView.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,6 +243,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblTimeWork;
+        private System.Windows.Forms.ContextMenuStrip contextMenuListView;
+        private System.Windows.Forms.ToolStripMenuItem showFileToolStripMenuItem;
     }
 }
 

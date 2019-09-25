@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace SubReal.EasyDublicateFinder
         {
             listView.BeginUpdate();
             listView.Columns.Clear();
-            listView.Columns.Add("Full File name",370);  //0
+            listView.Columns.Add("Full File name", 370);  //0
             listView.Columns.Add("File size", 90);       //1
             listView.Columns.Add("Data Create", 110);   //2
             listView.Columns.Add("MD5", 220);           //3
@@ -50,7 +51,7 @@ namespace SubReal.EasyDublicateFinder
             // Обрабатываем кнопки.
             btnStartFind.Enabled = !b;
             chkSelectAllFiles.Enabled = !b;
-           
+
             // Устанавливаем курсор.
             if (b)
             {
@@ -71,7 +72,7 @@ namespace SubReal.EasyDublicateFinder
         }
 
         private void BtnStartFind_Click(object sender, EventArgs e)
-        {            
+        {
             BlockHeadControls(true);
 
             try
@@ -82,7 +83,7 @@ namespace SubReal.EasyDublicateFinder
                 {
                     MessageBox.Show(
                         "Указанный путь не существует. Поиск невозможен.",
-                        "Ошибка имени пути", 
+                        "Ошибка имени пути",
                         MessageBoxButtons.OK);
 
                     return;
@@ -96,45 +97,60 @@ namespace SubReal.EasyDublicateFinder
                 foreach (var fileName in Directory.GetFiles(path, "*", SearchOption.AllDirectories))
                 {
                     var fileInfo = new FileInfo(fileName);
-                    var fileDesc = new FileDesc {Name = fileName, Size = fileInfo.Length, CreationTime = fileInfo.CreationTime };
+                    var fileDesc = new FileDesc { Name = fileName, Size = fileInfo.Length, CreationTime = fileInfo.CreationTime, MD5Summ = "", CountDublicates = 0 };
                     files.Add(fileDesc);
                 }
 
                 EdfFiles.FullListFiles = files;
 
-                FillListFiles(listView, EdfFiles.FullListFiles);
 
                 var groupBySize = files
-                      .GroupBy(f => new {f.Size })//, f.Name 
-                      .Select(g => new {  size = g.Key.Size, count = g.Count()}) //name = g.Key.Name,
+                      .GroupBy(f => new { f.Size })//, f.Name 
+                      .Select(g => new { size = g.Key.Size, count = g.Count() }) //name = g.Key.Name,
                       .Where(_ => _.count > 1)
                       .ToArray();
 
-                var md5List = new List<FileDesc>();
                 // FillListFiles(listViewCandidate, groupBySize);
                 // Перебор полученных файлов.
                 foreach (var info in groupBySize)
                 {
-                    foreach (ListViewItem item in listView.Items)
+                    //foreach (ref var item in EdfFiles.FullListFiles)
+                    for (int i = 0; i < EdfFiles.FullListFiles.Count; i++)
                     {
-                        if (item.SubItems[1].Text == (info.size.ToString()))
-                        {                          
-                            item.SubItems[3].Text = GetMD5HashFromFile(item.SubItems[0].Text);
-
-                            //TODO: bug count
-                            item.SubItems[4].Text = info.count.ToString();                            
-                        }
-                        else
+                        if (EdfFiles.FullListFiles[i].Size.ToString() == (info.size.ToString()))
                         {
-                           // item.SubItems[3].Text = "NO";
+                            EdfFiles.FullListFiles[i].MD5Summ = GetMD5HashFromFile(EdfFiles.FullListFiles[i].Name);
                         }
+
                     }
 
-                }            
+                }
+
+                var groupByMD5 = EdfFiles.FullListFiles
+                     .GroupBy(f => new {f.MD5Summ, f.Size })//, f.Name 
+                     .Select(g => new { md5 = g.Key.MD5Summ, size = g.Key.Size, count = g.Count() }) //name = g.Key.Name,
+                     .Where(_ => _.count > 1)
+                     .ToArray();
+
+                foreach (var info in groupByMD5)
+                {
+                    //foreach (ref var item in EdfFiles.FullListFiles)
+                    for (int i = 0; i < EdfFiles.FullListFiles.Count; i++)
+                    {
+                        if (EdfFiles.FullListFiles[i].MD5Summ.ToString() == (info.md5.ToString()))
+                        {
+                            EdfFiles.FullListFiles[i].CountDublicates = info.count;
+                        }
+
+                    }
+
+                }
 
             }
             finally
             {
+                FillListFiles(listView, EdfFiles.FullListFiles);
+
                 BlockHeadControls(false);
 
                 // Выводим информацию о найденых файлах.
@@ -172,12 +188,12 @@ namespace SubReal.EasyDublicateFinder
                     Text = file.Name,
                     //   lvi.SubItems.Add(file.Length.ToString());
                     // Установка картинки для файла.
-                    ImageIndex = 0                
+                    ImageIndex = 0
                 };
                 lvi.SubItems.Add(file.Size.ToString());
                 lvi.SubItems.Add(file.CreationTime.ToString());
-                lvi.SubItems.Add("");
-                lvi.SubItems.Add("0");
+                lvi.SubItems.Add(file.MD5Summ.ToString());
+                lvi.SubItems.Add(file.CountDublicates.ToString());
                 //lvi.SubItems.Add(fileInf.LastWriteTime.ToString());
                 // Добавляем элемент в ListView.
                 listView.Items.Add(lvi);
@@ -186,7 +202,7 @@ namespace SubReal.EasyDublicateFinder
             // Включаем обновление списка.
             listView.EndUpdate();
             watch.Stop();
-            lblTimeWork.Text = String.Format($"Время работы: {watch.ElapsedMilliseconds / 1000 }");
+            lblTimeWork.Text = String.Format($"Время работы: {watch.ElapsedMilliseconds}");
         }
 
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
@@ -210,16 +226,16 @@ namespace SubReal.EasyDublicateFinder
         {
             // Меняем статус checkBox в зависимости от задачи.
             chkSelectAllFiles.Text = (checkAll) ? "Снять чек со всех" : "Выбрать все";
-            chkSelectAllFiles.CheckState = (checkAll) ? CheckState.Checked: CheckState.Unchecked;
+            chkSelectAllFiles.CheckState = (checkAll) ? CheckState.Checked : CheckState.Unchecked;
 
             listView.BeginUpdate();
-            
+
             // Обходим список и устанавливаем/снимаем флаг.
             foreach (ListViewItem l in listView.Items)
             {
                 l.Checked = checkAll;
-            }              
-            
+            }
+
             listView.EndUpdate();
         }
 
@@ -321,6 +337,15 @@ namespace SubReal.EasyDublicateFinder
         private void ListView_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             this.listView.ListViewItemSorter = new ListViewColumnComparer(e.Column);
+        }
+
+        private void ShowFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            if (File.Exists(listView.SelectedItems[0].SubItems[0].Text))
+            {
+                Process.Start(new ProcessStartInfo("explorer.exe", @" /select, " + listView.SelectedItems[0].SubItems[0].Text));
+            }
         }
     }
 }

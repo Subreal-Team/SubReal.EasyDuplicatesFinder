@@ -10,7 +10,6 @@ namespace SubReal.EasyDublicateFinder
     {
         public static List<FileDesc> FullListFiles { get; set; }
 
-
         /* private static List<FileDesc> fullListFiles;
 
         public static List<FileDesc> FullListFiles
@@ -25,7 +24,7 @@ namespace SubReal.EasyDublicateFinder
     {
         public string Name { get; set; }
         public long Size { get; set; }
-        public int ControlSum { get; set; }
+  //      public int ControlSum { get; set; }
         public DateTime CreationTime { get; set; }
         public string MD5Summ { get; set; }
         public int CountDublicates { get; set; }
