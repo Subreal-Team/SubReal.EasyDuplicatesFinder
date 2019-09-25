@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8490B4DF-38D4-4AA0-8CF7-D4AAA3121379}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>create_update</RootNamespace>
-    <AssemblyName>create_update</AssemblyName>
+    <RootNamespace>SubReal.EasyDublicateFinder</RootNamespace>
+    <AssemblyName>SubReal.EasyDublicateFinder</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EdfFiles.cs" />
     <Compile Include="FindForm.cs">
       <SubType>Form</SubType>
     </Compile>

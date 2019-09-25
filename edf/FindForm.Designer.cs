@@ -1,4 +1,4 @@
-﻿namespace create_update
+﻿namespace SubReal.EasyDublicateFinder
 {
     partial class FindForm
     {
@@ -33,7 +33,6 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tbFolderPath = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.btnStartFind = new System.Windows.Forms.Button();
@@ -43,24 +42,23 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSelectDirectory = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.lblTimeWork = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // listView
             // 
-            this.listView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.listView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listView.CheckBoxes = true;
             this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.FileName,
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4});
+            this.columnHeader3});
+            this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView.FullRowSelect = true;
             this.listView.GridLines = true;
+            this.listView.HideSelection = false;
             this.listView.Location = new System.Drawing.Point(3, 28);
             this.listView.MultiSelect = false;
             this.listView.Name = "listView";
@@ -73,7 +71,7 @@
             // FileName
             // 
             this.FileName.Text = "Name of Files";
-            this.FileName.Width = 335;
+            this.FileName.Width = 162;
             // 
             // columnHeader1
             // 
@@ -86,10 +84,6 @@
             // columnHeader3
             // 
             this.columnHeader3.Width = 156;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Width = 171;
             // 
             // tbFolderPath
             // 
@@ -153,12 +147,13 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 238F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1053, 549);
             this.tableLayoutPanel1.TabIndex = 8;
             // 
             // btnSelectDirectory
             // 
-            this.btnSelectDirectory.Image = global::create_update.Properties.Resources.icon_folder_open;
+            this.btnSelectDirectory.Image = global::SubReal.EasyDublicateFinder.Properties.Resources.icon_folder_open;
             this.btnSelectDirectory.Location = new System.Drawing.Point(408, 10);
             this.btnSelectDirectory.Name = "btnSelectDirectory";
             this.btnSelectDirectory.Size = new System.Drawing.Size(75, 23);
@@ -179,11 +174,21 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
+            // lblTimeWork
+            // 
+            this.lblTimeWork.AutoSize = true;
+            this.lblTimeWork.Location = new System.Drawing.Point(12, 67);
+            this.lblTimeWork.Name = "lblTimeWork";
+            this.lblTimeWork.Size = new System.Drawing.Size(35, 13);
+            this.lblTimeWork.TabIndex = 10;
+            this.lblTimeWork.Text = "label1";
+            // 
             // FindForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1053, 632);
+            this.Controls.Add(this.lblTimeWork);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblCountFindedFiles);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -216,8 +221,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblTimeWork;
     }
 }
 

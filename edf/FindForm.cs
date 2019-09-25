@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,17 +14,33 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Xml.XPath;
+using static SubReal.EasyDublicateFinder.Program;
 
-namespace create_update
+namespace SubReal.EasyDublicateFinder
 {
     public partial class FindForm : Form
     {
         public FindForm()
         {
             InitializeComponent();
+            SetUpListViewParams();
         }
 
-     
+        private void SetUpListViewParams()
+        {
+            listView.BeginUpdate();
+            listView.Columns.Clear();
+            listView.Columns.Add("Full File name",370);  //0
+            listView.Columns.Add("File size", 90);       //1
+            listView.Columns.Add("Data Create", 110);   //2
+            listView.Columns.Add("MD5", 220);           //3
+            listView.Columns.Add("Dublicates", 120);    //4          
+            listView.CheckBoxes = true;
+            listView.GridLines = true;
+
+            listView.EndUpdate();
+        }
+
         /// <summary>
         /// Показывает или скрывает панель ожидания.
         /// </summary>
@@ -74,9 +91,47 @@ namespace create_update
                 //todo: Insert check filename 
 
                 // Получаем все файлы.
-                string[] files = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
+                var files = new List<FileDesc>();
 
-                FillListFiles(files);
+                foreach (var fileName in Directory.GetFiles(path, "*", SearchOption.AllDirectories))
+                {
+                    var fileInfo = new FileInfo(fileName);
+                    var fileDesc = new FileDesc {Name = fileName, Size = fileInfo.Length, CreationTime = fileInfo.CreationTime };
+                    files.Add(fileDesc);
+                }
+
+                EdfFiles.FullListFiles = files;
+
+                FillListFiles(listView, EdfFiles.FullListFiles);
+
+                var groupBySize = files
+                      .GroupBy(f => new {f.Size })//, f.Name 
+                      .Select(g => new {  size = g.Key.Size, count = g.Count()}) //name = g.Key.Name,
+                      .Where(_ => _.count > 1)
+                      .ToArray();
+
+                var md5List = new List<FileDesc>();
+                // FillListFiles(listViewCandidate, groupBySize);
+                // Перебор полученных файлов.
+                foreach (var info in groupBySize)
+                {
+                    foreach (ListViewItem item in listView.Items)
+                    {
+                        if (item.SubItems[1].Text == (info.size.ToString()))
+                        {                          
+                            item.SubItems[3].Text = GetMD5HashFromFile(item.SubItems[0].Text);
+
+                            //TODO: bug count
+                            item.SubItems[4].Text = info.count.ToString();                            
+                        }
+                        else
+                        {
+                           // item.SubItems[3].Text = "NO";
+                        }
+                    }
+
+                }            
+
             }
             finally
             {
@@ -89,48 +144,62 @@ namespace create_update
             }
         }
 
-        private void FillListFiles(string[] files)
+        protected string GetMD5HashFromFile(string fileName)
         {
+            using (var md5 = MD5.Create())
+            {
+                using (var stream = File.OpenRead(fileName))
+                {
+                    return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", string.Empty);
+                }
+            }
+        }
+
+        private void FillListFiles(ListView listView, List<FileDesc> files)
+        {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
             // Отключаем обновление списка.
             listView.BeginUpdate();
             // Очищаем список.
             listView.Items.Clear();
 
             // Перебор полученных файлов.
-            foreach (string file in files)
+            foreach (var file in files)
             {
-                FileInfo fileInf = new FileInfo(file);
-                if (fileInf.Exists)
-                {
-                   
-                }
-
                 ListViewItem lvi = new ListViewItem
                 {
                     // установка названия файла.
-                    Text = file,
+                    Text = file.Name,
                     //   lvi.SubItems.Add(file.Length.ToString());
                     // Установка картинки для файла.
                     ImageIndex = 0                
                 };
-                lvi.SubItems.Add(fileInf.Length.ToString());
-                lvi.SubItems.Add(fileInf.CreationTime.ToString());
-                lvi.SubItems.Add(fileInf.LastWriteTime.ToString());
+                lvi.SubItems.Add(file.Size.ToString());
+                lvi.SubItems.Add(file.CreationTime.ToString());
+                lvi.SubItems.Add("");
+                lvi.SubItems.Add("0");
+                //lvi.SubItems.Add(fileInf.LastWriteTime.ToString());
                 // Добавляем элемент в ListView.
                 listView.Items.Add(lvi);
             }
 
             // Включаем обновление списка.
             listView.EndUpdate();
+            watch.Stop();
+            lblTimeWork.Text = String.Format($"Время работы: {watch.ElapsedMilliseconds / 1000 }");
         }
 
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
             BlockHeadControls(true);
 
             CheckAllFiles(chkSelectAllFiles.Checked);
 
             BlockHeadControls(false);
+
+            watch.Stop();
+            lblTimeWork.Text = String.Format($"Время работы: {watch.ElapsedMilliseconds / 1000 }");
         }
 
         /// <summary>
@@ -217,9 +286,36 @@ namespace create_update
             }
         }
 
+        public class Part : IEquatable<Part>
+        {
+            public string PartName { get; set; }
+            public int PartId { get; set; }
+
+            public override string ToString()
+            {
+                return "ID: " + PartId + "   Name: " + PartName;
+            }
+            public override bool Equals(object obj)
+            {
+                if (obj == null) return false;
+                Part objAsPart = obj as Part;
+                if (objAsPart == null) return false;
+                else return Equals(objAsPart);
+            }
+            public override int GetHashCode()
+            {
+                return PartId;
+            }
+            public bool Equals(Part other)
+            {
+                if (other == null) return false;
+                return (this.PartId.Equals(other.PartId));
+            }
+            // Should also override == and != operators.
+        }
+
         private void Button1_Click(object sender, EventArgs e)
         {
-           
         }
 
         private void ListView_ColumnClick(object sender, ColumnClickEventArgs e)

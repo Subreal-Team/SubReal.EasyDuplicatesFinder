@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace create_update
+namespace SubReal.EasyDublicateFinder
 {
     static class Program
     {
@@ -17,6 +17,8 @@ namespace create_update
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FindForm());
-        }
+
+        }     
+
     }
 }
