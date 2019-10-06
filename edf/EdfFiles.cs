@@ -127,6 +127,96 @@ namespace SubReal.EasyDublicateFinder
             // Включаем обновление списка.
             listView.EndUpdate();
         }
+
+        /// <summary>
+        /// Показ дубликаты в ListView.
+        /// </summary>
+        /// <param name="listView"></param>
+        public static void ShowDublicatesOnlyListFiles(ListView listView)
+        {
+            FormatListView(listView);
+
+            // Отключаем обновление списка.
+            listView.BeginUpdate();
+            // Очищаем список.
+            listView.Items.Clear();
+            // Перебор полученных файлов.
+            foreach (var file in FullListFiles)
+            {
+                if (file.CountDublicates > 0)
+                {
+                    ListViewItem lvi = new ListViewItem
+                    {
+                        // установка названия файла.
+                        Text = file.Name,
+                        // Установка картинки для файла.
+                        ImageIndex = 0
+                    };
+                    // Размер.
+                    lvi.SubItems.Add(file.Size.ToString());
+                    // Время создания файла.
+                    lvi.SubItems.Add(file.CreationTime.ToString());
+                    // Контрольная сумма.
+                    lvi.SubItems.Add(file.MD5Summ.ToString());
+                    // Число повторений.
+                    lvi.SubItems.Add(file.CountDublicates.ToString());
+                    // Добавляем элемент в ListView.
+                    listView.Items.Add(lvi);
+                }
+            }
+            // Включаем обновление списка.
+            listView.EndUpdate();
+        }
+
+        /// <summary>
+        /// Показ конкретного дубликата в ListView.
+        /// </summary>
+        /// <param name="listView"></param>
+        public static void ShowCurrentDublicatesListFiles(ListView listView, string MD5Summ)
+        {
+            if (MD5Summ == string.Empty)
+            {
+                MessageBox.Show(
+                    "Для указаного файла нет дубликатов",
+                    "Внимание",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            FormatListView(listView);
+
+            // Отключаем обновление списка.
+            listView.BeginUpdate();
+            // Очищаем список.
+            listView.Items.Clear();
+            // Перебор полученных файлов.
+            foreach (var file in FullListFiles)
+            {
+                if (file.MD5Summ == MD5Summ)
+                {
+                    ListViewItem lvi = new ListViewItem
+                    {
+                        // установка названия файла.
+                        Text = file.Name,
+                        // Установка картинки для файла.
+                        ImageIndex = 0
+                    };
+                    // Размер.
+                    lvi.SubItems.Add(file.Size.ToString());
+                    // Время создания файла.
+                    lvi.SubItems.Add(file.CreationTime.ToString());
+                    // Контрольная сумма.
+                    lvi.SubItems.Add(file.MD5Summ.ToString());
+                    // Число повторений.
+                    lvi.SubItems.Add(file.CountDublicates.ToString());
+                    // Добавляем элемент в ListView.
+                    listView.Items.Add(lvi);
+                }
+            }
+            // Включаем обновление списка.
+            listView.EndUpdate();
+        }
+
         /// <summary>
         /// Получение MD5 для файла.
         /// </summary>
@@ -142,7 +232,21 @@ namespace SubReal.EasyDublicateFinder
                 }
             }
         }
+
+
+        /// <summary>
+        /// Проверка корректности указания пути поиска.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public bool CheckSourceFolder(string path)
+        {
+            var result = (Directory.Exists(path)) ? true : false;
+            return result;
+        }
+
     }
+
     internal class FileDesc
     {
         public string Name { get; set; }

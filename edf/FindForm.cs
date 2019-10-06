@@ -57,21 +57,17 @@ namespace SubReal.EasyDublicateFinder
             try
             {
                 string path = tbFolderPath.Text;
-                if (!Directory.Exists(path))
-                {
-                    MessageBox.Show(
-                        "Указанный путь не существует. Поиск невозможен.",
-                        "Ошибка имени пути",
-                        MessageBoxButtons.OK);
-                    return;
-                }
+                /* MessageBox.Show(
+                    "Указанный путь не существует. Поиск невозможен.",
+                    "Ошибка имени пути",
+                    MessageBoxButtons.OK);*/
                 //todo: Insert check filename 
 
                 EdfFiles.GetFiles(path);
 
                 EdfFiles.FindDublicatedBySize();
 
-                EdfFiles.FindDublicatedBySize();
+                EdfFiles.CountDublicated();
                 
             }
             finally
@@ -206,6 +202,16 @@ namespace SubReal.EasyDublicateFinder
             {
                 Process.Start(new ProcessStartInfo("explorer.exe", @" /select, " + listView.SelectedItems[0].SubItems[0].Text));
             }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            EdfFiles.ShowDublicatesOnlyListFiles(listView);
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            EdfFiles.ShowCurrentDublicatesListFiles(listViewDublicates, listView.SelectedItems[0].SubItems[3].Text);
         }
     }
 }
