@@ -39,11 +39,12 @@
             this.chkSelectAllFiles = new System.Windows.Forms.CheckBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.listViewDublicates = new System.Windows.Forms.ListView();
             this.btnSelectDirectory = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.lblTimeWork = new System.Windows.Forms.Label();
-            this.listViewDublicates = new System.Windows.Forms.ListView();
             this.button2 = new System.Windows.Forms.Button();
+            this.DeleteOthersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuListView.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -68,14 +69,15 @@
             // contextMenuListView
             // 
             this.contextMenuListView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showFileToolStripMenuItem});
+            this.showFileToolStripMenuItem,
+            this.DeleteOthersToolStripMenuItem});
             this.contextMenuListView.Name = "contextMenuListView";
-            this.contextMenuListView.Size = new System.Drawing.Size(123, 26);
+            this.contextMenuListView.Size = new System.Drawing.Size(181, 70);
             // 
             // showFileToolStripMenuItem
             // 
             this.showFileToolStripMenuItem.Name = "showFileToolStripMenuItem";
-            this.showFileToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.showFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.showFileToolStripMenuItem.Text = "Show file";
             this.showFileToolStripMenuItem.Click += new System.EventHandler(this.ShowFileToolStripMenuItem_Click);
             // 
@@ -146,6 +148,22 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1053, 549);
             this.tableLayoutPanel1.TabIndex = 8;
             // 
+            // listViewDublicates
+            // 
+            this.listViewDublicates.CheckBoxes = true;
+            this.listViewDublicates.ContextMenuStrip = this.contextMenuListView;
+            this.listViewDublicates.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewDublicates.FullRowSelect = true;
+            this.listViewDublicates.GridLines = true;
+            this.listViewDublicates.HideSelection = false;
+            this.listViewDublicates.Location = new System.Drawing.Point(3, 266);
+            this.listViewDublicates.MultiSelect = false;
+            this.listViewDublicates.Name = "listViewDublicates";
+            this.listViewDublicates.Size = new System.Drawing.Size(1047, 280);
+            this.listViewDublicates.TabIndex = 6;
+            this.listViewDublicates.UseCompatibleStateImageBehavior = false;
+            this.listViewDublicates.View = System.Windows.Forms.View.Details;
+            // 
             // btnSelectDirectory
             // 
             this.btnSelectDirectory.Image = global::SubReal.EasyDublicateFinder.Properties.Resources.icon_folder_open;
@@ -178,22 +196,6 @@
             this.lblTimeWork.TabIndex = 10;
             this.lblTimeWork.Text = "label1";
             // 
-            // listViewDublicates
-            // 
-            this.listViewDublicates.CheckBoxes = true;
-            this.listViewDublicates.ContextMenuStrip = this.contextMenuListView;
-            this.listViewDublicates.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewDublicates.FullRowSelect = true;
-            this.listViewDublicates.GridLines = true;
-            this.listViewDublicates.HideSelection = false;
-            this.listViewDublicates.Location = new System.Drawing.Point(3, 266);
-            this.listViewDublicates.MultiSelect = false;
-            this.listViewDublicates.Name = "listViewDublicates";
-            this.listViewDublicates.Size = new System.Drawing.Size(1047, 280);
-            this.listViewDublicates.TabIndex = 6;
-            this.listViewDublicates.UseCompatibleStateImageBehavior = false;
-            this.listViewDublicates.View = System.Windows.Forms.View.Details;
-            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(507, 44);
@@ -203,6 +205,13 @@
             this.button2.Text = "Дубликаты";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // DeleteOthersToolStripMenuItem
+            // 
+            this.DeleteOthersToolStripMenuItem.Name = "DeleteOthersToolStripMenuItem";
+            this.DeleteOthersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DeleteOthersToolStripMenuItem.Text = "Удалить остальные";
+            this.DeleteOthersToolStripMenuItem.Click += new System.EventHandler(this.DeleteOthersToolStripMenuItem_Click);
             // 
             // FindForm
             // 
@@ -246,6 +255,7 @@
         private System.Windows.Forms.ToolStripMenuItem showFileToolStripMenuItem;
         private System.Windows.Forms.ListView listViewDublicates;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ToolStripMenuItem DeleteOthersToolStripMenuItem;
     }
 }
 

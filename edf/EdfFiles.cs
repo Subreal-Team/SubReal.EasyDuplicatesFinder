@@ -21,7 +21,7 @@ namespace SubReal.EasyDublicateFinder
             foreach (var fileName in Directory.GetFiles(path, "*", SearchOption.AllDirectories))
             {
                 var fileInfo = new FileInfo(fileName);
-                var fileDesc = new FileDesc { Name = fileName, Size = fileInfo.Length, CreationTime = fileInfo.CreationTime, MD5Summ = "", CountDublicates = 0 };
+                var fileDesc = new FileDesc { Name = fileName, Size = fileInfo.Length, CreationTime = fileInfo.CreationTime, Guid = Guid.NewGuid(), MD5Summ = "", CountDublicates = 0 };
                 files.Add(fileDesc);
             }
             FullListFiles = files;
@@ -86,7 +86,8 @@ namespace SubReal.EasyDublicateFinder
             listView.Columns.Add("File size", 90);       //1
             listView.Columns.Add("Data Create", 110);   //2
             listView.Columns.Add("MD5", 220);           //3
-            listView.Columns.Add("Dublicates", 120);    //4          
+            listView.Columns.Add("Dublicates", 50);    //4          
+            listView.Columns.Add("GUID", 220);    //5          
             listView.CheckBoxes = true;
             listView.GridLines = true;
             listView.EndUpdate();
@@ -121,6 +122,7 @@ namespace SubReal.EasyDublicateFinder
                 lvi.SubItems.Add(file.MD5Summ.ToString());
                 // Число повторений.
                 lvi.SubItems.Add(file.CountDublicates.ToString());
+                lvi.SubItems.Add(file.Guid.ToString());
                 // Добавляем элемент в ListView.
                 listView.Items.Add(lvi);
             }
@@ -160,6 +162,8 @@ namespace SubReal.EasyDublicateFinder
                     lvi.SubItems.Add(file.MD5Summ.ToString());
                     // Число повторений.
                     lvi.SubItems.Add(file.CountDublicates.ToString());
+                    //GUID
+                    lvi.SubItems.Add(file.Guid.ToString());
                     // Добавляем элемент в ListView.
                     listView.Items.Add(lvi);
                 }
@@ -209,6 +213,8 @@ namespace SubReal.EasyDublicateFinder
                     lvi.SubItems.Add(file.MD5Summ.ToString());
                     // Число повторений.
                     lvi.SubItems.Add(file.CountDublicates.ToString());
+                    //GUID
+                    lvi.SubItems.Add(file.Guid.ToString());
                     // Добавляем элемент в ListView.
                     listView.Items.Add(lvi);
                 }
@@ -245,7 +251,37 @@ namespace SubReal.EasyDublicateFinder
             return result;
         }
 
+
+        public static void DeleteItem(Guid id) // Удаление книги из списка
+        {
+            var itemToDelete = FullListFiles.Where(x => x.Guid == id).Select(x => x).First();
+            FullListFiles.Remove(itemToDelete);
+        }
+
+        /// <summary>
+        /// Удаление копий файлов в ListView.
+        /// </summary>
+        public static void DeleteCurrentDublicatesFiles(string md5Summ, string guid)
+        {
+            var forDeleteFiles = new List<FileDesc>();
+
+            for (int i = 0; i < FullListFiles.Count; i++)
+            {
+                if ((FullListFiles[i].MD5Summ.ToString() == md5Summ) & (FullListFiles[i].Guid.ToString() != guid))
+                {
+                    forDeleteFiles.Add(FullListFiles[i]);
+                }
+            }
+
+            foreach (var item in forDeleteFiles)
+            {
+                EdfFiles.DeleteItem(item.Guid);
+            }
+        }
+
     }
+
+  
 
     internal class FileDesc
     {
@@ -255,5 +291,7 @@ namespace SubReal.EasyDublicateFinder
         public DateTime CreationTime { get; set; }
         public string MD5Summ { get; set; }
         public int CountDublicates { get; set; }
+        public Guid Guid { get; set; }
     }
+
 }

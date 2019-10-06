@@ -213,5 +213,13 @@ namespace SubReal.EasyDublicateFinder
         {
             EdfFiles.ShowCurrentDublicatesListFiles(listViewDublicates, listView.SelectedItems[0].SubItems[3].Text);
         }
+
+        private void DeleteOthersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EdfFiles.DeleteCurrentDublicatesFiles(listView.SelectedItems[0].SubItems[3].Text, listView.SelectedItems[0].SubItems[5].Text);          
+            EdfFiles.FindDublicatedBySize();
+            EdfFiles.CountDublicated();
+            EdfFiles.ShowListFiles(listView);
+        }
     }
 }
