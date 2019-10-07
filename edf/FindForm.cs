@@ -216,7 +216,7 @@ namespace SubReal.EasyDublicateFinder
 
         private void DeleteOthersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EdfFiles.DeleteCurrentDublicatesFiles(listView.SelectedItems[0].SubItems[3].Text, listView.SelectedItems[0].SubItems[5].Text);          
+            EdfFiles.DeleteAllCurrentDublicatesFiles(listView.SelectedItems[0].SubItems[3].Text, listView.SelectedItems[0].SubItems[5].Text);          
             EdfFiles.FindDublicatedBySize();
             EdfFiles.CountDublicated();
             EdfFiles.ShowListFiles(listView);

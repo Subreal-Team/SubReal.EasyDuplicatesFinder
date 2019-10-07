@@ -21,7 +21,13 @@ namespace SubReal.EasyDublicateFinder
             foreach (var fileName in Directory.GetFiles(path, "*", SearchOption.AllDirectories))
             {
                 var fileInfo = new FileInfo(fileName);
-                var fileDesc = new FileDesc { Name = fileName, Size = fileInfo.Length, CreationTime = fileInfo.CreationTime, Guid = Guid.NewGuid(), MD5Summ = "", CountDublicates = 0 };
+                var fileDesc = new FileDesc {   Name = fileName,
+                                                Size = fileInfo.Length,
+                                                CreationTime = fileInfo.CreationTime,
+                                                Guid = Guid.NewGuid(),
+                                                MD5Summ = "",
+                                                CountDublicates = 0 };
+
                 files.Add(fileDesc);
             }
             FullListFiles = files;
@@ -261,15 +267,22 @@ namespace SubReal.EasyDublicateFinder
         /// <summary>
         /// Удаление копий файлов в ListView.
         /// </summary>
-        public static void DeleteCurrentDublicatesFiles(string md5Summ, string guid)
+        public static void DeleteAllCurrentDublicatesFiles(string md5Summ, string guid)
         {
             var forDeleteFiles = new List<FileDesc>();
 
             for (int i = 0; i < FullListFiles.Count; i++)
             {
-                if ((FullListFiles[i].MD5Summ.ToString() == md5Summ) & (FullListFiles[i].Guid.ToString() != guid))
+                if ((FullListFiles[i].MD5Summ.ToString() == md5Summ))
                 {
-                    forDeleteFiles.Add(FullListFiles[i]);
+                    if (FullListFiles[i].Guid.ToString() != guid)
+                    {
+                        forDeleteFiles.Add(FullListFiles[i]);
+                    }
+                    else
+                    {
+                        FullListFiles[i].CountDublicates = 0;
+                    }
                 }
             }
 
