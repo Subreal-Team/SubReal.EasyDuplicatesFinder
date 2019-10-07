@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.FileIO;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace SubReal.EasyDublicateFinder
         public static void GetFiles(string path)
         {
             var files = new List<FileDesc>();
-            foreach (var fileName in Directory.GetFiles(path, "*", SearchOption.AllDirectories))
+            foreach (var fileName in Directory.GetFiles(path, "*", System.IO.SearchOption.AllDirectories))
             {
                 var fileInfo = new FileInfo(fileName);
                 var fileDesc = new FileDesc {   Name = fileName,
@@ -257,11 +258,33 @@ namespace SubReal.EasyDublicateFinder
             return result;
         }
 
-
-        public static void DeleteItem(Guid id) // Удаление книги из списка
+        /// <summary>
+        /// Удаление элемента из скиска по идентификатору
+        /// </summary>
+        /// <param name="id"></param>
+        public static void DeleteItem(Guid id)
         {
             var itemToDelete = FullListFiles.Where(x => x.Guid == id).Select(x => x).First();
+            EdfFiles.DeleteFile(itemToDelete.Name);
             FullListFiles.Remove(itemToDelete);
+        }
+
+        /// <summary>
+        /// Удаление файла с диска.
+        /// </summary>
+        /// <param name="id"></param>
+        public static void DeleteFile(string fileName)
+        {
+            try
+            {
+                FileSystem.DeleteFile(fileName, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin, UICancelOption.ThrowException);               
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+                
         }
 
         /// <summary>
@@ -281,6 +304,7 @@ namespace SubReal.EasyDublicateFinder
                     }
                     else
                     {
+                        // Обнуляем количество дублей, т.к. удалили все файлы кроме основного.
                         FullListFiles[i].CountDublicates = 0;
                     }
                 }
@@ -298,6 +322,9 @@ namespace SubReal.EasyDublicateFinder
 
     internal class FileDesc
     {
+        /// <summary>
+        /// Имя файла.
+        /// </summary>
         public string Name { get; set; }
         public long Size { get; set; }
         public int ControlSum { get; set; }
