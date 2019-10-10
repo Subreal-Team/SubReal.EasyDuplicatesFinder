@@ -3,3 +3,11 @@ create_update/bin/
 .vs/
 edf/bin/
 edf/obj/
+packages/MSTest.TestAdapter.1.3.2/
+packages/MSTest.TestFramework.1.3.2/
+packages/NUnit.2.5.7.10213/
+packages/NUnit.3.12.0/
+packages/NUnit.Mocks.2.6.4/
+packages/
+win.edf.UnitTests/bin/
+win.edf.UnitTests/obj/

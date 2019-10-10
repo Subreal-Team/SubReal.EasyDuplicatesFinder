@@ -62,8 +62,10 @@ namespace SubReal.EasyDublicateFinder
                     "Ошибка имени пути",
                     MessageBoxButtons.OK);*/
                 //todo: Insert check filename 
+                EdfFiles edf = new EdfFiles();
 
-                EdfFiles.GetFiles(path);
+                edf.IsSourceFolderExists(path);
+                edf.GetFiles(path);
 
                 EdfFiles.FindDublicatedBySize();
 

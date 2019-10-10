@@ -4,30 +4,32 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 namespace SubReal.EasyDublicateFinder
 {
-    internal class EdfFiles
+    public class EdfFiles
     {
         private static List<FileDesc> FullListFiles { get; set; }
         /// <summary>
         /// Получить список файлов из указанного пути.
         /// </summary>
         /// <param name="path">Путь поиска.</param>
-        public static void GetFiles(string path)
+        public void GetFiles(string path)
         {
             var files = new List<FileDesc>();
             foreach (var fileName in Directory.GetFiles(path, "*", System.IO.SearchOption.AllDirectories))
             {
                 var fileInfo = new FileInfo(fileName);
-                var fileDesc = new FileDesc {   Name = fileName,
-                                                Size = fileInfo.Length,
-                                                CreationTime = fileInfo.CreationTime,
-                                                Guid = Guid.NewGuid(),
-                                                MD5Summ = "",
-                                                CountDublicates = 0 };
+                var fileDesc = new FileDesc
+                {
+                    Name = fileName,
+                    Size = fileInfo.Length,
+                    CreationTime = fileInfo.CreationTime,
+                    Guid = Guid.NewGuid(),
+                    MD5Summ = "",
+                    CountDublicates = 0
+                };
 
                 files.Add(fileDesc);
             }
@@ -48,7 +50,7 @@ namespace SubReal.EasyDublicateFinder
             foreach (var info in groupBySize)
             {
                 //foreach (ref var item in EdfFiles.FullListFiles)
-                for (int i = 0; i <FullListFiles.Count; i++)
+                for (int i = 0; i < FullListFiles.Count; i++)
                 {
                     if (FullListFiles[i].Size.ToString() == (info.size.ToString()))
                     {
@@ -80,7 +82,7 @@ namespace SubReal.EasyDublicateFinder
                 }
             }
         }
-        
+
         /// <summary>
         /// Настройка объекта ListView для показа результатов.
         /// </summary>
@@ -106,7 +108,7 @@ namespace SubReal.EasyDublicateFinder
         public static void ShowListFiles(ListView listView)
         {
             FormatListView(listView);
-            
+
             // Отключаем обновление списка.
             listView.BeginUpdate();
             // Очищаем список.
@@ -252,7 +254,7 @@ namespace SubReal.EasyDublicateFinder
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public bool CheckSourceFolder(string path)
+        public bool IsSourceFolderExists(string path)
         {
             var result = (Directory.Exists(path)) ? true : false;
             return result;
@@ -272,19 +274,19 @@ namespace SubReal.EasyDublicateFinder
         /// <summary>
         /// Удаление файла с диска.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="fileName">Имя файла.</param>
         public static void DeleteFile(string fileName)
         {
             try
             {
-                FileSystem.DeleteFile(fileName, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin, UICancelOption.ThrowException);               
+                FileSystem.DeleteFile(fileName, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin, UICancelOption.ThrowException);
             }
             catch (Exception)
             {
 
                 throw;
             }
-                
+
         }
 
         /// <summary>
@@ -318,7 +320,6 @@ namespace SubReal.EasyDublicateFinder
 
     }
 
-  
 
     internal class FileDesc
     {
