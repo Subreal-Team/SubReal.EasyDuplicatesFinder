@@ -10,16 +10,27 @@ namespace SubReal.EasyDuplicateFinder
 {
     public class EdfFiles
     {
-        private List<FileDesc> FullListFiles { get; set; }
+        private string Path { get; }
+
+        private List<FileDesc> FullListFiles { get; }
+
+        public EdfFiles(string path)
+        {
+            Path = path;
+            FullListFiles = new List<FileDesc>();
+        }
 
         /// <summary>
         /// Получить список файлов из указанного пути.
         /// </summary>
-        /// <param name="path">Путь поиска.</param>
-        public void GetFiles(string path)
+        public bool GetFiles()
         {
-            var files = new List<FileDesc>();
-            foreach (var fileName in Directory.GetFiles(path, "*", System.IO.SearchOption.AllDirectories))
+            if (!IsSourceFolderExists(Path))
+            {
+                return false;
+            }
+
+            foreach (var fileName in Directory.GetFiles(Path, "*", System.IO.SearchOption.AllDirectories))
             {
                 var fileInfo = new FileInfo(fileName);
                 var fileDesc = new FileDesc
@@ -32,30 +43,34 @@ namespace SubReal.EasyDuplicateFinder
                     CountDuplicates = 0
                 };
 
-                files.Add(fileDesc);
+                FullListFiles.Add(fileDesc);
             }
-            FullListFiles = files;
+
+            FindDuplicatedBySize();
+            CountDuplicated();
+
+            return true;
         }
         /// <summary>
         /// Отбор дубликатов по размеру файла и расчет для них контрольной суммы.
         /// </summary>
-        public void FindDuplicatedBySize()
+        private void FindDuplicatedBySize()
         {
             var groupBySize = FullListFiles
                       .GroupBy(f => new { f.Size })
                       .Select(g => new { size = g.Key.Size, count = g.Count() })
                       .Where(_ => _.count > 1)
                       .ToArray();
+
             // FillListFiles(listViewCandidate, groupBySize);
             // Перебор полученных файлов.
             foreach (var info in groupBySize)
             {
-                //foreach (ref var item in EdfFiles.FullListFiles)
-                for (int i = 0; i < FullListFiles.Count; i++)
+                foreach (var fileDesc in FullListFiles)
                 {
-                    if (FullListFiles[i].Size.ToString() == (info.size.ToString()))
+                    if (fileDesc.Size.ToString() == (info.size.ToString()))
                     {
-                        FullListFiles[i].MD5Summ = GetMD5HashFromFile(FullListFiles[i].Name);
+                        fileDesc.MD5Summ = GetMD5HashFromFile(fileDesc.Name);
                     }
                 }
             }
@@ -64,7 +79,7 @@ namespace SubReal.EasyDuplicateFinder
         /// <summary>
         /// Подсчет дубликатов по контрольной сумме и размеру.
         /// </summary>
-        public void CountDuplicated()
+        private void CountDuplicated()
         {
             var groupByMD5 = FullListFiles
                      .GroupBy(f => new { f.MD5Summ, f.Size })
@@ -257,8 +272,7 @@ namespace SubReal.EasyDuplicateFinder
         /// <returns></returns>
         public bool IsSourceFolderExists(string path)
         {
-            var result = (Directory.Exists(path)) ? true : false;
-            return result;
+            return Directory.Exists(path);
         }
 
         /// <summary>
@@ -293,7 +307,7 @@ namespace SubReal.EasyDuplicateFinder
         /// <summary>
         /// Удаление копий файлов в ListView.
         /// </summary>
-        public void DeleteAllCurrentDublicatesFiles(string md5Summ, string guid)
+        public void DeleteAllCurrentDuplicatesFiles(string md5Summ, string guid)
         {
             var forDeleteFiles = new List<FileDesc>();
 
@@ -317,6 +331,9 @@ namespace SubReal.EasyDuplicateFinder
             {
                 DeleteItem(item.Guid);
             }
+
+            FindDuplicatedBySize();
+            CountDuplicated();
         }
 
     }

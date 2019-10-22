@@ -35,16 +35,16 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.listViewDublicates = new System.Windows.Forms.ListView();
+            this.chkSelectAllFiles = new System.Windows.Forms.CheckBox();
+            this.listView = new System.Windows.Forms.ListView();
             this.tbFolderPath = new System.Windows.Forms.TextBox();
             this.btnSelectDirectory = new System.Windows.Forms.Button();
             this.btnStartFind = new System.Windows.Forms.Button();
             this.lblCountFindedFiles = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.lblTimeWork = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.chkSelectAllFiles = new System.Windows.Forms.CheckBox();
-            this.listView = new System.Windows.Forms.ListView();
-            this.listViewDublicates = new System.Windows.Forms.ListView();
+            this.btnDuplicates = new System.Windows.Forms.Button();
             this.contextMenuListView.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -99,6 +99,51 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1053, 549);
             this.tableLayoutPanel1.TabIndex = 8;
             // 
+            // listViewDublicates
+            // 
+            this.listViewDublicates.CheckBoxes = true;
+            this.listViewDublicates.ContextMenuStrip = this.contextMenuListView;
+            this.listViewDublicates.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewDublicates.FullRowSelect = true;
+            this.listViewDublicates.GridLines = true;
+            this.listViewDublicates.HideSelection = false;
+            this.listViewDublicates.Location = new System.Drawing.Point(3, 266);
+            this.listViewDublicates.MultiSelect = false;
+            this.listViewDublicates.Name = "listViewDublicates";
+            this.listViewDublicates.Size = new System.Drawing.Size(1047, 280);
+            this.listViewDublicates.TabIndex = 6;
+            this.listViewDublicates.UseCompatibleStateImageBehavior = false;
+            this.listViewDublicates.View = System.Windows.Forms.View.Details;
+            // 
+            // chkSelectAllFiles
+            // 
+            this.chkSelectAllFiles.AutoSize = true;
+            this.chkSelectAllFiles.Location = new System.Drawing.Point(2, 8);
+            this.chkSelectAllFiles.Margin = new System.Windows.Forms.Padding(2, 8, 2, 0);
+            this.chkSelectAllFiles.Name = "chkSelectAllFiles";
+            this.chkSelectAllFiles.Size = new System.Drawing.Size(91, 17);
+            this.chkSelectAllFiles.TabIndex = 5;
+            this.chkSelectAllFiles.Text = "Выбрать все";
+            this.chkSelectAllFiles.UseVisualStyleBackColor = true;
+            this.chkSelectAllFiles.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
+            // 
+            // listView
+            // 
+            this.listView.CheckBoxes = true;
+            this.listView.ContextMenuStrip = this.contextMenuListView;
+            this.listView.Dock = System.Windows.Forms.DockStyle.Top;
+            this.listView.FullRowSelect = true;
+            this.listView.GridLines = true;
+            this.listView.HideSelection = false;
+            this.listView.Location = new System.Drawing.Point(3, 28);
+            this.listView.MultiSelect = false;
+            this.listView.Name = "listView";
+            this.listView.Size = new System.Drawing.Size(1047, 232);
+            this.listView.TabIndex = 0;
+            this.listView.UseCompatibleStateImageBehavior = false;
+            this.listView.View = System.Windows.Forms.View.Details;
+            this.listView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListView_ColumnClick);
+            // 
             // tbFolderPath
             // 
             this.tbFolderPath.Location = new System.Drawing.Point(12, 12);
@@ -139,15 +184,15 @@
             this.lblCountFindedFiles.TabIndex = 4;
             this.lblCountFindedFiles.Text = "Find ";
             // 
-            // button1
+            // btnRemove
             // 
-            this.button1.Location = new System.Drawing.Point(507, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Убрать уникальные";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.btnRemove.Location = new System.Drawing.Point(507, 12);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnRemove.TabIndex = 9;
+            this.btnRemove.Text = "Убрать уникальные";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.Button1_Click);
             // 
             // lblTimeWork
             // 
@@ -158,69 +203,24 @@
             this.lblTimeWork.TabIndex = 10;
             this.lblTimeWork.Text = "label1";
             // 
-            // button2
+            // btnDuplicates
             // 
-            this.button2.Location = new System.Drawing.Point(507, 44);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Дубликаты";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
-            // 
-            // chkSelectAllFiles
-            // 
-            this.chkSelectAllFiles.AutoSize = true;
-            this.chkSelectAllFiles.Location = new System.Drawing.Point(2, 8);
-            this.chkSelectAllFiles.Margin = new System.Windows.Forms.Padding(2, 8, 2, 0);
-            this.chkSelectAllFiles.Name = "chkSelectAllFiles";
-            this.chkSelectAllFiles.Size = new System.Drawing.Size(91, 17);
-            this.chkSelectAllFiles.TabIndex = 5;
-            this.chkSelectAllFiles.Text = "Выбрать все";
-            this.chkSelectAllFiles.UseVisualStyleBackColor = true;
-            this.chkSelectAllFiles.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
-            // 
-            // listView
-            // 
-            this.listView.CheckBoxes = true;
-            this.listView.ContextMenuStrip = this.contextMenuListView;
-            this.listView.Dock = System.Windows.Forms.DockStyle.Top;
-            this.listView.FullRowSelect = true;
-            this.listView.GridLines = true;
-            this.listView.HideSelection = false;
-            this.listView.Location = new System.Drawing.Point(3, 28);
-            this.listView.MultiSelect = false;
-            this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(1047, 232);
-            this.listView.TabIndex = 0;
-            this.listView.UseCompatibleStateImageBehavior = false;
-            this.listView.View = System.Windows.Forms.View.Details;
-            this.listView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListView_ColumnClick);
-            // 
-            // listViewDublicates
-            // 
-            this.listViewDublicates.CheckBoxes = true;
-            this.listViewDublicates.ContextMenuStrip = this.contextMenuListView;
-            this.listViewDublicates.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewDublicates.FullRowSelect = true;
-            this.listViewDublicates.GridLines = true;
-            this.listViewDublicates.HideSelection = false;
-            this.listViewDublicates.Location = new System.Drawing.Point(3, 266);
-            this.listViewDublicates.MultiSelect = false;
-            this.listViewDublicates.Name = "listViewDublicates";
-            this.listViewDublicates.Size = new System.Drawing.Size(1047, 280);
-            this.listViewDublicates.TabIndex = 6;
-            this.listViewDublicates.UseCompatibleStateImageBehavior = false;
-            this.listViewDublicates.View = System.Windows.Forms.View.Details;
+            this.btnDuplicates.Location = new System.Drawing.Point(507, 44);
+            this.btnDuplicates.Name = "btnDuplicates";
+            this.btnDuplicates.Size = new System.Drawing.Size(75, 23);
+            this.btnDuplicates.TabIndex = 11;
+            this.btnDuplicates.Text = "Дубликаты";
+            this.btnDuplicates.UseVisualStyleBackColor = true;
+            this.btnDuplicates.Click += new System.EventHandler(this.Button2_Click);
             // 
             // FindForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1053, 632);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnDuplicates);
             this.Controls.Add(this.lblTimeWork);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.lblCountFindedFiles);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.btnStartFind);
@@ -252,9 +252,9 @@
         private System.Windows.Forms.Button btnSelectDirectory;
         private System.Windows.Forms.Button btnStartFind;
         private System.Windows.Forms.Label lblCountFindedFiles;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Label lblTimeWork;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnDuplicates;
     }
 }
 

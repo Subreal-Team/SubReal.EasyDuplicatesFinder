@@ -12,7 +12,15 @@ namespace SubReal.EasyDuplicateFinder
 
         public FindForm()
         {
-            InitializeComponent();          
+            InitializeComponent();
+
+            ToggleEnabledUserControls(false);
+        }
+
+        private void ToggleEnabledUserControls(bool enabled)
+        {
+            btnRemove.Enabled = enabled;
+            btnDuplicates.Enabled = enabled;
         }
 
         /// <summary>
@@ -38,44 +46,55 @@ namespace SubReal.EasyDuplicateFinder
 
         private void BtnStartFind_Click(object sender, EventArgs e)
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
+            var watch = Stopwatch.StartNew();
             BlockHeadControls(true);
+
             try
             {
-                string path = tbFolderPath.Text;
-                /* MessageBox.Show(
-                    "Указанный путь не существует. Поиск невозможен.",
-                    "Ошибка имени пути",
-                    MessageBoxButtons.OK);*/
-                //todo: Insert check filename 
-                _edfFiles = new EdfFiles();
+                _edfFiles = new EdfFiles(tbFolderPath.Text);
 
-                _edfFiles.IsSourceFolderExists(path);
-                _edfFiles.GetFiles(path);
-                _edfFiles.FindDuplicatedBySize();
-                _edfFiles.CountDuplicated();
-                
+                if (_edfFiles.GetFiles())
+                {
+                    ToggleEnabledUserControls(true);
+                    _edfFiles.ShowListFiles(listView);
+                    // Выводим информацию о найденых файлах.
+                    lblCountFindedFiles.Text = string.Format("Find {0} file(s)", listView.Items.Count);
+                    // Устанавливаем параметры общего выделения.
+                    CheckAllFiles(false);
+                }
+                else
+                {
+                    ToggleEnabledUserControls(false);
+                    MessageBox.Show(
+                        "Указанный путь не существует. Поиск невозможен.",
+                        "Ошибка имени пути",
+                        MessageBoxButtons.OK);
+                }
             }
-            finally
+            catch (Exception exception)
             {
-                _edfFiles.ShowListFiles(listView);
-                BlockHeadControls(false);
-                // Выводим информацию о найденых файлах.
-                lblCountFindedFiles.Text = string.Format("Find {0} file(s)", listView.Items.Count);
-                // Устанавливаем параметры общего выделения.
-                CheckAllFiles(false);
+                MessageBox.Show(
+                    exception.Message,
+                    "Ошибка при обработке каталога",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
+            finally 
+            {
+                BlockHeadControls(false);
+            }
+
             watch.Stop();
-            lblTimeWork.Text = String.Format($"Время работы: {watch.ElapsedMilliseconds}");
+            lblTimeWork.Text = $"Время работы: {watch.Elapsed}";
         }
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
+            var watch = Stopwatch.StartNew();
             BlockHeadControls(true);
             CheckAllFiles(chkSelectAllFiles.Checked);
             BlockHeadControls(false);
             watch.Stop();
-            lblTimeWork.Text = String.Format($"Время работы: {watch.ElapsedMilliseconds / 1000 }");
+            lblTimeWork.Text = $"Время работы: {watch.Elapsed}";
         }
         /// <summary>
         /// Установка или снятие флага отметки файлов в списке.
@@ -185,9 +204,7 @@ namespace SubReal.EasyDuplicateFinder
         private void ShowFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (NotSelectedItemsInFileList)
-            {
                 return;
-            }
 
             if (File.Exists(listView.SelectedItems[0].SubItems[0].Text))
             {
@@ -203,9 +220,7 @@ namespace SubReal.EasyDuplicateFinder
         private void Button2_Click(object sender, EventArgs e)
         {
             if (NotSelectedItemsInFileList)
-            {
                 return;
-            }
 
             _edfFiles.ShowCurrentDublicatesListFiles(listViewDublicates, listView.SelectedItems[0].SubItems[3].Text);
         }
@@ -214,9 +229,10 @@ namespace SubReal.EasyDuplicateFinder
 
         private void DeleteOthersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _edfFiles.DeleteAllCurrentDublicatesFiles(listView.SelectedItems[0].SubItems[3].Text, listView.SelectedItems[0].SubItems[5].Text);
-            _edfFiles.FindDuplicatedBySize();
-            _edfFiles.CountDuplicated();
+            if (NotSelectedItemsInFileList)
+                return;
+
+            _edfFiles.DeleteAllCurrentDuplicatesFiles(listView.SelectedItems[0].SubItems[3].Text, listView.SelectedItems[0].SubItems[5].Text);
             _edfFiles.ShowListFiles(listView);
         }
     }
