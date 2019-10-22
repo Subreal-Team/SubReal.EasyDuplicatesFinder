@@ -184,6 +184,11 @@ namespace SubReal.EasyDuplicateFinder
         }
         private void ShowFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (NotSelectedItemsInFileList)
+            {
+                return;
+            }
+
             if (File.Exists(listView.SelectedItems[0].SubItems[0].Text))
             {
                 Process.Start(new ProcessStartInfo("explorer.exe", @" /select, " + listView.SelectedItems[0].SubItems[0].Text));
@@ -197,8 +202,15 @@ namespace SubReal.EasyDuplicateFinder
 
         private void Button2_Click(object sender, EventArgs e)
         {
+            if (NotSelectedItemsInFileList)
+            {
+                return;
+            }
+
             _edfFiles.ShowCurrentDublicatesListFiles(listViewDublicates, listView.SelectedItems[0].SubItems[3].Text);
         }
+
+        private bool NotSelectedItemsInFileList => listViewDublicates.SelectedItems.Count == 0;
 
         private void DeleteOthersToolStripMenuItem_Click(object sender, EventArgs e)
         {
