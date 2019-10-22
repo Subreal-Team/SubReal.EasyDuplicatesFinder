@@ -1,4 +1,4 @@
-﻿namespace SubReal.EasyDublicateFinder
+﻿namespace SubReal.EasyDuplicateFinder
 {
     partial class FindForm
     {
@@ -109,7 +109,7 @@
             // 
             // btnSelectDirectory
             // 
-            this.btnSelectDirectory.Image = global::SubReal.EasyDublicateFinder.Properties.Resources.icon_folder_open;
+            this.btnSelectDirectory.Image = global::SubReal.EasyDuplicateFinder.Properties.Resources.icon_folder_open;
             this.btnSelectDirectory.Location = new System.Drawing.Point(408, 10);
             this.btnSelectDirectory.Name = "btnSelectDirectory";
             this.btnSelectDirectory.Size = new System.Drawing.Size(75, 23);

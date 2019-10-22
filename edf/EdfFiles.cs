@@ -1,16 +1,17 @@
-﻿using Microsoft.VisualBasic.FileIO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.FileIO;
 
-namespace SubReal.EasyDublicateFinder
+namespace SubReal.EasyDuplicateFinder
 {
     public class EdfFiles
     {
-        private static List<FileDesc> FullListFiles { get; set; }
+        private List<FileDesc> FullListFiles { get; set; }
+
         /// <summary>
         /// Получить список файлов из указанного пути.
         /// </summary>
@@ -28,7 +29,7 @@ namespace SubReal.EasyDublicateFinder
                     CreationTime = fileInfo.CreationTime,
                     Guid = Guid.NewGuid(),
                     MD5Summ = "",
-                    CountDublicates = 0
+                    CountDuplicates = 0
                 };
 
                 files.Add(fileDesc);
@@ -38,7 +39,7 @@ namespace SubReal.EasyDublicateFinder
         /// <summary>
         /// Отбор дубликатов по размеру файла и расчет для них контрольной суммы.
         /// </summary>
-        public static void FindDublicatedBySize()
+        public void FindDuplicatedBySize()
         {
             var groupBySize = FullListFiles
                       .GroupBy(f => new { f.Size })
@@ -63,7 +64,7 @@ namespace SubReal.EasyDublicateFinder
         /// <summary>
         /// Подсчет дубликатов по контрольной сумме и размеру.
         /// </summary>
-        public static void CountDublicated()
+        public void CountDuplicated()
         {
             var groupByMD5 = FullListFiles
                      .GroupBy(f => new { f.MD5Summ, f.Size })
@@ -77,7 +78,7 @@ namespace SubReal.EasyDublicateFinder
                     // Устанавливаем количество, есть MD5 совпадают.
                     if (FullListFiles[i].MD5Summ.ToString() == (info.md5.ToString()))
                     {
-                        FullListFiles[i].CountDublicates = info.count;
+                        FullListFiles[i].CountDuplicates = info.count;
                     }
                 }
             }
@@ -95,7 +96,7 @@ namespace SubReal.EasyDublicateFinder
             listView.Columns.Add("File size", 90);       //1
             listView.Columns.Add("Data Create", 110);   //2
             listView.Columns.Add("MD5", 220);           //3
-            listView.Columns.Add("Dublicates", 50);    //4          
+            listView.Columns.Add("Duplicates", 50);    //4          
             listView.Columns.Add("GUID", 220);    //5          
             listView.CheckBoxes = true;
             listView.GridLines = true;
@@ -105,7 +106,7 @@ namespace SubReal.EasyDublicateFinder
         /// Показ результата в ListView.
         /// </summary>
         /// <param name="listView"></param>
-        public static void ShowListFiles(ListView listView)
+        public void ShowListFiles(ListView listView)
         {
             FormatListView(listView);
 
@@ -130,7 +131,7 @@ namespace SubReal.EasyDublicateFinder
                 // Контрольная сумма.
                 lvi.SubItems.Add(file.MD5Summ.ToString());
                 // Число повторений.
-                lvi.SubItems.Add(file.CountDublicates.ToString());
+                lvi.SubItems.Add(file.CountDuplicates.ToString());
                 lvi.SubItems.Add(file.Guid.ToString());
                 // Добавляем элемент в ListView.
                 listView.Items.Add(lvi);
@@ -143,7 +144,7 @@ namespace SubReal.EasyDublicateFinder
         /// Показ дубликаты в ListView.
         /// </summary>
         /// <param name="listView"></param>
-        public static void ShowDublicatesOnlyListFiles(ListView listView)
+        public void ShowDuplicatesOnlyListFiles(ListView listView)
         {
             FormatListView(listView);
 
@@ -154,7 +155,7 @@ namespace SubReal.EasyDublicateFinder
             // Перебор полученных файлов.
             foreach (var file in FullListFiles)
             {
-                if (file.CountDublicates > 0)
+                if (file.CountDuplicates > 0)
                 {
                     ListViewItem lvi = new ListViewItem
                     {
@@ -170,7 +171,7 @@ namespace SubReal.EasyDublicateFinder
                     // Контрольная сумма.
                     lvi.SubItems.Add(file.MD5Summ.ToString());
                     // Число повторений.
-                    lvi.SubItems.Add(file.CountDublicates.ToString());
+                    lvi.SubItems.Add(file.CountDuplicates.ToString());
                     //GUID
                     lvi.SubItems.Add(file.Guid.ToString());
                     // Добавляем элемент в ListView.
@@ -185,7 +186,7 @@ namespace SubReal.EasyDublicateFinder
         /// Показ конкретного дубликата в ListView.
         /// </summary>
         /// <param name="listView"></param>
-        public static void ShowCurrentDublicatesListFiles(ListView listView, string MD5Summ)
+        public void ShowCurrentDublicatesListFiles(ListView listView, string MD5Summ)
         {
             if (MD5Summ == string.Empty)
             {
@@ -221,7 +222,7 @@ namespace SubReal.EasyDublicateFinder
                     // Контрольная сумма.
                     lvi.SubItems.Add(file.MD5Summ.ToString());
                     // Число повторений.
-                    lvi.SubItems.Add(file.CountDublicates.ToString());
+                    lvi.SubItems.Add(file.CountDuplicates.ToString());
                     //GUID
                     lvi.SubItems.Add(file.Guid.ToString());
                     // Добавляем элемент в ListView.
@@ -264,7 +265,7 @@ namespace SubReal.EasyDublicateFinder
         /// Удаление элемента из скиска по идентификатору
         /// </summary>
         /// <param name="id"></param>
-        public static void DeleteItem(Guid id)
+        public void DeleteItem(Guid id)
         {
             var itemToDelete = FullListFiles.Where(x => x.Guid == id).Select(x => x).First();
             EdfFiles.DeleteFile(itemToDelete.Name);
@@ -292,29 +293,29 @@ namespace SubReal.EasyDublicateFinder
         /// <summary>
         /// Удаление копий файлов в ListView.
         /// </summary>
-        public static void DeleteAllCurrentDublicatesFiles(string md5Summ, string guid)
+        public void DeleteAllCurrentDublicatesFiles(string md5Summ, string guid)
         {
             var forDeleteFiles = new List<FileDesc>();
 
-            for (int i = 0; i < FullListFiles.Count; i++)
+            foreach (var fileDesc in FullListFiles)
             {
-                if ((FullListFiles[i].MD5Summ.ToString() == md5Summ))
+                if ((fileDesc.MD5Summ == md5Summ))
                 {
-                    if (FullListFiles[i].Guid.ToString() != guid)
+                    if (fileDesc.Guid.ToString() != guid)
                     {
-                        forDeleteFiles.Add(FullListFiles[i]);
+                        forDeleteFiles.Add(fileDesc);
                     }
                     else
                     {
                         // Обнуляем количество дублей, т.к. удалили все файлы кроме основного.
-                        FullListFiles[i].CountDublicates = 0;
+                        fileDesc.CountDuplicates = 0;
                     }
                 }
             }
 
             foreach (var item in forDeleteFiles)
             {
-                EdfFiles.DeleteItem(item.Guid);
+                DeleteItem(item.Guid);
             }
         }
 
@@ -331,7 +332,7 @@ namespace SubReal.EasyDublicateFinder
         public int ControlSum { get; set; }
         public DateTime CreationTime { get; set; }
         public string MD5Summ { get; set; }
-        public int CountDublicates { get; set; }
+        public int CountDuplicates { get; set; }
         public Guid Guid { get; set; }
     }
 

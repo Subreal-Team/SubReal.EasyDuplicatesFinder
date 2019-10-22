@@ -1,48 +1,33 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
-using System.Xml.Linq;
-using System.Xml.Serialization;
-using System.Xml.XPath;
-using static SubReal.EasyDublicateFinder.Program;
-namespace SubReal.EasyDublicateFinder
+
+namespace SubReal.EasyDuplicateFinder
 {
     public partial class FindForm : Form
     {
+        private EdfFiles _edfFiles;
+
         public FindForm()
         {
             InitializeComponent();          
         }
+
         /// <summary>
         /// Показывает или скрывает панель ожидания.
         /// </summary>
-        /// <param name="b"><see langword="true"/> Показать панель.; <see langword="false"/> Скрыть панель.</param>
-        private void BlockHeadControls(Boolean b)
+        /// <param name="isBlock"><see langword="true"/> Показать панель.; <see langword="false"/> Скрыть панель.</param>
+        private void BlockHeadControls(bool isBlock)
         {
             // Обрабатываем кнопки.
-            btnStartFind.Enabled = !b;
-            chkSelectAllFiles.Enabled = !b;
+            btnStartFind.Enabled = !isBlock;
+            chkSelectAllFiles.Enabled = !isBlock;
             // Устанавливаем курсор.
-            if (b)
-            {
-                Cursor = Cursors.WaitCursor;
-            }
-            else
-            {
-                Cursor = Cursors.Default;
-            }
+            Cursor = isBlock ? Cursors.WaitCursor : Cursors.Default;
         }
+
         private void BtnSelectDirectory_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
@@ -50,6 +35,7 @@ namespace SubReal.EasyDublicateFinder
                 tbFolderPath.Text = folderBrowserDialog1.SelectedPath;
             }
         }
+
         private void BtnStartFind_Click(object sender, EventArgs e)
         {
             var watch = System.Diagnostics.Stopwatch.StartNew();
@@ -62,19 +48,17 @@ namespace SubReal.EasyDublicateFinder
                     "Ошибка имени пути",
                     MessageBoxButtons.OK);*/
                 //todo: Insert check filename 
-                EdfFiles edf = new EdfFiles();
+                _edfFiles = new EdfFiles();
 
-                edf.IsSourceFolderExists(path);
-                edf.GetFiles(path);
-
-                EdfFiles.FindDublicatedBySize();
-
-                EdfFiles.CountDublicated();
+                _edfFiles.IsSourceFolderExists(path);
+                _edfFiles.GetFiles(path);
+                _edfFiles.FindDuplicatedBySize();
+                _edfFiles.CountDuplicated();
                 
             }
             finally
             {
-                EdfFiles.ShowListFiles(listView);
+                _edfFiles.ShowListFiles(listView);
                 BlockHeadControls(false);
                 // Выводим информацию о найденых файлах.
                 lblCountFindedFiles.Text = string.Format("Find {0} file(s)", listView.Items.Count);
@@ -208,20 +192,20 @@ namespace SubReal.EasyDublicateFinder
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            EdfFiles.ShowDublicatesOnlyListFiles(listView);
+            _edfFiles.ShowDuplicatesOnlyListFiles(listView);
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            EdfFiles.ShowCurrentDublicatesListFiles(listViewDublicates, listView.SelectedItems[0].SubItems[3].Text);
+            _edfFiles.ShowCurrentDublicatesListFiles(listViewDublicates, listView.SelectedItems[0].SubItems[3].Text);
         }
 
         private void DeleteOthersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EdfFiles.DeleteAllCurrentDublicatesFiles(listView.SelectedItems[0].SubItems[3].Text, listView.SelectedItems[0].SubItems[5].Text);          
-            EdfFiles.FindDublicatedBySize();
-            EdfFiles.CountDublicated();
-            EdfFiles.ShowListFiles(listView);
+            _edfFiles.DeleteAllCurrentDublicatesFiles(listView.SelectedItems[0].SubItems[3].Text, listView.SelectedItems[0].SubItems[5].Text);
+            _edfFiles.FindDuplicatedBySize();
+            _edfFiles.CountDuplicated();
+            _edfFiles.ShowListFiles(listView);
         }
     }
 }
