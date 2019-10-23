@@ -58,6 +58,23 @@ namespace SubReal.EasyDuplicateFinder
             listView.EndUpdate();
         }
 
+        private ListViewItem CreateListViewItem(FileDesc fileDesc)
+        {
+            var lvi = new ListViewItem
+            {
+                Text = fileDesc.Name,
+                ImageIndex = 0
+            };
+
+            lvi.SubItems.Add(fileDesc.Size.ToString());
+            lvi.SubItems.Add(fileDesc.CreationTime.ToString());
+            lvi.SubItems.Add(fileDesc.MD5Summ);
+            lvi.SubItems.Add(fileDesc.CountDuplicates.ToString());
+            lvi.SubItems.Add(fileDesc.Guid.ToString());
+
+            return lvi;
+        }
+
         /// <summary>
         /// Показ результата в ListView.
         /// </summary>
@@ -75,23 +92,6 @@ namespace SubReal.EasyDuplicateFinder
             }
             
             listView.EndUpdate();
-        }
-
-        private ListViewItem CreateListViewItem(FileDesc fileDesc)
-        {
-            var lvi = new ListViewItem
-            {
-                Text = fileDesc.Name,
-                ImageIndex = 0
-            };
-
-            lvi.SubItems.Add(fileDesc.Size.ToString());
-            lvi.SubItems.Add(fileDesc.CreationTime.ToString());
-            lvi.SubItems.Add(fileDesc.MD5Summ);
-            lvi.SubItems.Add(fileDesc.CountDuplicates.ToString());
-            lvi.SubItems.Add(fileDesc.Guid.ToString());
-            
-            return lvi;
         }
 
         /// <summary>
