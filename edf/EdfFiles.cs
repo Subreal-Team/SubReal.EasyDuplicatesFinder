@@ -12,7 +12,7 @@ namespace SubReal.EasyDuplicateFinder
     {
         private string Path { get; }
 
-        private List<FileDesc> FullListFiles { get; }
+        public List<FileDesc> FullListFiles { get; }
 
         public EdfFiles(string path)
         {
@@ -91,161 +91,12 @@ namespace SubReal.EasyDuplicateFinder
                 for (int i = 0; i < FullListFiles.Count; i++)
                 {
                     // Устанавливаем количество, есть MD5 совпадают.
-                    if (FullListFiles[i].MD5Summ.ToString() == (info.md5.ToString()))
+                    if (FullListFiles[i].MD5Summ == info.md5)
                     {
                         FullListFiles[i].CountDuplicates = info.count;
                     }
                 }
             }
-        }
-
-        /// <summary>
-        /// Настройка объекта ListView для показа результатов.
-        /// </summary>
-        /// <param name="listView"></param>
-        private static void FormatListView(ListView listView)
-        {
-            listView.BeginUpdate();
-            listView.Columns.Clear();
-            listView.Columns.Add("Full File name", 370);  //0
-            listView.Columns.Add("File size", 90);       //1
-            listView.Columns.Add("Data Create", 110);   //2
-            listView.Columns.Add("MD5", 220);           //3
-            listView.Columns.Add("Duplicates", 50);    //4          
-            listView.Columns.Add("GUID", 220);    //5          
-            listView.CheckBoxes = true;
-            listView.GridLines = true;
-            listView.EndUpdate();
-        }
-        /// <summary>
-        /// Показ результата в ListView.
-        /// </summary>
-        /// <param name="listView"></param>
-        public void ShowListFiles(ListView listView)
-        {
-            FormatListView(listView);
-
-            // Отключаем обновление списка.
-            listView.BeginUpdate();
-            // Очищаем список.
-            listView.Items.Clear();
-            // Перебор полученных файлов.
-            foreach (var file in FullListFiles)
-            {
-                ListViewItem lvi = new ListViewItem
-                {
-                    // установка названия файла.
-                    Text = file.Name,
-                    // Установка картинки для файла.
-                    ImageIndex = 0
-                };
-                // Размер.
-                lvi.SubItems.Add(file.Size.ToString());
-                // Время создания файла.
-                lvi.SubItems.Add(file.CreationTime.ToString());
-                // Контрольная сумма.
-                lvi.SubItems.Add(file.MD5Summ.ToString());
-                // Число повторений.
-                lvi.SubItems.Add(file.CountDuplicates.ToString());
-                lvi.SubItems.Add(file.Guid.ToString());
-                // Добавляем элемент в ListView.
-                listView.Items.Add(lvi);
-            }
-            // Включаем обновление списка.
-            listView.EndUpdate();
-        }
-
-        /// <summary>
-        /// Показ дубликаты в ListView.
-        /// </summary>
-        /// <param name="listView"></param>
-        public void ShowDuplicatesOnlyListFiles(ListView listView)
-        {
-            FormatListView(listView);
-
-            // Отключаем обновление списка.
-            listView.BeginUpdate();
-            // Очищаем список.
-            listView.Items.Clear();
-            // Перебор полученных файлов.
-            foreach (var file in FullListFiles)
-            {
-                if (file.CountDuplicates > 0)
-                {
-                    ListViewItem lvi = new ListViewItem
-                    {
-                        // установка названия файла.
-                        Text = file.Name,
-                        // Установка картинки для файла.
-                        ImageIndex = 0
-                    };
-                    // Размер.
-                    lvi.SubItems.Add(file.Size.ToString());
-                    // Время создания файла.
-                    lvi.SubItems.Add(file.CreationTime.ToString());
-                    // Контрольная сумма.
-                    lvi.SubItems.Add(file.MD5Summ.ToString());
-                    // Число повторений.
-                    lvi.SubItems.Add(file.CountDuplicates.ToString());
-                    //GUID
-                    lvi.SubItems.Add(file.Guid.ToString());
-                    // Добавляем элемент в ListView.
-                    listView.Items.Add(lvi);
-                }
-            }
-            // Включаем обновление списка.
-            listView.EndUpdate();
-        }
-
-        /// <summary>
-        /// Показ конкретного дубликата в ListView.
-        /// </summary>
-        /// <param name="listView"></param>
-        public void ShowCurrentDublicatesListFiles(ListView listView, string MD5Summ)
-        {
-            if (MD5Summ == string.Empty)
-            {
-                MessageBox.Show(
-                    "Для указаного файла нет дубликатов",
-                    "Внимание",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            FormatListView(listView);
-
-            // Отключаем обновление списка.
-            listView.BeginUpdate();
-            // Очищаем список.
-            listView.Items.Clear();
-            // Перебор полученных файлов.
-            foreach (var file in FullListFiles)
-            {
-                if (file.MD5Summ == MD5Summ)
-                {
-                    ListViewItem lvi = new ListViewItem
-                    {
-                        // установка названия файла.
-                        Text = file.Name,
-                        // Установка картинки для файла.
-                        ImageIndex = 0
-                    };
-                    // Размер.
-                    lvi.SubItems.Add(file.Size.ToString());
-                    // Время создания файла.
-                    lvi.SubItems.Add(file.CreationTime.ToString());
-                    // Контрольная сумма.
-                    lvi.SubItems.Add(file.MD5Summ.ToString());
-                    // Число повторений.
-                    lvi.SubItems.Add(file.CountDuplicates.ToString());
-                    //GUID
-                    lvi.SubItems.Add(file.Guid.ToString());
-                    // Добавляем элемент в ListView.
-                    listView.Items.Add(lvi);
-                }
-            }
-            // Включаем обновление списка.
-            listView.EndUpdate();
         }
 
         /// <summary>
@@ -338,8 +189,7 @@ namespace SubReal.EasyDuplicateFinder
 
     }
 
-
-    internal class FileDesc
+    public class FileDesc
     {
         /// <summary>
         /// Имя файла.
