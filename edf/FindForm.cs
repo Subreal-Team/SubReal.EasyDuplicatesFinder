@@ -146,6 +146,24 @@ namespace SubReal.EasyDuplicateFinder
             listViewDublicates.EndUpdate();
         }
 
+        /// <summary>
+        /// Установка или снятие флага отметки файлов в списке.
+        /// </summary>
+        /// <param name="checkAll"><see langword="true"/>Отметить все.<see langword="false"/>Снять отметку у всех.</param>
+        private void CheckAllFiles(bool checkAll)
+        {
+            // Меняем статус checkBox в зависимости от задачи.
+            chkSelectAllFiles.Text = (checkAll) ? "Снять чек со всех" : "Выбрать все";
+            chkSelectAllFiles.CheckState = (checkAll) ? CheckState.Checked : CheckState.Unchecked;
+            listView.BeginUpdate();
+            // Обходим список и устанавливаем/снимаем флаг.
+            foreach (ListViewItem l in listView.Items)
+            {
+                l.Checked = checkAll;
+            }
+            listView.EndUpdate();
+        }
+
         #endregion ListView Updates
 
         private void BtnSelectDirectory_Click(object sender, EventArgs e)
@@ -209,23 +227,7 @@ namespace SubReal.EasyDuplicateFinder
             lblTimeWork.Text = $"Время работы: {watch.Elapsed}";
         }
 
-        /// <summary>
-        /// Установка или снятие флага отметки файлов в списке.
-        /// </summary>
-        /// <param name="checkAll"><see langword="true"/>Отметить все.<see langword="false"/>Снять отметку у всех.</param>
-        private void CheckAllFiles(bool checkAll)
-        {
-            // Меняем статус checkBox в зависимости от задачи.
-            chkSelectAllFiles.Text = (checkAll) ? "Снять чек со всех" : "Выбрать все";
-            chkSelectAllFiles.CheckState = (checkAll) ? CheckState.Checked : CheckState.Unchecked;
-            listView.BeginUpdate();
-            // Обходим список и устанавливаем/снимаем флаг.
-            foreach (ListViewItem l in listView.Items)
-            {
-                l.Checked = checkAll;
-            }
-            listView.EndUpdate();
-        }
+
 
         /// <summary>
         /// Получение количества отмеченных файлов.
