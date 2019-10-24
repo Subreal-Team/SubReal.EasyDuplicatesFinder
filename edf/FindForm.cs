@@ -266,32 +266,7 @@ namespace SubReal.EasyDuplicateFinder
             }
             return fileLists;
         }
-        class ListViewColumnComparer : IComparer
-        {
-            public int ColumnIndex { get; set; }
-            public ListViewColumnComparer(int columnIndex)
-            {
-                ColumnIndex = columnIndex;
-            }
-            public int Compare(object x, object y)
-            {
-                try
-                {
-                    return String.Compare(
-                    ((ListViewItem)x).SubItems[ColumnIndex].Text,
-                    ((ListViewItem)y).SubItems[ColumnIndex].Text);
-                }
-                catch (Exception) // если вдруг столбец пустой (или что-то пошло не так)
-                {
-                    return 0;
-                }
-            }
-        }
-
-        private void ListView_ColumnClick(object sender, ColumnClickEventArgs e)
-        {
-            this.listView.ListViewItemSorter = new ListViewColumnComparer(e.Column);
-        }
+  
 
         private void ShowFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
