@@ -42,6 +42,7 @@
             this.lblTimeWork = new System.Windows.Forms.Label();
             this.lblCountFindedFiles = new System.Windows.Forms.Label();
             this.panelOperations = new System.Windows.Forms.Panel();
+            this.checkBoxDisableMessages = new System.Windows.Forms.CheckBox();
             this.btnShowDuplicates = new System.Windows.Forms.Button();
             this.tabFilesPage = new System.Windows.Forms.TabPage();
             this.tableLayoutFilesPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -58,6 +59,7 @@
             this.contextMenuDuplicates = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemDuplicates_ShowFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDeleteOthers = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelDuplicatesCount = new System.Windows.Forms.Label();
             this.contextMenuListView.SuspendLayout();
             this.tableLayoutDuplicatesPanel.SuspendLayout();
             this.panelPathFind.SuspendLayout();
@@ -76,13 +78,13 @@
             this.contextMenuListView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showFileToolStripMenuItem});
             this.contextMenuListView.Name = "contextMenuListView";
-            this.contextMenuListView.Size = new System.Drawing.Size(123, 26);
+            this.contextMenuListView.Size = new System.Drawing.Size(169, 26);
             // 
             // showFileToolStripMenuItem
             // 
             this.showFileToolStripMenuItem.Name = "showFileToolStripMenuItem";
-            this.showFileToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.showFileToolStripMenuItem.Text = "Show file";
+            this.showFileToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.showFileToolStripMenuItem.Text = "Перейти к файлу";
             this.showFileToolStripMenuItem.Click += new System.EventHandler(this.ShowFileToolStripMenuItem_Click);
             // 
             // folderBrowserDialog1
@@ -109,7 +111,7 @@
             this.tableLayoutDuplicatesPanel.Name = "tableLayoutDuplicatesPanel";
             this.tableLayoutDuplicatesPanel.RowCount = 1;
             this.tableLayoutDuplicatesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutDuplicatesPanel.Size = new System.Drawing.Size(1165, 100);
+            this.tableLayoutDuplicatesPanel.Size = new System.Drawing.Size(1202, 100);
             this.tableLayoutDuplicatesPanel.TabIndex = 12;
             // 
             // panelPathFind
@@ -120,17 +122,17 @@
             this.panelPathFind.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelPathFind.Location = new System.Drawing.Point(3, 3);
             this.panelPathFind.Name = "panelPathFind";
-            this.panelPathFind.Size = new System.Drawing.Size(441, 94);
+            this.panelPathFind.Size = new System.Drawing.Size(460, 94);
             this.panelPathFind.TabIndex = 0;
             // 
             // btnStartFind
             // 
             this.btnStartFind.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnStartFind.Location = new System.Drawing.Point(353, 45);
+            this.btnStartFind.Location = new System.Drawing.Point(372, 45);
             this.btnStartFind.Name = "btnStartFind";
             this.btnStartFind.Size = new System.Drawing.Size(75, 23);
             this.btnStartFind.TabIndex = 4;
-            this.btnStartFind.Text = "&Find";
+            this.btnStartFind.Text = "&Поиск";
             this.btnStartFind.UseVisualStyleBackColor = true;
             this.btnStartFind.Click += new System.EventHandler(this.BtnStartFind_Click);
             // 
@@ -138,11 +140,11 @@
             // 
             this.btnSelectDirectory.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnSelectDirectory.Image = global::SubReal.EasyDuplicateFinder.Properties.Resources.icon_folder_open;
-            this.btnSelectDirectory.Location = new System.Drawing.Point(353, 7);
+            this.btnSelectDirectory.Location = new System.Drawing.Point(372, 7);
             this.btnSelectDirectory.Name = "btnSelectDirectory";
             this.btnSelectDirectory.Size = new System.Drawing.Size(75, 23);
             this.btnSelectDirectory.TabIndex = 3;
-            this.btnSelectDirectory.Text = "&Directory";
+            this.btnSelectDirectory.Text = "&Папка";
             this.btnSelectDirectory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSelectDirectory.UseCompatibleTextRendering = true;
             this.btnSelectDirectory.UseVisualStyleBackColor = true;
@@ -154,16 +156,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbFolderPath.Location = new System.Drawing.Point(9, 9);
             this.tbFolderPath.Name = "tbFolderPath";
-            this.tbFolderPath.Size = new System.Drawing.Size(331, 20);
+            this.tbFolderPath.Size = new System.Drawing.Size(350, 20);
             this.tbFolderPath.TabIndex = 2;
             this.tbFolderPath.Text = "c:\\iac";
             // 
             // panelStatistic
             // 
+            this.panelStatistic.Controls.Add(this.labelDuplicatesCount);
             this.panelStatistic.Controls.Add(this.lblTimeWork);
             this.panelStatistic.Controls.Add(this.lblCountFindedFiles);
             this.panelStatistic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelStatistic.Location = new System.Drawing.Point(450, 3);
+            this.panelStatistic.Location = new System.Drawing.Point(469, 3);
             this.panelStatistic.Name = "panelStatistic";
             this.panelStatistic.Size = new System.Drawing.Size(294, 94);
             this.panelStatistic.TabIndex = 1;
@@ -171,37 +174,48 @@
             // lblTimeWork
             // 
             this.lblTimeWork.AutoSize = true;
-            this.lblTimeWork.Location = new System.Drawing.Point(16, 17);
+            this.lblTimeWork.Location = new System.Drawing.Point(11, 9);
             this.lblTimeWork.Name = "lblTimeWork";
-            this.lblTimeWork.Size = new System.Drawing.Size(35, 13);
+            this.lblTimeWork.Size = new System.Drawing.Size(80, 13);
             this.lblTimeWork.TabIndex = 14;
-            this.lblTimeWork.Text = "label1";
+            this.lblTimeWork.Text = "Время работы";
             // 
             // lblCountFindedFiles
             // 
             this.lblCountFindedFiles.AutoSize = true;
-            this.lblCountFindedFiles.Location = new System.Drawing.Point(16, 55);
+            this.lblCountFindedFiles.Location = new System.Drawing.Point(11, 33);
             this.lblCountFindedFiles.Name = "lblCountFindedFiles";
-            this.lblCountFindedFiles.Size = new System.Drawing.Size(30, 13);
+            this.lblCountFindedFiles.Size = new System.Drawing.Size(51, 13);
             this.lblCountFindedFiles.TabIndex = 13;
-            this.lblCountFindedFiles.Text = "Find ";
+            this.lblCountFindedFiles.Text = "Найдено";
             // 
             // panelOperations
             // 
+            this.panelOperations.Controls.Add(this.checkBoxDisableMessages);
             this.panelOperations.Controls.Add(this.btnShowDuplicates);
             this.panelOperations.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelOperations.Location = new System.Drawing.Point(750, 3);
+            this.panelOperations.Location = new System.Drawing.Point(769, 3);
             this.panelOperations.Name = "panelOperations";
-            this.panelOperations.Size = new System.Drawing.Size(412, 94);
+            this.panelOperations.Size = new System.Drawing.Size(430, 94);
             this.panelOperations.TabIndex = 2;
+            // 
+            // checkBoxDisableMessages
+            // 
+            this.checkBoxDisableMessages.AutoSize = true;
+            this.checkBoxDisableMessages.Location = new System.Drawing.Point(12, 36);
+            this.checkBoxDisableMessages.Name = "checkBoxDisableMessages";
+            this.checkBoxDisableMessages.Size = new System.Drawing.Size(169, 17);
+            this.checkBoxDisableMessages.TabIndex = 15;
+            this.checkBoxDisableMessages.Text = "Отключить предупреждения";
+            this.checkBoxDisableMessages.UseVisualStyleBackColor = true;
             // 
             // btnShowDuplicates
             // 
-            this.btnShowDuplicates.Location = new System.Drawing.Point(18, 12);
+            this.btnShowDuplicates.Location = new System.Drawing.Point(12, 7);
             this.btnShowDuplicates.Name = "btnShowDuplicates";
-            this.btnShowDuplicates.Size = new System.Drawing.Size(75, 23);
+            this.btnShowDuplicates.Size = new System.Drawing.Size(135, 23);
             this.btnShowDuplicates.TabIndex = 14;
-            this.btnShowDuplicates.Text = "Дубли";
+            this.btnShowDuplicates.Text = "Показать дубли";
             this.btnShowDuplicates.UseVisualStyleBackColor = true;
             this.btnShowDuplicates.Click += new System.EventHandler(this.btnShowDuplicates_Click);
             // 
@@ -211,7 +225,7 @@
             this.tabFilesPage.Location = new System.Drawing.Point(4, 22);
             this.tabFilesPage.Name = "tabFilesPage";
             this.tabFilesPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFilesPage.Size = new System.Drawing.Size(1157, 539);
+            this.tabFilesPage.Size = new System.Drawing.Size(1194, 396);
             this.tabFilesPage.TabIndex = 0;
             this.tabFilesPage.Text = "Файлы";
             this.tabFilesPage.UseVisualStyleBackColor = true;
@@ -228,7 +242,7 @@
             this.tableLayoutFilesPanel.RowCount = 2;
             this.tableLayoutFilesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutFilesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutFilesPanel.Size = new System.Drawing.Size(1151, 533);
+            this.tableLayoutFilesPanel.Size = new System.Drawing.Size(1188, 390);
             this.tableLayoutFilesPanel.TabIndex = 10;
             // 
             // chkSelectAllFiles
@@ -254,7 +268,7 @@
             this.listView.Location = new System.Drawing.Point(3, 31);
             this.listView.MultiSelect = false;
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(1145, 499);
+            this.listView.Size = new System.Drawing.Size(1182, 356);
             this.listView.TabIndex = 0;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
@@ -267,7 +281,7 @@
             this.tabControl.Location = new System.Drawing.Point(0, 100);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1165, 565);
+            this.tabControl.Size = new System.Drawing.Size(1202, 422);
             this.tabControl.TabIndex = 13;
             // 
             // tabDuplicatesPage
@@ -278,7 +292,7 @@
             this.tabDuplicatesPage.Location = new System.Drawing.Point(4, 22);
             this.tabDuplicatesPage.Name = "tabDuplicatesPage";
             this.tabDuplicatesPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDuplicatesPage.Size = new System.Drawing.Size(1157, 539);
+            this.tabDuplicatesPage.Size = new System.Drawing.Size(1194, 396);
             this.tabDuplicatesPage.TabIndex = 1;
             this.tabDuplicatesPage.Text = "Дубликаты";
             this.tabDuplicatesPage.UseVisualStyleBackColor = true;
@@ -286,9 +300,9 @@
             // splitter1
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter1.Location = new System.Drawing.Point(3, 333);
+            this.splitter1.Location = new System.Drawing.Point(3, 190);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(1151, 3);
+            this.splitter1.Size = new System.Drawing.Size(1188, 3);
             this.splitter1.TabIndex = 10;
             this.splitter1.TabStop = false;
             // 
@@ -300,7 +314,7 @@
             this.listViewAllDuplicates.HideSelection = false;
             this.listViewAllDuplicates.Location = new System.Drawing.Point(3, 3);
             this.listViewAllDuplicates.Name = "listViewAllDuplicates";
-            this.listViewAllDuplicates.Size = new System.Drawing.Size(1151, 333);
+            this.listViewAllDuplicates.Size = new System.Drawing.Size(1188, 190);
             this.listViewAllDuplicates.TabIndex = 9;
             this.listViewAllDuplicates.UseCompatibleStateImageBehavior = false;
             this.listViewAllDuplicates.View = System.Windows.Forms.View.Details;
@@ -311,19 +325,19 @@
             this.toolStripMenuItemAllDuplicates_ShowFile,
             this.toolStripMenuItem2});
             this.contextMenuAllDuplicates.Name = "contextMenuListView";
-            this.contextMenuAllDuplicates.Size = new System.Drawing.Size(161, 48);
+            this.contextMenuAllDuplicates.Size = new System.Drawing.Size(169, 48);
             // 
             // toolStripMenuItemAllDuplicates_ShowFile
             // 
             this.toolStripMenuItemAllDuplicates_ShowFile.Name = "toolStripMenuItemAllDuplicates_ShowFile";
-            this.toolStripMenuItemAllDuplicates_ShowFile.Size = new System.Drawing.Size(160, 22);
-            this.toolStripMenuItemAllDuplicates_ShowFile.Text = "Show file";
+            this.toolStripMenuItemAllDuplicates_ShowFile.Size = new System.Drawing.Size(168, 22);
+            this.toolStripMenuItemAllDuplicates_ShowFile.Text = "Перейти к файлу";
             this.toolStripMenuItemAllDuplicates_ShowFile.Click += new System.EventHandler(this.toolStripMenuItemAllDuplicates_ShowFile_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(160, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(168, 22);
             this.toolStripMenuItem2.Text = "Показать дубли";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.btnShowDuplicates_Click);
             // 
@@ -335,10 +349,10 @@
             this.listViewDuplicates.FullRowSelect = true;
             this.listViewDuplicates.GridLines = true;
             this.listViewDuplicates.HideSelection = false;
-            this.listViewDuplicates.Location = new System.Drawing.Point(3, 336);
+            this.listViewDuplicates.Location = new System.Drawing.Point(3, 193);
             this.listViewDuplicates.MultiSelect = false;
             this.listViewDuplicates.Name = "listViewDuplicates";
-            this.listViewDuplicates.Size = new System.Drawing.Size(1151, 200);
+            this.listViewDuplicates.Size = new System.Drawing.Size(1188, 200);
             this.listViewDuplicates.TabIndex = 7;
             this.listViewDuplicates.UseCompatibleStateImageBehavior = false;
             this.listViewDuplicates.View = System.Windows.Forms.View.Details;
@@ -349,27 +363,36 @@
             this.toolStripMenuItemDuplicates_ShowFile,
             this.toolStripMenuItemDeleteOthers});
             this.contextMenuDuplicates.Name = "contextMenuListView";
-            this.contextMenuDuplicates.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuDuplicates.Size = new System.Drawing.Size(238, 48);
             // 
             // toolStripMenuItemDuplicates_ShowFile
             // 
             this.toolStripMenuItemDuplicates_ShowFile.Name = "toolStripMenuItemDuplicates_ShowFile";
-            this.toolStripMenuItemDuplicates_ShowFile.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItemDuplicates_ShowFile.Text = "Show file";
+            this.toolStripMenuItemDuplicates_ShowFile.Size = new System.Drawing.Size(237, 22);
+            this.toolStripMenuItemDuplicates_ShowFile.Text = "Перейти к файлу";
             this.toolStripMenuItemDuplicates_ShowFile.Click += new System.EventHandler(this.toolStripMenuItemDuplicates_ShowFile_Click);
             // 
             // toolStripMenuItemDeleteOthers
             // 
             this.toolStripMenuItemDeleteOthers.Name = "toolStripMenuItemDeleteOthers";
-            this.toolStripMenuItemDeleteOthers.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItemDeleteOthers.Text = "Удалить остальные";
+            this.toolStripMenuItemDeleteOthers.Size = new System.Drawing.Size(237, 22);
+            this.toolStripMenuItemDeleteOthers.Text = "Удалить остальные (Корзина)";
             this.toolStripMenuItemDeleteOthers.Click += new System.EventHandler(this.toolStripMenuItemDeleteOthers_Click);
+            // 
+            // labelDuplicatesCount
+            // 
+            this.labelDuplicatesCount.AutoSize = true;
+            this.labelDuplicatesCount.Location = new System.Drawing.Point(11, 55);
+            this.labelDuplicatesCount.Name = "labelDuplicatesCount";
+            this.labelDuplicatesCount.Size = new System.Drawing.Size(51, 13);
+            this.labelDuplicatesCount.TabIndex = 15;
+            this.labelDuplicatesCount.Text = "Найдено";
             // 
             // FindForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1165, 665);
+            this.ClientSize = new System.Drawing.Size(1202, 522);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.tableLayoutDuplicatesPanel);
             this.MinimumSize = new System.Drawing.Size(696, 388);
@@ -383,6 +406,7 @@
             this.panelStatistic.ResumeLayout(false);
             this.panelStatistic.PerformLayout();
             this.panelOperations.ResumeLayout(false);
+            this.panelOperations.PerformLayout();
             this.tabFilesPage.ResumeLayout(false);
             this.tableLayoutFilesPanel.ResumeLayout(false);
             this.tableLayoutFilesPanel.PerformLayout();
@@ -424,6 +448,8 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuDuplicates;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDuplicates_ShowFile;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDeleteOthers;
+        private System.Windows.Forms.CheckBox checkBoxDisableMessages;
+        private System.Windows.Forms.Label labelDuplicatesCount;
     }
 }
 

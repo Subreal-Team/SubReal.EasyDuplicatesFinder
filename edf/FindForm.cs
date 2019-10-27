@@ -46,14 +46,16 @@ namespace SubReal.EasyDuplicateFinder
         {
             listView.BeginUpdate();
             listView.Columns.Clear();
-            listView.Columns.Add("Full File name", 370);  //0
-            listView.Columns.Add("File size", 90);       //1
-            listView.Columns.Add("Data Create", 110);   //2
+            listView.Columns.Add("Имя файла", 370);  //0
+            listView.Columns.Add("Размер", 90);       //1
+            listView.Columns.Add("Дата создания", 110);   //2
             listView.Columns.Add("MD5", 220);           //3
-            listView.Columns.Add("Duplicates", 50);    //4          
+            listView.Columns.Add("Дубли", 50);    //4          
             listView.Columns.Add("GUID", 220);    //5          
             listView.CheckBoxes = true;
             listView.GridLines = true;
+            listView.Columns[5].Width = Debugger.IsAttached ? 220 : 0;
+            
             listView.EndUpdate();
         }
 
@@ -110,7 +112,7 @@ namespace SubReal.EasyDuplicateFinder
                     listView.Items.Add(lvi);
                 }
             }
-
+            labelDuplicatesCount.Text = string.Format("Найдено дубликатов {0}", _edfFiles.CountUnicate.ToString()/*listView.Items.Count*/) ;
             listView.EndUpdate();
         }
 
@@ -213,7 +215,7 @@ namespace SubReal.EasyDuplicateFinder
                     ToggleEnabledUserControls(true);
                     ShowListFiles(listView);
                     // Выводим информацию о найденных файлах.
-                    lblCountFindedFiles.Text = string.Format("Find {0} file(s)", listView.Items.Count);
+                    lblCountFindedFiles.Text = string.Format("Найдено {0} файл(а,ов)", listView.Items.Count);
                     // Устанавливаем параметры общего выделения.
                     CheckAllFiles(false);
                 }
