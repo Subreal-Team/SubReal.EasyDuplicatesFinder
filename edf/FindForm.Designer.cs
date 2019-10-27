@@ -35,6 +35,7 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutDuplicatesPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panelPathFind = new System.Windows.Forms.Panel();
+            this.linkLabelToSubRealCom = new System.Windows.Forms.LinkLabel();
             this.btnStartFind = new System.Windows.Forms.Button();
             this.btnSelectDirectory = new System.Windows.Forms.Button();
             this.tbFolderPath = new System.Windows.Forms.TextBox();
@@ -61,7 +62,6 @@
             this.contextMenuDuplicates = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemDuplicates_ShowFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDeleteOthers = new System.Windows.Forms.ToolStripMenuItem();
-            this.linkLabelToSubRealCom = new System.Windows.Forms.LinkLabel();
             this.contextMenuListView.SuspendLayout();
             this.tableLayoutDuplicatesPanel.SuspendLayout();
             this.panelPathFind.SuspendLayout();
@@ -102,9 +102,9 @@
             // tableLayoutDuplicatesPanel
             // 
             this.tableLayoutDuplicatesPanel.ColumnCount = 3;
-            this.tableLayoutDuplicatesPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.73154F));
-            this.tableLayoutDuplicatesPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
-            this.tableLayoutDuplicatesPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.26846F));
+            this.tableLayoutDuplicatesPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64F));
+            this.tableLayoutDuplicatesPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 270F));
+            this.tableLayoutDuplicatesPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36F));
             this.tableLayoutDuplicatesPanel.Controls.Add(this.panelPathFind, 0, 0);
             this.tableLayoutDuplicatesPanel.Controls.Add(this.panelStatistic, 1, 0);
             this.tableLayoutDuplicatesPanel.Controls.Add(this.panelOperations, 2, 0);
@@ -113,7 +113,7 @@
             this.tableLayoutDuplicatesPanel.Name = "tableLayoutDuplicatesPanel";
             this.tableLayoutDuplicatesPanel.RowCount = 1;
             this.tableLayoutDuplicatesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutDuplicatesPanel.Size = new System.Drawing.Size(1202, 100);
+            this.tableLayoutDuplicatesPanel.Size = new System.Drawing.Size(851, 100);
             this.tableLayoutDuplicatesPanel.TabIndex = 12;
             // 
             // panelPathFind
@@ -125,13 +125,25 @@
             this.panelPathFind.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelPathFind.Location = new System.Drawing.Point(3, 3);
             this.panelPathFind.Name = "panelPathFind";
-            this.panelPathFind.Size = new System.Drawing.Size(460, 94);
+            this.panelPathFind.Size = new System.Drawing.Size(365, 94);
             this.panelPathFind.TabIndex = 0;
+            // 
+            // linkLabelToSubRealCom
+            // 
+            this.linkLabelToSubRealCom.AutoSize = true;
+            this.linkLabelToSubRealCom.Location = new System.Drawing.Point(9, 69);
+            this.linkLabelToSubRealCom.Name = "linkLabelToSubRealCom";
+            this.linkLabelToSubRealCom.Size = new System.Drawing.Size(126, 13);
+            this.linkLabelToSubRealCom.TabIndex = 5;
+            this.linkLabelToSubRealCom.TabStop = true;
+            this.linkLabelToSubRealCom.Text = "https://subreal-team.com";
+            this.linkLabelToSubRealCom.UseMnemonic = false;
+            this.linkLabelToSubRealCom.Click += new System.EventHandler(this.linkLabelToSubRealCom_Click);
             // 
             // btnStartFind
             // 
             this.btnStartFind.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnStartFind.Location = new System.Drawing.Point(372, 45);
+            this.btnStartFind.Location = new System.Drawing.Point(277, 45);
             this.btnStartFind.Name = "btnStartFind";
             this.btnStartFind.Size = new System.Drawing.Size(75, 23);
             this.btnStartFind.TabIndex = 4;
@@ -143,7 +155,7 @@
             // 
             this.btnSelectDirectory.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnSelectDirectory.Image = global::SubReal.EasyDuplicateFinder.Properties.Resources.icon_folder_open;
-            this.btnSelectDirectory.Location = new System.Drawing.Point(372, 7);
+            this.btnSelectDirectory.Location = new System.Drawing.Point(277, 7);
             this.btnSelectDirectory.Name = "btnSelectDirectory";
             this.btnSelectDirectory.Size = new System.Drawing.Size(75, 23);
             this.btnSelectDirectory.TabIndex = 3;
@@ -159,7 +171,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbFolderPath.Location = new System.Drawing.Point(9, 9);
             this.tbFolderPath.Name = "tbFolderPath";
-            this.tbFolderPath.Size = new System.Drawing.Size(350, 20);
+            this.tbFolderPath.Size = new System.Drawing.Size(255, 20);
             this.tbFolderPath.TabIndex = 2;
             this.tbFolderPath.Text = "c:\\iac";
             // 
@@ -169,9 +181,9 @@
             this.panelStatistic.Controls.Add(this.lblTimeWork);
             this.panelStatistic.Controls.Add(this.lblCountFindedFiles);
             this.panelStatistic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelStatistic.Location = new System.Drawing.Point(469, 3);
+            this.panelStatistic.Location = new System.Drawing.Point(374, 3);
             this.panelStatistic.Name = "panelStatistic";
-            this.panelStatistic.Size = new System.Drawing.Size(294, 94);
+            this.panelStatistic.Size = new System.Drawing.Size(264, 94);
             this.panelStatistic.TabIndex = 1;
             // 
             // labelDuplicatesCount
@@ -207,9 +219,9 @@
             this.panelOperations.Controls.Add(this.checkBoxDisableMessages);
             this.panelOperations.Controls.Add(this.btnShowDuplicates);
             this.panelOperations.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelOperations.Location = new System.Drawing.Point(769, 3);
+            this.panelOperations.Location = new System.Drawing.Point(644, 3);
             this.panelOperations.Name = "panelOperations";
-            this.panelOperations.Size = new System.Drawing.Size(430, 94);
+            this.panelOperations.Size = new System.Drawing.Size(204, 94);
             this.panelOperations.TabIndex = 2;
             // 
             // buttonDeleteDuplicates
@@ -248,7 +260,7 @@
             this.tabFilesPage.Location = new System.Drawing.Point(4, 22);
             this.tabFilesPage.Name = "tabFilesPage";
             this.tabFilesPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFilesPage.Size = new System.Drawing.Size(1194, 396);
+            this.tabFilesPage.Size = new System.Drawing.Size(843, 396);
             this.tabFilesPage.TabIndex = 0;
             this.tabFilesPage.Text = "Файлы";
             this.tabFilesPage.UseVisualStyleBackColor = true;
@@ -265,7 +277,7 @@
             this.tableLayoutFilesPanel.RowCount = 2;
             this.tableLayoutFilesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutFilesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutFilesPanel.Size = new System.Drawing.Size(1188, 390);
+            this.tableLayoutFilesPanel.Size = new System.Drawing.Size(837, 390);
             this.tableLayoutFilesPanel.TabIndex = 10;
             // 
             // chkSelectAllFiles
@@ -293,7 +305,7 @@
             this.listView.Location = new System.Drawing.Point(3, 31);
             this.listView.MultiSelect = false;
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(1182, 356);
+            this.listView.Size = new System.Drawing.Size(831, 356);
             this.listView.TabIndex = 0;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
@@ -307,7 +319,7 @@
             this.tabControl.Location = new System.Drawing.Point(0, 100);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1202, 422);
+            this.tabControl.Size = new System.Drawing.Size(851, 422);
             this.tabControl.TabIndex = 13;
             // 
             // tabDuplicatesPage
@@ -412,26 +424,14 @@
             this.toolStripMenuItemDeleteOthers.Text = "Удалить остальные (Корзина)";
             this.toolStripMenuItemDeleteOthers.Click += new System.EventHandler(this.toolStripMenuItemDeleteOthers_Click);
             // 
-            // linkLabelToSubRealCom
-            // 
-            this.linkLabelToSubRealCom.AutoSize = true;
-            this.linkLabelToSubRealCom.Location = new System.Drawing.Point(9, 69);
-            this.linkLabelToSubRealCom.Name = "linkLabelToSubRealCom";
-            this.linkLabelToSubRealCom.Size = new System.Drawing.Size(126, 13);
-            this.linkLabelToSubRealCom.TabIndex = 5;
-            this.linkLabelToSubRealCom.TabStop = true;
-            this.linkLabelToSubRealCom.Text = "https://subreal-team.com";
-            this.linkLabelToSubRealCom.UseMnemonic = false;
-            this.linkLabelToSubRealCom.Click += new System.EventHandler(this.linkLabelToSubRealCom_Click);
-            // 
             // FindForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1202, 522);
+            this.ClientSize = new System.Drawing.Size(851, 522);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.tableLayoutDuplicatesPanel);
-            this.MinimumSize = new System.Drawing.Size(696, 388);
+            this.MinimumSize = new System.Drawing.Size(800, 400);
             this.Name = "FindForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "win.edf";
