@@ -115,6 +115,9 @@ namespace SubReal.EasyDuplicateFinder
             labelDuplicatesCount.Text = $"Найдено дубликатов {listView.Items.Count - _edfFiles.CountUnique}" +
                 $" для {_edfFiles.CountUnique} файл(а,ов)";
 
+            listView.Sorting = (listView.Sorting == SortOrder.Ascending) ? SortOrder.Descending : SortOrder.Ascending;
+            listView.Sort();
+            listView.ListViewItemSorter = new ListViewItemStringComparer(3, listView.Sorting);
             listView.EndUpdate();
         }
 
@@ -487,7 +490,7 @@ namespace SubReal.EasyDuplicateFinder
         {
             ListView lv = (ListView)sender;
 
-            listView.Sorting = (lv.Sorting == SortOrder.Ascending) ? SortOrder.Descending : SortOrder.Ascending;
+            lv.Sorting = (lv.Sorting == SortOrder.Ascending) ? SortOrder.Descending : SortOrder.Ascending;
             lv.Sort();
             if (e.Column == lv.Columns[2].Index)
                 lv.ListViewItemSorter = new ListViewItemDateTimeComparer(e.Column, lv.Sorting);
