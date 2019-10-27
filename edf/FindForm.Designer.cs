@@ -38,7 +38,7 @@
             this.linkLabelToSubRealCom = new System.Windows.Forms.LinkLabel();
             this.btnStartFind = new System.Windows.Forms.Button();
             this.btnSelectDirectory = new System.Windows.Forms.Button();
-            this.tbFolderPath = new System.Windows.Forms.TextBox();
+            this.textBoxFolderPath = new System.Windows.Forms.TextBox();
             this.panelStatistic = new System.Windows.Forms.Panel();
             this.labelDuplicatesCount = new System.Windows.Forms.Label();
             this.lblTimeWork = new System.Windows.Forms.Label();
@@ -123,7 +123,7 @@
             this.panelPathFind.Controls.Add(this.linkLabelToSubRealCom);
             this.panelPathFind.Controls.Add(this.btnStartFind);
             this.panelPathFind.Controls.Add(this.btnSelectDirectory);
-            this.panelPathFind.Controls.Add(this.tbFolderPath);
+            this.panelPathFind.Controls.Add(this.textBoxFolderPath);
             this.panelPathFind.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelPathFind.Location = new System.Drawing.Point(3, 3);
             this.panelPathFind.Name = "panelPathFind";
@@ -167,15 +167,15 @@
             this.btnSelectDirectory.UseVisualStyleBackColor = true;
             this.btnSelectDirectory.Click += new System.EventHandler(this.BtnSelectDirectory_Click);
             // 
-            // tbFolderPath
+            // textBoxFolderPath
             // 
-            this.tbFolderPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxFolderPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbFolderPath.Location = new System.Drawing.Point(9, 9);
-            this.tbFolderPath.Name = "tbFolderPath";
-            this.tbFolderPath.Size = new System.Drawing.Size(255, 20);
-            this.tbFolderPath.TabIndex = 2;
-            this.tbFolderPath.Text = "c:\\iac";
+            this.textBoxFolderPath.Location = new System.Drawing.Point(9, 9);
+            this.textBoxFolderPath.Name = "textBoxFolderPath";
+            this.textBoxFolderPath.Size = new System.Drawing.Size(255, 20);
+            this.textBoxFolderPath.TabIndex = 2;
+            this.textBoxFolderPath.Text = "c:\\iac";
             // 
             // panelStatistic
             // 
@@ -475,7 +475,7 @@
         private System.Windows.Forms.Panel panelPathFind;
         private System.Windows.Forms.Button btnStartFind;
         private System.Windows.Forms.Button btnSelectDirectory;
-        private System.Windows.Forms.TextBox tbFolderPath;
+        private System.Windows.Forms.TextBox textBoxFolderPath;
         private System.Windows.Forms.Panel panelStatistic;
         private System.Windows.Forms.Label lblTimeWork;
         private System.Windows.Forms.Label lblCountFindedFiles;

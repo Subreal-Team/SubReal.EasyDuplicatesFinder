@@ -20,6 +20,8 @@ namespace SubReal.EasyDuplicateFinder
             ToggleEnabledUserControls(false);
             AssemblyName assemName = assem.GetName();
             this.Text = $"Простой поиск дубликатов файлов v.{assemName.Version.ToString()} Beta1";
+
+            textBoxFolderPath.Text = Debugger.IsAttached ? @"c:\iac" : Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
         }
 
         private void ToggleEnabledUserControls(bool enabled)
@@ -52,8 +54,8 @@ namespace SubReal.EasyDuplicateFinder
             listView.Columns.Clear();
             listView.Columns.Add("Имя файла", 370);  //0
             listView.Columns.Add("Размер", 90);       //1
-            listView.Columns.Add("Дата создания", 110);   //2
-            listView.Columns.Add("MD5", 220);           //3
+            listView.Columns.Add("Дата создания", 115);   //2
+            listView.Columns.Add("MD5", 225);           //3
             listView.Columns.Add("Дубли", 50);    //4          
             listView.Columns.Add("GUID", 220);    //5          
             listView.CheckBoxes = false;
@@ -318,7 +320,7 @@ namespace SubReal.EasyDuplicateFinder
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
-                tbFolderPath.Text = folderBrowserDialog1.SelectedPath;
+                textBoxFolderPath.Text = folderBrowserDialog1.SelectedPath;
             }
         }
 
@@ -334,7 +336,7 @@ namespace SubReal.EasyDuplicateFinder
 
             try
             {
-                _edfFiles = new EdfFiles(tbFolderPath.Text);
+                _edfFiles = new EdfFiles(textBoxFolderPath.Text);
 
                 if (_edfFiles.GetFiles())
                 {
