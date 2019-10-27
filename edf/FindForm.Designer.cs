@@ -320,6 +320,8 @@
             this.listViewAllDuplicates.TabIndex = 9;
             this.listViewAllDuplicates.UseCompatibleStateImageBehavior = false;
             this.listViewAllDuplicates.View = System.Windows.Forms.View.Details;
+            this.listViewAllDuplicates.Click += new System.EventHandler(this.btnShowDuplicates_Click);
+            this.listViewAllDuplicates.DoubleClick += new System.EventHandler(this.btnShowDuplicates_Click);
             // 
             // contextMenuAllDuplicates
             // 
@@ -386,9 +388,9 @@
             this.labelDuplicatesCount.AutoSize = true;
             this.labelDuplicatesCount.Location = new System.Drawing.Point(11, 55);
             this.labelDuplicatesCount.Name = "labelDuplicatesCount";
-            this.labelDuplicatesCount.Size = new System.Drawing.Size(51, 13);
+            this.labelDuplicatesCount.Size = new System.Drawing.Size(89, 13);
             this.labelDuplicatesCount.TabIndex = 15;
-            this.labelDuplicatesCount.Text = "Найдено";
+            this.labelDuplicatesCount.Text = "Найдено дублей";
             // 
             // FindForm
             // 
