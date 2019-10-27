@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
+
 
 namespace SubReal.EasyDuplicateFinder
 {
@@ -13,9 +14,12 @@ namespace SubReal.EasyDuplicateFinder
 
         public FindForm()
         {
+            Assembly assem = typeof(FindForm).Assembly;
             InitializeComponent();
 
             ToggleEnabledUserControls(false);
+            AssemblyName assemName = assem.GetName();
+            this.Text = $"Простой поиск дубликатов файлов v.{assemName.Version.ToString()} Beta1";
         }
 
         private void ToggleEnabledUserControls(bool enabled)
@@ -498,6 +502,11 @@ namespace SubReal.EasyDuplicateFinder
                 lv.ListViewItemSorter = new ListViewItemIntComparer(e.Column, lv.Sorting);
             else
                 lv.ListViewItemSorter = new ListViewItemStringComparer(e.Column, lv.Sorting);
+        }
+
+        private void linkLabelToSubRealCom_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://subreal-team.com/");
         }
     }
 }

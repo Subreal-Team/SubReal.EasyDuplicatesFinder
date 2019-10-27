@@ -61,6 +61,7 @@
             this.contextMenuDuplicates = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemDuplicates_ShowFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDeleteOthers = new System.Windows.Forms.ToolStripMenuItem();
+            this.linkLabelToSubRealCom = new System.Windows.Forms.LinkLabel();
             this.contextMenuListView.SuspendLayout();
             this.tableLayoutDuplicatesPanel.SuspendLayout();
             this.panelPathFind.SuspendLayout();
@@ -117,6 +118,7 @@
             // 
             // panelPathFind
             // 
+            this.panelPathFind.Controls.Add(this.linkLabelToSubRealCom);
             this.panelPathFind.Controls.Add(this.btnStartFind);
             this.panelPathFind.Controls.Add(this.btnSelectDirectory);
             this.panelPathFind.Controls.Add(this.tbFolderPath);
@@ -410,6 +412,18 @@
             this.toolStripMenuItemDeleteOthers.Text = "Удалить остальные (Корзина)";
             this.toolStripMenuItemDeleteOthers.Click += new System.EventHandler(this.toolStripMenuItemDeleteOthers_Click);
             // 
+            // linkLabelToSubRealCom
+            // 
+            this.linkLabelToSubRealCom.AutoSize = true;
+            this.linkLabelToSubRealCom.Location = new System.Drawing.Point(9, 69);
+            this.linkLabelToSubRealCom.Name = "linkLabelToSubRealCom";
+            this.linkLabelToSubRealCom.Size = new System.Drawing.Size(126, 13);
+            this.linkLabelToSubRealCom.TabIndex = 5;
+            this.linkLabelToSubRealCom.TabStop = true;
+            this.linkLabelToSubRealCom.Text = "https://subreal-team.com";
+            this.linkLabelToSubRealCom.UseMnemonic = false;
+            this.linkLabelToSubRealCom.Click += new System.EventHandler(this.linkLabelToSubRealCom_Click);
+            // 
             // FindForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -473,6 +487,7 @@
         private System.Windows.Forms.CheckBox checkBoxDisableMessages;
         private System.Windows.Forms.Label labelDuplicatesCount;
         private System.Windows.Forms.Button buttonDeleteDuplicates;
+        private System.Windows.Forms.LinkLabel linkLabelToSubRealCom;
     }
 }
 
