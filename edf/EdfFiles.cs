@@ -127,7 +127,7 @@ namespace SubReal.EasyDuplicateFinder
         }
 
         /// <summary>
-        /// Удаление элемента из скиска по идентификатору
+        /// Удаление элемента из списка по идентификатору
         /// </summary>
         /// <param name="id"></param>
         public void DeleteItem(Guid id)

@@ -34,19 +34,33 @@
             this.DeleteOthersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.listViewDublicates = new System.Windows.Forms.ListView();
+            this.tableLayoutDuplicatesPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.panelPathFind = new System.Windows.Forms.Panel();
+            this.btnStartFind = new System.Windows.Forms.Button();
+            this.btnSelectDirectory = new System.Windows.Forms.Button();
+            this.tbFolderPath = new System.Windows.Forms.TextBox();
+            this.panelStatistic = new System.Windows.Forms.Panel();
+            this.lblTimeWork = new System.Windows.Forms.Label();
+            this.lblCountFindedFiles = new System.Windows.Forms.Label();
+            this.panelOperations = new System.Windows.Forms.Panel();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.btnDuplicates = new System.Windows.Forms.Button();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabFilesPage = new System.Windows.Forms.TabPage();
+            this.tableLayoutFilesPanel = new System.Windows.Forms.TableLayoutPanel();
             this.chkSelectAllFiles = new System.Windows.Forms.CheckBox();
             this.listView = new System.Windows.Forms.ListView();
-            this.tbFolderPath = new System.Windows.Forms.TextBox();
-            this.btnSelectDirectory = new System.Windows.Forms.Button();
-            this.btnStartFind = new System.Windows.Forms.Button();
-            this.lblCountFindedFiles = new System.Windows.Forms.Label();
-            this.btnRemove = new System.Windows.Forms.Button();
-            this.lblTimeWork = new System.Windows.Forms.Label();
-            this.btnDuplicates = new System.Windows.Forms.Button();
+            this.tabDuplicatesPage = new System.Windows.Forms.TabPage();
+            this.listViewDublicates = new System.Windows.Forms.ListView();
             this.contextMenuListView.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutDuplicatesPanel.SuspendLayout();
+            this.panelPathFind.SuspendLayout();
+            this.panelStatistic.SuspendLayout();
+            this.panelOperations.SuspendLayout();
+            this.tabControl.SuspendLayout();
+            this.tabFilesPage.SuspendLayout();
+            this.tableLayoutFilesPanel.SuspendLayout();
+            this.tabDuplicatesPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuListView
@@ -81,39 +95,163 @@
             this.saveFileDialog1.DefaultExt = "*.lst";
             this.saveFileDialog1.RestoreDirectory = true;
             // 
-            // tableLayoutPanel1
+            // tableLayoutDuplicatesPanel
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.listViewDublicates, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.chkSelectAllFiles, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.listView, 0, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 83);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 238F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1053, 549);
-            this.tableLayoutPanel1.TabIndex = 8;
+            this.tableLayoutDuplicatesPanel.ColumnCount = 3;
+            this.tableLayoutDuplicatesPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.73154F));
+            this.tableLayoutDuplicatesPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
+            this.tableLayoutDuplicatesPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.26846F));
+            this.tableLayoutDuplicatesPanel.Controls.Add(this.panelPathFind, 0, 0);
+            this.tableLayoutDuplicatesPanel.Controls.Add(this.panelStatistic, 1, 0);
+            this.tableLayoutDuplicatesPanel.Controls.Add(this.panelOperations, 2, 0);
+            this.tableLayoutDuplicatesPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutDuplicatesPanel.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutDuplicatesPanel.Name = "tableLayoutDuplicatesPanel";
+            this.tableLayoutDuplicatesPanel.RowCount = 1;
+            this.tableLayoutDuplicatesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutDuplicatesPanel.Size = new System.Drawing.Size(1165, 100);
+            this.tableLayoutDuplicatesPanel.TabIndex = 12;
             // 
-            // listViewDublicates
+            // panelPathFind
             // 
-            this.listViewDublicates.CheckBoxes = true;
-            this.listViewDublicates.ContextMenuStrip = this.contextMenuListView;
-            this.listViewDublicates.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewDublicates.FullRowSelect = true;
-            this.listViewDublicates.GridLines = true;
-            this.listViewDublicates.HideSelection = false;
-            this.listViewDublicates.Location = new System.Drawing.Point(3, 266);
-            this.listViewDublicates.MultiSelect = false;
-            this.listViewDublicates.Name = "listViewDublicates";
-            this.listViewDublicates.Size = new System.Drawing.Size(1047, 280);
-            this.listViewDublicates.TabIndex = 6;
-            this.listViewDublicates.UseCompatibleStateImageBehavior = false;
-            this.listViewDublicates.View = System.Windows.Forms.View.Details;
+            this.panelPathFind.Controls.Add(this.btnStartFind);
+            this.panelPathFind.Controls.Add(this.btnSelectDirectory);
+            this.panelPathFind.Controls.Add(this.tbFolderPath);
+            this.panelPathFind.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelPathFind.Location = new System.Drawing.Point(3, 3);
+            this.panelPathFind.Name = "panelPathFind";
+            this.panelPathFind.Size = new System.Drawing.Size(441, 94);
+            this.panelPathFind.TabIndex = 0;
+            // 
+            // btnStartFind
+            // 
+            this.btnStartFind.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnStartFind.Location = new System.Drawing.Point(353, 45);
+            this.btnStartFind.Name = "btnStartFind";
+            this.btnStartFind.Size = new System.Drawing.Size(75, 23);
+            this.btnStartFind.TabIndex = 4;
+            this.btnStartFind.Text = "&Find";
+            this.btnStartFind.UseVisualStyleBackColor = true;
+            this.btnStartFind.Click += new System.EventHandler(this.BtnStartFind_Click);
+            // 
+            // btnSelectDirectory
+            // 
+            this.btnSelectDirectory.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnSelectDirectory.Image = global::SubReal.EasyDuplicateFinder.Properties.Resources.icon_folder_open;
+            this.btnSelectDirectory.Location = new System.Drawing.Point(353, 7);
+            this.btnSelectDirectory.Name = "btnSelectDirectory";
+            this.btnSelectDirectory.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectDirectory.TabIndex = 3;
+            this.btnSelectDirectory.Text = "&Directory";
+            this.btnSelectDirectory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSelectDirectory.UseCompatibleTextRendering = true;
+            this.btnSelectDirectory.UseVisualStyleBackColor = true;
+            this.btnSelectDirectory.Click += new System.EventHandler(this.BtnSelectDirectory_Click);
+            // 
+            // tbFolderPath
+            // 
+            this.tbFolderPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbFolderPath.Location = new System.Drawing.Point(9, 9);
+            this.tbFolderPath.Name = "tbFolderPath";
+            this.tbFolderPath.Size = new System.Drawing.Size(331, 20);
+            this.tbFolderPath.TabIndex = 2;
+            this.tbFolderPath.Text = "c:\\iac";
+            // 
+            // panelStatistic
+            // 
+            this.panelStatistic.Controls.Add(this.lblTimeWork);
+            this.panelStatistic.Controls.Add(this.lblCountFindedFiles);
+            this.panelStatistic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelStatistic.Location = new System.Drawing.Point(450, 3);
+            this.panelStatistic.Name = "panelStatistic";
+            this.panelStatistic.Size = new System.Drawing.Size(294, 94);
+            this.panelStatistic.TabIndex = 1;
+            // 
+            // lblTimeWork
+            // 
+            this.lblTimeWork.AutoSize = true;
+            this.lblTimeWork.Location = new System.Drawing.Point(16, 17);
+            this.lblTimeWork.Name = "lblTimeWork";
+            this.lblTimeWork.Size = new System.Drawing.Size(35, 13);
+            this.lblTimeWork.TabIndex = 14;
+            this.lblTimeWork.Text = "label1";
+            // 
+            // lblCountFindedFiles
+            // 
+            this.lblCountFindedFiles.AutoSize = true;
+            this.lblCountFindedFiles.Location = new System.Drawing.Point(16, 55);
+            this.lblCountFindedFiles.Name = "lblCountFindedFiles";
+            this.lblCountFindedFiles.Size = new System.Drawing.Size(30, 13);
+            this.lblCountFindedFiles.TabIndex = 13;
+            this.lblCountFindedFiles.Text = "Find ";
+            // 
+            // panelOperations
+            // 
+            this.panelOperations.Controls.Add(this.btnRemove);
+            this.panelOperations.Controls.Add(this.btnDuplicates);
+            this.panelOperations.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelOperations.Location = new System.Drawing.Point(750, 3);
+            this.panelOperations.Name = "panelOperations";
+            this.panelOperations.Size = new System.Drawing.Size(412, 94);
+            this.panelOperations.TabIndex = 2;
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Location = new System.Drawing.Point(13, 45);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnRemove.TabIndex = 14;
+            this.btnRemove.Text = "Убрать уникальные";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // btnDuplicates
+            // 
+            this.btnDuplicates.Location = new System.Drawing.Point(13, 7);
+            this.btnDuplicates.Name = "btnDuplicates";
+            this.btnDuplicates.Size = new System.Drawing.Size(75, 23);
+            this.btnDuplicates.TabIndex = 13;
+            this.btnDuplicates.Text = "Дубликаты";
+            this.btnDuplicates.UseVisualStyleBackColor = true;
+            this.btnDuplicates.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // tabControl
+            // 
+            this.tabControl.Controls.Add(this.tabFilesPage);
+            this.tabControl.Controls.Add(this.tabDuplicatesPage);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 100);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(1165, 565);
+            this.tabControl.TabIndex = 13;
+            // 
+            // tabFilesPage
+            // 
+            this.tabFilesPage.Controls.Add(this.tableLayoutFilesPanel);
+            this.tabFilesPage.Location = new System.Drawing.Point(4, 22);
+            this.tabFilesPage.Name = "tabFilesPage";
+            this.tabFilesPage.Padding = new System.Windows.Forms.Padding(3);
+            this.tabFilesPage.Size = new System.Drawing.Size(1157, 539);
+            this.tabFilesPage.TabIndex = 0;
+            this.tabFilesPage.Text = "Файлы";
+            this.tabFilesPage.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutFilesPanel
+            // 
+            this.tableLayoutFilesPanel.ColumnCount = 1;
+            this.tableLayoutFilesPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutFilesPanel.Controls.Add(this.chkSelectAllFiles, 0, 0);
+            this.tableLayoutFilesPanel.Controls.Add(this.listView, 0, 1);
+            this.tableLayoutFilesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutFilesPanel.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutFilesPanel.Name = "tableLayoutFilesPanel";
+            this.tableLayoutFilesPanel.RowCount = 2;
+            this.tableLayoutFilesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tableLayoutFilesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutFilesPanel.Size = new System.Drawing.Size(1151, 533);
+            this.tableLayoutFilesPanel.TabIndex = 10;
             // 
             // chkSelectAllFiles
             // 
@@ -125,115 +263,75 @@
             this.chkSelectAllFiles.TabIndex = 5;
             this.chkSelectAllFiles.Text = "Выбрать все";
             this.chkSelectAllFiles.UseVisualStyleBackColor = true;
-            this.chkSelectAllFiles.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
+            this.chkSelectAllFiles.Click += new System.EventHandler(this.CheckBox1_CheckedChanged);
             // 
             // listView
             // 
             this.listView.CheckBoxes = true;
             this.listView.ContextMenuStrip = this.contextMenuListView;
-            this.listView.Dock = System.Windows.Forms.DockStyle.Top;
+            this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView.FullRowSelect = true;
             this.listView.GridLines = true;
             this.listView.HideSelection = false;
-            this.listView.Location = new System.Drawing.Point(3, 28);
+            this.listView.Location = new System.Drawing.Point(3, 31);
             this.listView.MultiSelect = false;
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(1047, 232);
+            this.listView.Size = new System.Drawing.Size(1145, 499);
             this.listView.TabIndex = 0;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
             // 
-            // tbFolderPath
+            // tabDuplicatesPage
             // 
-            this.tbFolderPath.Location = new System.Drawing.Point(12, 12);
-            this.tbFolderPath.Name = "tbFolderPath";
-            this.tbFolderPath.Size = new System.Drawing.Size(390, 20);
-            this.tbFolderPath.TabIndex = 1;
-            this.tbFolderPath.Text = "c:\\iac";
+            this.tabDuplicatesPage.Controls.Add(this.listViewDublicates);
+            this.tabDuplicatesPage.Location = new System.Drawing.Point(4, 22);
+            this.tabDuplicatesPage.Name = "tabDuplicatesPage";
+            this.tabDuplicatesPage.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDuplicatesPage.Size = new System.Drawing.Size(1045, 506);
+            this.tabDuplicatesPage.TabIndex = 1;
+            this.tabDuplicatesPage.Text = "Дубликаты";
+            this.tabDuplicatesPage.UseVisualStyleBackColor = true;
             // 
-            // btnSelectDirectory
+            // listViewDublicates
             // 
-            this.btnSelectDirectory.Image = global::SubReal.EasyDuplicateFinder.Properties.Resources.icon_folder_open;
-            this.btnSelectDirectory.Location = new System.Drawing.Point(408, 10);
-            this.btnSelectDirectory.Name = "btnSelectDirectory";
-            this.btnSelectDirectory.Size = new System.Drawing.Size(75, 23);
-            this.btnSelectDirectory.TabIndex = 2;
-            this.btnSelectDirectory.Text = "&Directory";
-            this.btnSelectDirectory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSelectDirectory.UseCompatibleTextRendering = true;
-            this.btnSelectDirectory.UseVisualStyleBackColor = true;
-            this.btnSelectDirectory.Click += new System.EventHandler(this.BtnSelectDirectory_Click);
-            // 
-            // btnStartFind
-            // 
-            this.btnStartFind.Location = new System.Drawing.Point(408, 39);
-            this.btnStartFind.Name = "btnStartFind";
-            this.btnStartFind.Size = new System.Drawing.Size(75, 23);
-            this.btnStartFind.TabIndex = 3;
-            this.btnStartFind.Text = "&Find";
-            this.btnStartFind.UseVisualStyleBackColor = true;
-            this.btnStartFind.Click += new System.EventHandler(this.BtnStartFind_Click);
-            // 
-            // lblCountFindedFiles
-            // 
-            this.lblCountFindedFiles.AutoSize = true;
-            this.lblCountFindedFiles.Location = new System.Drawing.Point(12, 44);
-            this.lblCountFindedFiles.Name = "lblCountFindedFiles";
-            this.lblCountFindedFiles.Size = new System.Drawing.Size(30, 13);
-            this.lblCountFindedFiles.TabIndex = 4;
-            this.lblCountFindedFiles.Text = "Find ";
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.Location = new System.Drawing.Point(507, 12);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(75, 23);
-            this.btnRemove.TabIndex = 9;
-            this.btnRemove.Text = "Убрать уникальные";
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // lblTimeWork
-            // 
-            this.lblTimeWork.AutoSize = true;
-            this.lblTimeWork.Location = new System.Drawing.Point(12, 67);
-            this.lblTimeWork.Name = "lblTimeWork";
-            this.lblTimeWork.Size = new System.Drawing.Size(35, 13);
-            this.lblTimeWork.TabIndex = 10;
-            this.lblTimeWork.Text = "label1";
-            // 
-            // btnDuplicates
-            // 
-            this.btnDuplicates.Location = new System.Drawing.Point(507, 44);
-            this.btnDuplicates.Name = "btnDuplicates";
-            this.btnDuplicates.Size = new System.Drawing.Size(75, 23);
-            this.btnDuplicates.TabIndex = 11;
-            this.btnDuplicates.Text = "Дубликаты";
-            this.btnDuplicates.UseVisualStyleBackColor = true;
-            this.btnDuplicates.Click += new System.EventHandler(this.Button2_Click);
+            this.listViewDublicates.CheckBoxes = true;
+            this.listViewDublicates.ContextMenuStrip = this.contextMenuListView;
+            this.listViewDublicates.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewDublicates.FullRowSelect = true;
+            this.listViewDublicates.GridLines = true;
+            this.listViewDublicates.HideSelection = false;
+            this.listViewDublicates.Location = new System.Drawing.Point(3, 3);
+            this.listViewDublicates.MultiSelect = false;
+            this.listViewDublicates.Name = "listViewDublicates";
+            this.listViewDublicates.Size = new System.Drawing.Size(1039, 500);
+            this.listViewDublicates.TabIndex = 7;
+            this.listViewDublicates.UseCompatibleStateImageBehavior = false;
+            this.listViewDublicates.View = System.Windows.Forms.View.Details;
             // 
             // FindForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1053, 632);
-            this.Controls.Add(this.btnDuplicates);
-            this.Controls.Add(this.lblTimeWork);
-            this.Controls.Add(this.btnRemove);
-            this.Controls.Add(this.lblCountFindedFiles);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.btnStartFind);
-            this.Controls.Add(this.btnSelectDirectory);
-            this.Controls.Add(this.tbFolderPath);
+            this.ClientSize = new System.Drawing.Size(1165, 665);
+            this.Controls.Add(this.tabControl);
+            this.Controls.Add(this.tableLayoutDuplicatesPanel);
             this.MinimumSize = new System.Drawing.Size(696, 388);
             this.Name = "FindForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "win.edf";
             this.contextMenuListView.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutDuplicatesPanel.ResumeLayout(false);
+            this.panelPathFind.ResumeLayout(false);
+            this.panelPathFind.PerformLayout();
+            this.panelStatistic.ResumeLayout(false);
+            this.panelStatistic.PerformLayout();
+            this.panelOperations.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
+            this.tabFilesPage.ResumeLayout(false);
+            this.tableLayoutFilesPanel.ResumeLayout(false);
+            this.tableLayoutFilesPanel.PerformLayout();
+            this.tabDuplicatesPage.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -243,17 +341,24 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuListView;
         private System.Windows.Forms.ToolStripMenuItem showFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DeleteOthersToolStripMenuItem;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ListView listViewDublicates;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutDuplicatesPanel;
+        private System.Windows.Forms.Panel panelPathFind;
+        private System.Windows.Forms.Button btnStartFind;
+        private System.Windows.Forms.Button btnSelectDirectory;
+        private System.Windows.Forms.TextBox tbFolderPath;
+        private System.Windows.Forms.Panel panelStatistic;
+        private System.Windows.Forms.Label lblTimeWork;
+        private System.Windows.Forms.Label lblCountFindedFiles;
+        private System.Windows.Forms.Panel panelOperations;
+        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.Button btnDuplicates;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage tabFilesPage;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutFilesPanel;
         private System.Windows.Forms.CheckBox chkSelectAllFiles;
         private System.Windows.Forms.ListView listView;
-        private System.Windows.Forms.TextBox tbFolderPath;
-        private System.Windows.Forms.Button btnSelectDirectory;
-        private System.Windows.Forms.Button btnStartFind;
-        private System.Windows.Forms.Label lblCountFindedFiles;
-        private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.Label lblTimeWork;
-        private System.Windows.Forms.Button btnDuplicates;
+        private System.Windows.Forms.TabPage tabDuplicatesPage;
+        private System.Windows.Forms.ListView listViewDublicates;
     }
 }
 

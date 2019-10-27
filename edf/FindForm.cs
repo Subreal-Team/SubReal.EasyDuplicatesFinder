@@ -124,7 +124,7 @@ namespace SubReal.EasyDuplicateFinder
             if (MD5Summ == string.Empty)
             {
                 MessageBox.Show(
-                    "Для указаного файла нет дубликатов",
+                    "Для указанного файла нет дубликатов",
                     "Внимание",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -187,7 +187,7 @@ namespace SubReal.EasyDuplicateFinder
                 {
                     ToggleEnabledUserControls(true);
                     ShowListFiles();
-                    // Выводим информацию о найденых файлах.
+                    // Выводим информацию о найденных файлах.
                     lblCountFindedFiles.Text = string.Format("Find {0} file(s)", listView.Items.Count);
                     // Устанавливаем параметры общего выделения.
                     CheckAllFiles(false);
@@ -296,5 +296,6 @@ namespace SubReal.EasyDuplicateFinder
             _edfFiles.DeleteAllCurrentDuplicatesFiles(listView.SelectedItems[0].SubItems[3].Text, listView.SelectedItems[0].SubItems[5].Text);
             ShowListFiles();
         }
+
     }
 }
