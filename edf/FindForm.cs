@@ -188,6 +188,123 @@ namespace SubReal.EasyDuplicateFinder
             listView.Items.Add(l);
         }
 
+        /// <summary>
+        /// Implements the manual sorting of items by Integer column.
+        /// </summary>
+        private class ListViewItemIntComparer : IComparer
+        {
+            private int col;
+            private SortOrder order;
+            public ListViewItemIntComparer()
+            {
+                col = 0;
+                order = SortOrder.Ascending;
+            }
+
+            public ListViewItemIntComparer(int column, SortOrder order)
+            {
+                col = column;
+                this.order = order;
+            }
+
+            public int Compare(object x, object y)
+            {
+                int returnVal = -1;
+                try
+                {
+                    int firstInt =
+                            int.Parse(((ListViewItem)x).SubItems[col].Text);
+                    int secondInt =
+                            int.Parse(((ListViewItem)y).SubItems[col].Text);
+
+                    returnVal = (order == SortOrder.Descending) ? secondInt.CompareTo(firstInt) : firstInt.CompareTo(secondInt);
+    
+                }
+                catch
+                {
+                    returnVal = String.Compare(((ListViewItem)x).SubItems[col].Text,
+                                               ((ListViewItem)y).SubItems[col].Text);
+                }                  
+
+                return returnVal;
+            }
+        }
+
+        /// <summary>
+        /// Implements the manual sorting of items by String column.
+        /// </summary>
+        private class ListViewItemStringComparer : IComparer
+        {
+            private int col;
+            private SortOrder order;
+            public ListViewItemStringComparer()
+            {
+                col = 0;
+                order = SortOrder.Ascending;
+            }
+
+            public ListViewItemStringComparer(int column, SortOrder order)
+            {
+                col = column;
+                this.order = order;
+            }
+
+            public int Compare(object x, object y)
+            {
+                int returnVal = -1;
+                returnVal = String.Compare(((ListViewItem)x).SubItems[col].Text,
+                                           ((ListViewItem)y).SubItems[col].Text);
+
+                if (order == SortOrder.Descending)
+                    returnVal *= -1;
+
+                return returnVal;
+            }
+        }
+        /// <summary>
+        /// Implements the manual sorting of items by DateTime column.
+        /// </summary>
+        private class ListViewItemDateTimeComparer : IComparer
+        {
+            private int col;
+            private SortOrder order;
+            public ListViewItemDateTimeComparer()
+            {
+                col = 0;
+                order = SortOrder.Ascending;
+            }
+
+            public ListViewItemDateTimeComparer(int column, SortOrder order)
+            {
+                col = column;
+                this.order = order;
+            }
+
+            public int Compare(object x, object y)
+            {
+                int returnVal;
+                try
+                {
+                    DateTime firstDate =
+                            DateTime.Parse(((ListViewItem)x).SubItems[col].Text);
+                    DateTime secondDate =
+                            DateTime.Parse(((ListViewItem)y).SubItems[col].Text);
+
+                    returnVal = DateTime.Compare(firstDate, secondDate);
+                }
+                catch
+                {
+                    returnVal = String.Compare(((ListViewItem)x).SubItems[col].Text,
+                                               ((ListViewItem)y).SubItems[col].Text);
+                }
+                if (order == SortOrder.Descending)
+                    returnVal *= -1;
+
+                return returnVal;
+            }
+        }
+
+
         #endregion ListView Updates
 
         private void BtnSelectDirectory_Click(object sender, EventArgs e)
@@ -364,6 +481,20 @@ namespace SubReal.EasyDuplicateFinder
             ShowDuplicatesOnlyListFiles(listViewAllDuplicates);
             listViewDuplicates.SelectedItems[0].SubItems[4].Text = "0";
             ThereCanBeOnlyOne(listViewDuplicates, listViewDuplicates.SelectedItems[0]);
+        }
+
+        private void listView_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ListView lv = (ListView)sender;
+
+            listView.Sorting = (lv.Sorting == SortOrder.Ascending) ? SortOrder.Descending : SortOrder.Ascending;
+            lv.Sort();
+            if (e.Column == lv.Columns[2].Index)
+                lv.ListViewItemSorter = new ListViewItemDateTimeComparer(e.Column, lv.Sorting);
+            else if (e.Column == lv.Columns[1].Index || e.Column == lv.Columns[4].Index)
+                lv.ListViewItemSorter = new ListViewItemIntComparer(e.Column, lv.Sorting);
+            else
+                lv.ListViewItemSorter = new ListViewItemStringComparer(e.Column, lv.Sorting);
         }
     }
 }

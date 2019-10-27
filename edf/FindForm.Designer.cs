@@ -39,9 +39,11 @@
             this.btnSelectDirectory = new System.Windows.Forms.Button();
             this.tbFolderPath = new System.Windows.Forms.TextBox();
             this.panelStatistic = new System.Windows.Forms.Panel();
+            this.labelDuplicatesCount = new System.Windows.Forms.Label();
             this.lblTimeWork = new System.Windows.Forms.Label();
             this.lblCountFindedFiles = new System.Windows.Forms.Label();
             this.panelOperations = new System.Windows.Forms.Panel();
+            this.buttonDeleteDuplicates = new System.Windows.Forms.Button();
             this.checkBoxDisableMessages = new System.Windows.Forms.CheckBox();
             this.btnShowDuplicates = new System.Windows.Forms.Button();
             this.tabFilesPage = new System.Windows.Forms.TabPage();
@@ -59,7 +61,6 @@
             this.contextMenuDuplicates = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemDuplicates_ShowFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDeleteOthers = new System.Windows.Forms.ToolStripMenuItem();
-            this.labelDuplicatesCount = new System.Windows.Forms.Label();
             this.contextMenuListView.SuspendLayout();
             this.tableLayoutDuplicatesPanel.SuspendLayout();
             this.panelPathFind.SuspendLayout();
@@ -171,6 +172,15 @@
             this.panelStatistic.Size = new System.Drawing.Size(294, 94);
             this.panelStatistic.TabIndex = 1;
             // 
+            // labelDuplicatesCount
+            // 
+            this.labelDuplicatesCount.AutoSize = true;
+            this.labelDuplicatesCount.Location = new System.Drawing.Point(11, 55);
+            this.labelDuplicatesCount.Name = "labelDuplicatesCount";
+            this.labelDuplicatesCount.Size = new System.Drawing.Size(89, 13);
+            this.labelDuplicatesCount.TabIndex = 15;
+            this.labelDuplicatesCount.Text = "Найдено дублей";
+            // 
             // lblTimeWork
             // 
             this.lblTimeWork.AutoSize = true;
@@ -191,6 +201,7 @@
             // 
             // panelOperations
             // 
+            this.panelOperations.Controls.Add(this.buttonDeleteDuplicates);
             this.panelOperations.Controls.Add(this.checkBoxDisableMessages);
             this.panelOperations.Controls.Add(this.btnShowDuplicates);
             this.panelOperations.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -198,6 +209,16 @@
             this.panelOperations.Name = "panelOperations";
             this.panelOperations.Size = new System.Drawing.Size(430, 94);
             this.panelOperations.TabIndex = 2;
+            // 
+            // buttonDeleteDuplicates
+            // 
+            this.buttonDeleteDuplicates.Location = new System.Drawing.Point(12, 59);
+            this.buttonDeleteDuplicates.Name = "buttonDeleteDuplicates";
+            this.buttonDeleteDuplicates.Size = new System.Drawing.Size(135, 23);
+            this.buttonDeleteDuplicates.TabIndex = 16;
+            this.buttonDeleteDuplicates.Text = "Удалить дубли";
+            this.buttonDeleteDuplicates.UseVisualStyleBackColor = true;
+            this.buttonDeleteDuplicates.Click += new System.EventHandler(this.toolStripMenuItemDeleteOthers_Click);
             // 
             // checkBoxDisableMessages
             // 
@@ -274,6 +295,7 @@
             this.listView.TabIndex = 0;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
+            this.listView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView_ColumnClick);
             // 
             // tabControl
             // 
@@ -312,14 +334,18 @@
             // 
             this.listViewAllDuplicates.ContextMenuStrip = this.contextMenuAllDuplicates;
             this.listViewAllDuplicates.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewAllDuplicates.FullRowSelect = true;
             this.listViewAllDuplicates.GridLines = true;
             this.listViewAllDuplicates.HideSelection = false;
             this.listViewAllDuplicates.Location = new System.Drawing.Point(3, 3);
+            this.listViewAllDuplicates.MultiSelect = false;
             this.listViewAllDuplicates.Name = "listViewAllDuplicates";
             this.listViewAllDuplicates.Size = new System.Drawing.Size(1188, 190);
+            this.listViewAllDuplicates.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listViewAllDuplicates.TabIndex = 9;
             this.listViewAllDuplicates.UseCompatibleStateImageBehavior = false;
             this.listViewAllDuplicates.View = System.Windows.Forms.View.Details;
+            this.listViewAllDuplicates.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView_ColumnClick);
             this.listViewAllDuplicates.Click += new System.EventHandler(this.btnShowDuplicates_Click);
             this.listViewAllDuplicates.DoubleClick += new System.EventHandler(this.btnShowDuplicates_Click);
             // 
@@ -360,6 +386,7 @@
             this.listViewDuplicates.TabIndex = 7;
             this.listViewDuplicates.UseCompatibleStateImageBehavior = false;
             this.listViewDuplicates.View = System.Windows.Forms.View.Details;
+            this.listViewDuplicates.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView_ColumnClick);
             // 
             // contextMenuDuplicates
             // 
@@ -382,15 +409,6 @@
             this.toolStripMenuItemDeleteOthers.Size = new System.Drawing.Size(237, 22);
             this.toolStripMenuItemDeleteOthers.Text = "Удалить остальные (Корзина)";
             this.toolStripMenuItemDeleteOthers.Click += new System.EventHandler(this.toolStripMenuItemDeleteOthers_Click);
-            // 
-            // labelDuplicatesCount
-            // 
-            this.labelDuplicatesCount.AutoSize = true;
-            this.labelDuplicatesCount.Location = new System.Drawing.Point(11, 55);
-            this.labelDuplicatesCount.Name = "labelDuplicatesCount";
-            this.labelDuplicatesCount.Size = new System.Drawing.Size(89, 13);
-            this.labelDuplicatesCount.TabIndex = 15;
-            this.labelDuplicatesCount.Text = "Найдено дублей";
             // 
             // FindForm
             // 
@@ -454,6 +472,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDeleteOthers;
         private System.Windows.Forms.CheckBox checkBoxDisableMessages;
         private System.Windows.Forms.Label labelDuplicatesCount;
+        private System.Windows.Forms.Button buttonDeleteDuplicates;
     }
 }
 
