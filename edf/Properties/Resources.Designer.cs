@@ -63,6 +63,36 @@ namespace SubReal.EasyDuplicateFinder.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _2019_10_27_18_40_39 {
+            get {
+                object obj = ResourceManager.GetObject("2019-10-27_18-40-39", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap edf2 {
+            get {
+                object obj = ResourceManager.GetObject("edf2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap edf2_app {
+            get {
+                object obj = ResourceManager.GetObject("edf2-app", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_folder_open {
             get {
                 object obj = ResourceManager.GetObject("icon-folder-open", resourceCulture);

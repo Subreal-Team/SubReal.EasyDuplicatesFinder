@@ -29,15 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FindForm));
+            System.Windows.Forms.PictureBox pictureBox1;
             this.contextMenuListView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutDuplicatesPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panelPathFind = new System.Windows.Forms.Panel();
+            this.labelCopyRight = new System.Windows.Forms.Label();
             this.linkLabelToSubRealCom = new System.Windows.Forms.LinkLabel();
             this.btnStartFind = new System.Windows.Forms.Button();
-            this.btnSelectDirectory = new System.Windows.Forms.Button();
             this.textBoxFolderPath = new System.Windows.Forms.TextBox();
             this.panelStatistic = new System.Windows.Forms.Panel();
             this.labelDuplicatesCount = new System.Windows.Forms.Label();
@@ -62,7 +64,18 @@
             this.contextMenuDuplicates = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemDuplicates_ShowFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDeleteOthers = new System.Windows.Forms.ToolStripMenuItem();
-            this.labelCopyRight = new System.Windows.Forms.Label();
+            this.tabAbout = new System.Windows.Forms.TabPage();
+            this.buttonGoOnSiteDonatePage = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxAboutEDF = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.labelProgramName = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.btnSelectDirectory = new System.Windows.Forms.Button();
+            pictureBox1 = new System.Windows.Forms.PictureBox();
             this.contextMenuListView.SuspendLayout();
             this.tableLayoutDuplicatesPanel.SuspendLayout();
             this.panelPathFind.SuspendLayout();
@@ -74,6 +87,8 @@
             this.tabDuplicatesPage.SuspendLayout();
             this.contextMenuAllDuplicates.SuspendLayout();
             this.contextMenuDuplicates.SuspendLayout();
+            this.tabAbout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuListView
@@ -114,7 +129,7 @@
             this.tableLayoutDuplicatesPanel.Name = "tableLayoutDuplicatesPanel";
             this.tableLayoutDuplicatesPanel.RowCount = 1;
             this.tableLayoutDuplicatesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutDuplicatesPanel.Size = new System.Drawing.Size(851, 100);
+            this.tableLayoutDuplicatesPanel.Size = new System.Drawing.Size(794, 100);
             this.tableLayoutDuplicatesPanel.TabIndex = 12;
             // 
             // panelPathFind
@@ -127,12 +142,23 @@
             this.panelPathFind.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelPathFind.Location = new System.Drawing.Point(3, 3);
             this.panelPathFind.Name = "panelPathFind";
-            this.panelPathFind.Size = new System.Drawing.Size(365, 94);
+            this.panelPathFind.Size = new System.Drawing.Size(329, 94);
             this.panelPathFind.TabIndex = 0;
+            // 
+            // labelCopyRight
+            // 
+            this.labelCopyRight.AutoSize = true;
+            this.labelCopyRight.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCopyRight.Location = new System.Drawing.Point(9, 55);
+            this.labelCopyRight.Name = "labelCopyRight";
+            this.labelCopyRight.Size = new System.Drawing.Size(119, 13);
+            this.labelCopyRight.TabIndex = 6;
+            this.labelCopyRight.Text = "© 2019 SubReal, Team";
             // 
             // linkLabelToSubRealCom
             // 
             this.linkLabelToSubRealCom.AutoSize = true;
+            this.linkLabelToSubRealCom.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabelToSubRealCom.Location = new System.Drawing.Point(9, 69);
             this.linkLabelToSubRealCom.Name = "linkLabelToSubRealCom";
             this.linkLabelToSubRealCom.Size = new System.Drawing.Size(126, 13);
@@ -145,7 +171,7 @@
             // btnStartFind
             // 
             this.btnStartFind.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnStartFind.Location = new System.Drawing.Point(277, 45);
+            this.btnStartFind.Location = new System.Drawing.Point(241, 45);
             this.btnStartFind.Name = "btnStartFind";
             this.btnStartFind.Size = new System.Drawing.Size(75, 23);
             this.btnStartFind.TabIndex = 4;
@@ -153,27 +179,13 @@
             this.btnStartFind.UseVisualStyleBackColor = true;
             this.btnStartFind.Click += new System.EventHandler(this.BtnStartFind_Click);
             // 
-            // btnSelectDirectory
-            // 
-            this.btnSelectDirectory.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSelectDirectory.Image = global::SubReal.EasyDuplicateFinder.Properties.Resources.icon_folder_open;
-            this.btnSelectDirectory.Location = new System.Drawing.Point(277, 7);
-            this.btnSelectDirectory.Name = "btnSelectDirectory";
-            this.btnSelectDirectory.Size = new System.Drawing.Size(75, 23);
-            this.btnSelectDirectory.TabIndex = 3;
-            this.btnSelectDirectory.Text = "&Папка";
-            this.btnSelectDirectory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSelectDirectory.UseCompatibleTextRendering = true;
-            this.btnSelectDirectory.UseVisualStyleBackColor = true;
-            this.btnSelectDirectory.Click += new System.EventHandler(this.BtnSelectDirectory_Click);
-            // 
             // textBoxFolderPath
             // 
             this.textBoxFolderPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxFolderPath.Location = new System.Drawing.Point(9, 9);
             this.textBoxFolderPath.Name = "textBoxFolderPath";
-            this.textBoxFolderPath.Size = new System.Drawing.Size(255, 20);
+            this.textBoxFolderPath.Size = new System.Drawing.Size(219, 20);
             this.textBoxFolderPath.TabIndex = 2;
             this.textBoxFolderPath.Text = "c:\\iac";
             // 
@@ -183,7 +195,7 @@
             this.panelStatistic.Controls.Add(this.lblTimeWork);
             this.panelStatistic.Controls.Add(this.lblCountFindedFiles);
             this.panelStatistic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelStatistic.Location = new System.Drawing.Point(374, 3);
+            this.panelStatistic.Location = new System.Drawing.Point(338, 3);
             this.panelStatistic.Name = "panelStatistic";
             this.panelStatistic.Size = new System.Drawing.Size(264, 94);
             this.panelStatistic.TabIndex = 1;
@@ -221,9 +233,9 @@
             this.panelOperations.Controls.Add(this.checkBoxDisableMessages);
             this.panelOperations.Controls.Add(this.btnShowDuplicates);
             this.panelOperations.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelOperations.Location = new System.Drawing.Point(644, 3);
+            this.panelOperations.Location = new System.Drawing.Point(608, 3);
             this.panelOperations.Name = "panelOperations";
-            this.panelOperations.Size = new System.Drawing.Size(204, 94);
+            this.panelOperations.Size = new System.Drawing.Size(183, 94);
             this.panelOperations.TabIndex = 2;
             // 
             // buttonDeleteDuplicates
@@ -262,7 +274,7 @@
             this.tabFilesPage.Location = new System.Drawing.Point(4, 22);
             this.tabFilesPage.Name = "tabFilesPage";
             this.tabFilesPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFilesPage.Size = new System.Drawing.Size(843, 396);
+            this.tabFilesPage.Size = new System.Drawing.Size(786, 298);
             this.tabFilesPage.TabIndex = 0;
             this.tabFilesPage.Text = "Файлы";
             this.tabFilesPage.UseVisualStyleBackColor = true;
@@ -279,7 +291,7 @@
             this.tableLayoutFilesPanel.RowCount = 2;
             this.tableLayoutFilesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutFilesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutFilesPanel.Size = new System.Drawing.Size(837, 390);
+            this.tableLayoutFilesPanel.Size = new System.Drawing.Size(780, 292);
             this.tableLayoutFilesPanel.TabIndex = 10;
             // 
             // chkSelectAllFiles
@@ -307,7 +319,7 @@
             this.listView.Location = new System.Drawing.Point(3, 31);
             this.listView.MultiSelect = false;
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(831, 356);
+            this.listView.Size = new System.Drawing.Size(774, 258);
             this.listView.TabIndex = 0;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
@@ -317,11 +329,12 @@
             // 
             this.tabControl.Controls.Add(this.tabFilesPage);
             this.tabControl.Controls.Add(this.tabDuplicatesPage);
+            this.tabControl.Controls.Add(this.tabAbout);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 100);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(851, 422);
+            this.tabControl.Size = new System.Drawing.Size(794, 324);
             this.tabControl.TabIndex = 13;
             // 
             // tabDuplicatesPage
@@ -332,7 +345,7 @@
             this.tabDuplicatesPage.Location = new System.Drawing.Point(4, 22);
             this.tabDuplicatesPage.Name = "tabDuplicatesPage";
             this.tabDuplicatesPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDuplicatesPage.Size = new System.Drawing.Size(843, 396);
+            this.tabDuplicatesPage.Size = new System.Drawing.Size(786, 298);
             this.tabDuplicatesPage.TabIndex = 1;
             this.tabDuplicatesPage.Text = "Дубликаты";
             this.tabDuplicatesPage.UseVisualStyleBackColor = true;
@@ -340,9 +353,9 @@
             // splitter1
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter1.Location = new System.Drawing.Point(3, 190);
+            this.splitter1.Location = new System.Drawing.Point(3, 173);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(837, 3);
+            this.splitter1.Size = new System.Drawing.Size(780, 3);
             this.splitter1.TabIndex = 10;
             this.splitter1.TabStop = false;
             // 
@@ -356,7 +369,7 @@
             this.listViewAllDuplicates.Location = new System.Drawing.Point(3, 3);
             this.listViewAllDuplicates.MultiSelect = false;
             this.listViewAllDuplicates.Name = "listViewAllDuplicates";
-            this.listViewAllDuplicates.Size = new System.Drawing.Size(837, 190);
+            this.listViewAllDuplicates.Size = new System.Drawing.Size(780, 173);
             this.listViewAllDuplicates.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listViewAllDuplicates.TabIndex = 9;
             this.listViewAllDuplicates.UseCompatibleStateImageBehavior = false;
@@ -395,10 +408,10 @@
             this.listViewDuplicates.FullRowSelect = true;
             this.listViewDuplicates.GridLines = true;
             this.listViewDuplicates.HideSelection = false;
-            this.listViewDuplicates.Location = new System.Drawing.Point(3, 193);
+            this.listViewDuplicates.Location = new System.Drawing.Point(3, 176);
             this.listViewDuplicates.MultiSelect = false;
             this.listViewDuplicates.Name = "listViewDuplicates";
-            this.listViewDuplicates.Size = new System.Drawing.Size(837, 200);
+            this.listViewDuplicates.Size = new System.Drawing.Size(780, 119);
             this.listViewDuplicates.TabIndex = 7;
             this.listViewDuplicates.UseCompatibleStateImageBehavior = false;
             this.listViewDuplicates.View = System.Windows.Forms.View.Details;
@@ -426,23 +439,155 @@
             this.toolStripMenuItemDeleteOthers.Text = "Удалить остальные (Корзина)";
             this.toolStripMenuItemDeleteOthers.Click += new System.EventHandler(this.toolStripMenuItemDeleteOthers_Click);
             // 
-            // labelCopyRight
+            // tabAbout
             // 
-            this.labelCopyRight.AutoSize = true;
-            this.labelCopyRight.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelCopyRight.Location = new System.Drawing.Point(9, 55);
-            this.labelCopyRight.Name = "labelCopyRight";
-            this.labelCopyRight.Size = new System.Drawing.Size(119, 13);
-            this.labelCopyRight.TabIndex = 6;
-            this.labelCopyRight.Text = "© 2019 SubReal, Team";
+            this.tabAbout.Controls.Add(pictureBox1);
+            this.tabAbout.Controls.Add(this.buttonGoOnSiteDonatePage);
+            this.tabAbout.Controls.Add(this.textBox1);
+            this.tabAbout.Controls.Add(this.textBoxAboutEDF);
+            this.tabAbout.Controls.Add(this.label2);
+            this.tabAbout.Controls.Add(this.label3);
+            this.tabAbout.Controls.Add(this.labelProgramName);
+            this.tabAbout.Controls.Add(this.label1);
+            this.tabAbout.Controls.Add(this.linkLabel1);
+            this.tabAbout.Location = new System.Drawing.Point(4, 22);
+            this.tabAbout.Name = "tabAbout";
+            this.tabAbout.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAbout.Size = new System.Drawing.Size(786, 298);
+            this.tabAbout.TabIndex = 2;
+            this.tabAbout.Text = "О программе";
+            this.tabAbout.UseVisualStyleBackColor = true;
+            // 
+            // buttonGoOnSiteDonatePage
+            // 
+            this.buttonGoOnSiteDonatePage.Location = new System.Drawing.Point(519, 71);
+            this.buttonGoOnSiteDonatePage.Name = "buttonGoOnSiteDonatePage";
+            this.buttonGoOnSiteDonatePage.Size = new System.Drawing.Size(94, 23);
+            this.buttonGoOnSiteDonatePage.TabIndex = 11;
+            this.buttonGoOnSiteDonatePage.Text = "Поддержать";
+            this.buttonGoOnSiteDonatePage.UseVisualStyleBackColor = true;
+            this.buttonGoOnSiteDonatePage.Click += new System.EventHandler(this.buttonGoOnSiteDonatePage_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Location = new System.Drawing.Point(376, 17);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(375, 48);
+            this.textBox1.TabIndex = 10;
+            this.textBox1.Text = "Если вам понравилась программа, Вы можете поддержать ее развитие.\r\nЭто может быть" +
+    " совет, сообщение об ошибке или финансовая помощь. \r\nПодробности по кнопке \"Подд" +
+    "ержать\"";
+            // 
+            // textBoxAboutEDF
+            // 
+            this.textBoxAboutEDF.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxAboutEDF.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxAboutEDF.Location = new System.Drawing.Point(6, 160);
+            this.textBoxAboutEDF.Multiline = true;
+            this.textBoxAboutEDF.Name = "textBoxAboutEDF";
+            this.textBoxAboutEDF.Size = new System.Drawing.Size(766, 67);
+            this.textBoxAboutEDF.TabIndex = 10;
+            this.textBoxAboutEDF.Text = resources.GetString("textBoxAboutEDF.Text");
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(75, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(240, 16);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Простой поиск дубликатов файлов";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(5, 141);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(214, 16);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Что такое EasyDuplicateFinder?";
+            // 
+            // labelProgramName
+            // 
+            this.labelProgramName.AutoSize = true;
+            this.labelProgramName.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelProgramName.Location = new System.Drawing.Point(75, 31);
+            this.labelProgramName.Name = "labelProgramName";
+            this.labelProgramName.Size = new System.Drawing.Size(130, 15);
+            this.labelProgramName.TabIndex = 9;
+            this.labelProgramName.Text = "(EasyDuplicateFinder)";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(75, 52);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(119, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "© 2019 SubReal, Team";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.linkLabel1.Location = new System.Drawing.Point(79, 71);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(126, 13);
+            this.linkLabel1.TabIndex = 7;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "https://subreal-team.com";
+            this.linkLabel1.UseMnemonic = false;
+            this.linkLabel1.Click += new System.EventHandler(this.linkLabelToSubRealCom_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 402);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(794, 22);
+            this.statusStrip1.TabIndex = 14;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            pictureBox1.Image = global::SubReal.EasyDuplicateFinder.Properties.Resources.edf2;
+            pictureBox1.InitialImage = global::SubReal.EasyDuplicateFinder.Properties.Resources._2019_10_27_18_40_39;
+            pictureBox1.Location = new System.Drawing.Point(11, 6);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new System.Drawing.Size(58, 59);
+            pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            pictureBox1.TabIndex = 12;
+            pictureBox1.TabStop = false;
+            // 
+            // btnSelectDirectory
+            // 
+            this.btnSelectDirectory.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnSelectDirectory.Image = global::SubReal.EasyDuplicateFinder.Properties.Resources.icon_folder_open;
+            this.btnSelectDirectory.Location = new System.Drawing.Point(241, 7);
+            this.btnSelectDirectory.Name = "btnSelectDirectory";
+            this.btnSelectDirectory.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectDirectory.TabIndex = 3;
+            this.btnSelectDirectory.Text = "&Папка";
+            this.btnSelectDirectory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSelectDirectory.UseCompatibleTextRendering = true;
+            this.btnSelectDirectory.UseVisualStyleBackColor = true;
+            this.btnSelectDirectory.Click += new System.EventHandler(this.BtnSelectDirectory_Click);
             // 
             // FindForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(851, 522);
+            this.ClientSize = new System.Drawing.Size(794, 424);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.tableLayoutDuplicatesPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 400);
             this.Name = "FindForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -462,7 +607,11 @@
             this.tabDuplicatesPage.ResumeLayout(false);
             this.contextMenuAllDuplicates.ResumeLayout(false);
             this.contextMenuDuplicates.ResumeLayout(false);
+            this.tabAbout.ResumeLayout(false);
+            this.tabAbout.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -501,6 +650,16 @@
         private System.Windows.Forms.Button buttonDeleteDuplicates;
         private System.Windows.Forms.LinkLabel linkLabelToSubRealCom;
         private System.Windows.Forms.Label labelCopyRight;
+        private System.Windows.Forms.TabPage tabAbout;
+        private System.Windows.Forms.Label labelProgramName;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxAboutEDF;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.Button buttonGoOnSiteDonatePage;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
