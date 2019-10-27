@@ -20,7 +20,7 @@ namespace SubReal.EasyDuplicateFinder
 
         private void ToggleEnabledUserControls(bool enabled)
         {
-            btnRemove.Enabled = enabled;           
+            btnShowDuplicates.Enabled = enabled;           
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace SubReal.EasyDuplicateFinder
         /// Показ конкретного дубликата в ListView.
         /// </summary>
         /// <param name="listView"></param>
-        public void ShowCurrentDublicatesListFiles(ListView listView, string MD5Summ)
+        public void ShowCurrentDuplicatesListFiles(ListView listView, string MD5Summ)
         {
             if (MD5Summ == string.Empty)
             {
@@ -170,7 +170,7 @@ namespace SubReal.EasyDuplicateFinder
         {
             listView.Items.Clear();
             listViewAllDuplicates.Items.Clear();
-            listViewDublicates.Items.Clear();
+            listViewDuplicates.Items.Clear();
         }
 
         #endregion ListView Updates
@@ -290,12 +290,12 @@ namespace SubReal.EasyDuplicateFinder
             }
         }
 
-        private void Button2_Click(object sender, EventArgs e)
+        private void btnShowDuplicates_Click(object sender, EventArgs e)
         {
             if (listViewAllDuplicates.SelectedItems.Count == 0)
                 return;
 
-            ShowCurrentDublicatesListFiles(listViewDublicates, listViewAllDuplicates.SelectedItems[0].SubItems[3].Text);
+            ShowCurrentDuplicatesListFiles(listViewDuplicates, listViewAllDuplicates.SelectedItems[0].SubItems[3].Text);
         }
 
         private void DeleteOthersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -303,9 +303,31 @@ namespace SubReal.EasyDuplicateFinder
             if (listView.SelectedItems.Count == 0)
                 return;
 
-            _edfFiles.DeleteAllCurrentDuplicatesFiles(listView.SelectedItems[0].SubItems[3].Text, listView.SelectedItems[0].SubItems[5].Text);
+            _edfFiles.DeleteAllCurrentDuplicatesFiles(listViewDuplicates.SelectedItems[0].SubItems[3].Text, listViewDuplicates.SelectedItems[0].SubItems[5].Text);
             ShowListFiles(listView);
+            ShowDuplicatesOnlyListFiles(listViewAllDuplicates);
         }
 
+        private void toolStripMenuItemAllDuplicates_ShowFile_Click(object sender, EventArgs e)
+        {
+            if (listViewAllDuplicates.SelectedItems.Count == 0)
+                return;
+
+            if (File.Exists(listViewAllDuplicates.SelectedItems[0].SubItems[0].Text))
+            {
+                Process.Start(new ProcessStartInfo("explorer.exe", @" /select, " + listViewAllDuplicates.SelectedItems[0].SubItems[0].Text));
+            }
+        }
+
+        private void toolStripMenuItemDuplicates_ShowFile_Click(object sender, EventArgs e)
+        {
+            if (listViewDuplicates.SelectedItems.Count == 0)
+                return;
+
+            if (File.Exists(listViewAllDuplicates.SelectedItems[0].SubItems[0].Text))
+            {
+                Process.Start(new ProcessStartInfo("explorer.exe", @" /select, " + listViewDuplicates.SelectedItems[0].SubItems[0].Text));
+            }
+        }
     }
 }

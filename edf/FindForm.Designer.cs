@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.contextMenuListView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DeleteOthersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutDuplicatesPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -43,16 +42,22 @@
             this.lblTimeWork = new System.Windows.Forms.Label();
             this.lblCountFindedFiles = new System.Windows.Forms.Label();
             this.panelOperations = new System.Windows.Forms.Panel();
-            this.btnRemove = new System.Windows.Forms.Button();
+            this.btnShowDuplicates = new System.Windows.Forms.Button();
             this.tabFilesPage = new System.Windows.Forms.TabPage();
             this.tableLayoutFilesPanel = new System.Windows.Forms.TableLayoutPanel();
             this.chkSelectAllFiles = new System.Windows.Forms.CheckBox();
             this.listView = new System.Windows.Forms.ListView();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabDuplicatesPage = new System.Windows.Forms.TabPage();
-            this.listViewAllDuplicates = new System.Windows.Forms.ListView();
-            this.listViewDublicates = new System.Windows.Forms.ListView();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.listViewAllDuplicates = new System.Windows.Forms.ListView();
+            this.contextMenuAllDuplicates = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemAllDuplicates_ShowFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.listViewDuplicates = new System.Windows.Forms.ListView();
+            this.contextMenuDuplicates = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemDuplicates_ShowFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuListView.SuspendLayout();
             this.tableLayoutDuplicatesPanel.SuspendLayout();
             this.panelPathFind.SuspendLayout();
@@ -62,29 +67,23 @@
             this.tableLayoutFilesPanel.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabDuplicatesPage.SuspendLayout();
+            this.contextMenuAllDuplicates.SuspendLayout();
+            this.contextMenuDuplicates.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuListView
             // 
             this.contextMenuListView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showFileToolStripMenuItem,
-            this.DeleteOthersToolStripMenuItem});
+            this.showFileToolStripMenuItem});
             this.contextMenuListView.Name = "contextMenuListView";
-            this.contextMenuListView.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuListView.Size = new System.Drawing.Size(123, 26);
             // 
             // showFileToolStripMenuItem
             // 
             this.showFileToolStripMenuItem.Name = "showFileToolStripMenuItem";
-            this.showFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showFileToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.showFileToolStripMenuItem.Text = "Show file";
             this.showFileToolStripMenuItem.Click += new System.EventHandler(this.ShowFileToolStripMenuItem_Click);
-            // 
-            // DeleteOthersToolStripMenuItem
-            // 
-            this.DeleteOthersToolStripMenuItem.Name = "DeleteOthersToolStripMenuItem";
-            this.DeleteOthersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.DeleteOthersToolStripMenuItem.Text = "Удалить остальные";
-            this.DeleteOthersToolStripMenuItem.Click += new System.EventHandler(this.DeleteOthersToolStripMenuItem_Click);
             // 
             // folderBrowserDialog1
             // 
@@ -189,22 +188,22 @@
             // 
             // panelOperations
             // 
-            this.panelOperations.Controls.Add(this.btnRemove);
+            this.panelOperations.Controls.Add(this.btnShowDuplicates);
             this.panelOperations.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelOperations.Location = new System.Drawing.Point(750, 3);
             this.panelOperations.Name = "panelOperations";
             this.panelOperations.Size = new System.Drawing.Size(412, 94);
             this.panelOperations.TabIndex = 2;
             // 
-            // btnRemove
+            // btnShowDuplicates
             // 
-            this.btnRemove.Location = new System.Drawing.Point(18, 12);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(75, 23);
-            this.btnRemove.TabIndex = 14;
-            this.btnRemove.Text = "Убрать уникальные";
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.Button2_Click);
+            this.btnShowDuplicates.Location = new System.Drawing.Point(18, 12);
+            this.btnShowDuplicates.Name = "btnShowDuplicates";
+            this.btnShowDuplicates.Size = new System.Drawing.Size(75, 23);
+            this.btnShowDuplicates.TabIndex = 14;
+            this.btnShowDuplicates.Text = "Дубли";
+            this.btnShowDuplicates.UseVisualStyleBackColor = true;
+            this.btnShowDuplicates.Click += new System.EventHandler(this.btnShowDuplicates_Click);
             // 
             // tabFilesPage
             // 
@@ -275,7 +274,7 @@
             // 
             this.tabDuplicatesPage.Controls.Add(this.splitter1);
             this.tabDuplicatesPage.Controls.Add(this.listViewAllDuplicates);
-            this.tabDuplicatesPage.Controls.Add(this.listViewDublicates);
+            this.tabDuplicatesPage.Controls.Add(this.listViewDuplicates);
             this.tabDuplicatesPage.Location = new System.Drawing.Point(4, 22);
             this.tabDuplicatesPage.Name = "tabDuplicatesPage";
             this.tabDuplicatesPage.Padding = new System.Windows.Forms.Padding(3);
@@ -284,8 +283,18 @@
             this.tabDuplicatesPage.Text = "Дубликаты";
             this.tabDuplicatesPage.UseVisualStyleBackColor = true;
             // 
+            // splitter1
+            // 
+            this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitter1.Location = new System.Drawing.Point(3, 333);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(1151, 3);
+            this.splitter1.TabIndex = 10;
+            this.splitter1.TabStop = false;
+            // 
             // listViewAllDuplicates
             // 
+            this.listViewAllDuplicates.ContextMenuStrip = this.contextMenuAllDuplicates;
             this.listViewAllDuplicates.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewAllDuplicates.GridLines = true;
             this.listViewAllDuplicates.HideSelection = false;
@@ -296,30 +305,64 @@
             this.listViewAllDuplicates.UseCompatibleStateImageBehavior = false;
             this.listViewAllDuplicates.View = System.Windows.Forms.View.Details;
             // 
-            // listViewDublicates
+            // contextMenuAllDuplicates
             // 
-            this.listViewDublicates.CheckBoxes = true;
-            this.listViewDublicates.ContextMenuStrip = this.contextMenuListView;
-            this.listViewDublicates.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.listViewDublicates.FullRowSelect = true;
-            this.listViewDublicates.GridLines = true;
-            this.listViewDublicates.HideSelection = false;
-            this.listViewDublicates.Location = new System.Drawing.Point(3, 336);
-            this.listViewDublicates.MultiSelect = false;
-            this.listViewDublicates.Name = "listViewDublicates";
-            this.listViewDublicates.Size = new System.Drawing.Size(1151, 200);
-            this.listViewDublicates.TabIndex = 7;
-            this.listViewDublicates.UseCompatibleStateImageBehavior = false;
-            this.listViewDublicates.View = System.Windows.Forms.View.Details;
+            this.contextMenuAllDuplicates.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemAllDuplicates_ShowFile,
+            this.toolStripMenuItem2});
+            this.contextMenuAllDuplicates.Name = "contextMenuListView";
+            this.contextMenuAllDuplicates.Size = new System.Drawing.Size(161, 48);
             // 
-            // splitter1
+            // toolStripMenuItemAllDuplicates_ShowFile
             // 
-            this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter1.Location = new System.Drawing.Point(3, 333);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(1151, 3);
-            this.splitter1.TabIndex = 10;
-            this.splitter1.TabStop = false;
+            this.toolStripMenuItemAllDuplicates_ShowFile.Name = "toolStripMenuItemAllDuplicates_ShowFile";
+            this.toolStripMenuItemAllDuplicates_ShowFile.Size = new System.Drawing.Size(160, 22);
+            this.toolStripMenuItemAllDuplicates_ShowFile.Text = "Show file";
+            this.toolStripMenuItemAllDuplicates_ShowFile.Click += new System.EventHandler(this.toolStripMenuItemAllDuplicates_ShowFile_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(160, 22);
+            this.toolStripMenuItem2.Text = "Показать дубли";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.btnShowDuplicates_Click);
+            // 
+            // listViewDuplicates
+            // 
+            this.listViewDuplicates.CheckBoxes = true;
+            this.listViewDuplicates.ContextMenuStrip = this.contextMenuDuplicates;
+            this.listViewDuplicates.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.listViewDuplicates.FullRowSelect = true;
+            this.listViewDuplicates.GridLines = true;
+            this.listViewDuplicates.HideSelection = false;
+            this.listViewDuplicates.Location = new System.Drawing.Point(3, 336);
+            this.listViewDuplicates.MultiSelect = false;
+            this.listViewDuplicates.Name = "listViewDuplicates";
+            this.listViewDuplicates.Size = new System.Drawing.Size(1151, 200);
+            this.listViewDuplicates.TabIndex = 7;
+            this.listViewDuplicates.UseCompatibleStateImageBehavior = false;
+            this.listViewDuplicates.View = System.Windows.Forms.View.Details;
+            // 
+            // contextMenuDuplicates
+            // 
+            this.contextMenuDuplicates.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemDuplicates_ShowFile,
+            this.toolStripMenuItem4});
+            this.contextMenuDuplicates.Name = "contextMenuListView";
+            this.contextMenuDuplicates.Size = new System.Drawing.Size(181, 70);
+            // 
+            // toolStripMenuItemDuplicates_ShowFile
+            // 
+            this.toolStripMenuItemDuplicates_ShowFile.Name = "toolStripMenuItemDuplicates_ShowFile";
+            this.toolStripMenuItemDuplicates_ShowFile.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemDuplicates_ShowFile.Text = "Show file";
+            this.toolStripMenuItemDuplicates_ShowFile.Click += new System.EventHandler(this.toolStripMenuItemDuplicates_ShowFile_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem4.Text = "Удалить остальные";
             // 
             // FindForm
             // 
@@ -344,6 +387,8 @@
             this.tableLayoutFilesPanel.PerformLayout();
             this.tabControl.ResumeLayout(false);
             this.tabDuplicatesPage.ResumeLayout(false);
+            this.contextMenuAllDuplicates.ResumeLayout(false);
+            this.contextMenuDuplicates.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -353,7 +398,6 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ContextMenuStrip contextMenuListView;
         private System.Windows.Forms.ToolStripMenuItem showFileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem DeleteOthersToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutDuplicatesPanel;
         private System.Windows.Forms.Panel panelPathFind;
         private System.Windows.Forms.Button btnStartFind;
@@ -363,7 +407,7 @@
         private System.Windows.Forms.Label lblTimeWork;
         private System.Windows.Forms.Label lblCountFindedFiles;
         private System.Windows.Forms.Panel panelOperations;
-        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.Button btnShowDuplicates;
         private System.Windows.Forms.TabPage tabFilesPage;
         private System.Windows.Forms.TableLayoutPanel tableLayoutFilesPanel;
         private System.Windows.Forms.CheckBox chkSelectAllFiles;
@@ -371,8 +415,14 @@
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabDuplicatesPage;
         private System.Windows.Forms.ListView listViewAllDuplicates;
-        private System.Windows.Forms.ListView listViewDublicates;
+        private System.Windows.Forms.ListView listViewDuplicates;
         private System.Windows.Forms.Splitter splitter1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuAllDuplicates;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAllDuplicates_ShowFile;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuDuplicates;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDuplicates_ShowFile;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
     }
 }
 
