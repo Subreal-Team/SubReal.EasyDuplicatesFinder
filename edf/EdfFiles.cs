@@ -14,7 +14,7 @@ namespace SubReal.EasyDuplicateFinder
 
         public List<FileDesc> FullListFiles { get; }
 
-        public int CountUnicate { get; set; }
+        public int CountUnique { get; set; }
         public EdfFiles(string path)
         {
             Path = path;
@@ -87,10 +87,10 @@ namespace SubReal.EasyDuplicateFinder
                      .Select(g => new { md5 = g.Key.MD5Summ, size = g.Key.Size, count = g.Count() })
                      .Where(_ => _.count > 1)
                      .ToArray();
-            this.CountUnicate = 0;
+            this.CountUnique = 0;
             foreach (var info in groupByMD5)
             {
-                CountUnicate++;
+                CountUnique++;
                 for (int i = 0; i < FullListFiles.Count; i++)
                 {
                     // Устанавливаем количество, есть MD5 совпадают.
