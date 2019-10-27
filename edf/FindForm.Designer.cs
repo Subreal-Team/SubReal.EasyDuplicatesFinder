@@ -57,7 +57,7 @@
             this.listViewDuplicates = new System.Windows.Forms.ListView();
             this.contextMenuDuplicates = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemDuplicates_ShowFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemDeleteOthers = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuListView.SuspendLayout();
             this.tableLayoutDuplicatesPanel.SuspendLayout();
             this.panelPathFind.SuspendLayout();
@@ -347,7 +347,7 @@
             // 
             this.contextMenuDuplicates.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemDuplicates_ShowFile,
-            this.toolStripMenuItem4});
+            this.toolStripMenuItemDeleteOthers});
             this.contextMenuDuplicates.Name = "contextMenuListView";
             this.contextMenuDuplicates.Size = new System.Drawing.Size(181, 70);
             // 
@@ -358,11 +358,12 @@
             this.toolStripMenuItemDuplicates_ShowFile.Text = "Show file";
             this.toolStripMenuItemDuplicates_ShowFile.Click += new System.EventHandler(this.toolStripMenuItemDuplicates_ShowFile_Click);
             // 
-            // toolStripMenuItem4
+            // toolStripMenuItemDeleteOthers
             // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItem4.Text = "Удалить остальные";
+            this.toolStripMenuItemDeleteOthers.Name = "toolStripMenuItemDeleteOthers";
+            this.toolStripMenuItemDeleteOthers.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemDeleteOthers.Text = "Удалить остальные";
+            this.toolStripMenuItemDeleteOthers.Click += new System.EventHandler(this.toolStripMenuItemDeleteOthers_Click);
             // 
             // FindForm
             // 
@@ -422,7 +423,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ContextMenuStrip contextMenuDuplicates;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDuplicates_ShowFile;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDeleteOthers;
     }
 }
 

@@ -166,11 +166,22 @@ namespace SubReal.EasyDuplicateFinder
         /// <summary>
         /// Очистка всех списков.
         /// </summary>
-        public void ClearAllItemsListsView()
+        private void ClearAllItemsListsView()
         {
             listView.Items.Clear();
             listViewAllDuplicates.Items.Clear();
             listViewDuplicates.Items.Clear();
+        }
+
+        /// <summary>
+        /// Удаление из списка всех файлов кроме основного.
+        /// </summary>
+        /// <param name="listView"></param>
+        /// <param name="l"></param>
+        private void ThereCanBeOnlyOne(ListView listView, ListViewItem l)
+        {
+            listView.Items.Clear();
+            listView.Items.Add(l);
         }
 
         #endregion ListView Updates
@@ -300,7 +311,7 @@ namespace SubReal.EasyDuplicateFinder
 
         private void DeleteOthersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (listView.SelectedItems.Count == 0)
+            if (listViewDuplicates.SelectedItems.Count == 0)
                 return;
 
             _edfFiles.DeleteAllCurrentDuplicatesFiles(listViewDuplicates.SelectedItems[0].SubItems[3].Text, listViewDuplicates.SelectedItems[0].SubItems[5].Text);
@@ -328,6 +339,18 @@ namespace SubReal.EasyDuplicateFinder
             {
                 Process.Start(new ProcessStartInfo("explorer.exe", @" /select, " + listViewDuplicates.SelectedItems[0].SubItems[0].Text));
             }
+        }
+
+        private void toolStripMenuItemDeleteOthers_Click(object sender, EventArgs e)
+        {
+            if (listViewDuplicates.SelectedItems.Count == 0)
+                return;
+
+            _edfFiles.DeleteAllCurrentDuplicatesFiles(listViewDuplicates.SelectedItems[0].SubItems[3].Text, listViewDuplicates.SelectedItems[0].SubItems[5].Text);            
+            ShowListFiles(listView);
+            ShowDuplicatesOnlyListFiles(listViewAllDuplicates);
+            listViewDuplicates.SelectedItems[0].SubItems[4].Text = "0";
+            ThereCanBeOnlyOne(listViewDuplicates, listViewDuplicates.SelectedItems[0]);
         }
     }
 }
