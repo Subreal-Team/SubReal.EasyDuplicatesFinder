@@ -44,22 +44,23 @@
             this.lblCountFindedFiles = new System.Windows.Forms.Label();
             this.panelOperations = new System.Windows.Forms.Panel();
             this.btnRemove = new System.Windows.Forms.Button();
-            this.btnDuplicates = new System.Windows.Forms.Button();
-            this.tabControl = new System.Windows.Forms.TabControl();
             this.tabFilesPage = new System.Windows.Forms.TabPage();
             this.tableLayoutFilesPanel = new System.Windows.Forms.TableLayoutPanel();
             this.chkSelectAllFiles = new System.Windows.Forms.CheckBox();
             this.listView = new System.Windows.Forms.ListView();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.tabDuplicatesPage = new System.Windows.Forms.TabPage();
+            this.listViewAllDuplicates = new System.Windows.Forms.ListView();
             this.listViewDublicates = new System.Windows.Forms.ListView();
+            this.splitter1 = new System.Windows.Forms.Splitter();
             this.contextMenuListView.SuspendLayout();
             this.tableLayoutDuplicatesPanel.SuspendLayout();
             this.panelPathFind.SuspendLayout();
             this.panelStatistic.SuspendLayout();
             this.panelOperations.SuspendLayout();
-            this.tabControl.SuspendLayout();
             this.tabFilesPage.SuspendLayout();
             this.tableLayoutFilesPanel.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.tabDuplicatesPage.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -189,7 +190,6 @@
             // panelOperations
             // 
             this.panelOperations.Controls.Add(this.btnRemove);
-            this.panelOperations.Controls.Add(this.btnDuplicates);
             this.panelOperations.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelOperations.Location = new System.Drawing.Point(750, 3);
             this.panelOperations.Name = "panelOperations";
@@ -198,34 +198,13 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(13, 45);
+            this.btnRemove.Location = new System.Drawing.Point(18, 12);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(75, 23);
             this.btnRemove.TabIndex = 14;
             this.btnRemove.Text = "Убрать уникальные";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.Button2_Click);
-            // 
-            // btnDuplicates
-            // 
-            this.btnDuplicates.Location = new System.Drawing.Point(13, 7);
-            this.btnDuplicates.Name = "btnDuplicates";
-            this.btnDuplicates.Size = new System.Drawing.Size(75, 23);
-            this.btnDuplicates.TabIndex = 13;
-            this.btnDuplicates.Text = "Дубликаты";
-            this.btnDuplicates.UseVisualStyleBackColor = true;
-            this.btnDuplicates.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // tabControl
-            // 
-            this.tabControl.Controls.Add(this.tabFilesPage);
-            this.tabControl.Controls.Add(this.tabDuplicatesPage);
-            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.Location = new System.Drawing.Point(0, 100);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1165, 565);
-            this.tabControl.TabIndex = 13;
             // 
             // tabFilesPage
             // 
@@ -281,32 +260,66 @@
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
             // 
+            // tabControl
+            // 
+            this.tabControl.Controls.Add(this.tabFilesPage);
+            this.tabControl.Controls.Add(this.tabDuplicatesPage);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 100);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(1165, 565);
+            this.tabControl.TabIndex = 13;
+            // 
             // tabDuplicatesPage
             // 
+            this.tabDuplicatesPage.Controls.Add(this.splitter1);
+            this.tabDuplicatesPage.Controls.Add(this.listViewAllDuplicates);
             this.tabDuplicatesPage.Controls.Add(this.listViewDublicates);
             this.tabDuplicatesPage.Location = new System.Drawing.Point(4, 22);
             this.tabDuplicatesPage.Name = "tabDuplicatesPage";
             this.tabDuplicatesPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDuplicatesPage.Size = new System.Drawing.Size(1045, 506);
+            this.tabDuplicatesPage.Size = new System.Drawing.Size(1157, 539);
             this.tabDuplicatesPage.TabIndex = 1;
             this.tabDuplicatesPage.Text = "Дубликаты";
             this.tabDuplicatesPage.UseVisualStyleBackColor = true;
+            // 
+            // listViewAllDuplicates
+            // 
+            this.listViewAllDuplicates.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewAllDuplicates.GridLines = true;
+            this.listViewAllDuplicates.HideSelection = false;
+            this.listViewAllDuplicates.Location = new System.Drawing.Point(3, 3);
+            this.listViewAllDuplicates.Name = "listViewAllDuplicates";
+            this.listViewAllDuplicates.Size = new System.Drawing.Size(1151, 333);
+            this.listViewAllDuplicates.TabIndex = 9;
+            this.listViewAllDuplicates.UseCompatibleStateImageBehavior = false;
+            this.listViewAllDuplicates.View = System.Windows.Forms.View.Details;
             // 
             // listViewDublicates
             // 
             this.listViewDublicates.CheckBoxes = true;
             this.listViewDublicates.ContextMenuStrip = this.contextMenuListView;
-            this.listViewDublicates.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewDublicates.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listViewDublicates.FullRowSelect = true;
             this.listViewDublicates.GridLines = true;
             this.listViewDublicates.HideSelection = false;
-            this.listViewDublicates.Location = new System.Drawing.Point(3, 3);
+            this.listViewDublicates.Location = new System.Drawing.Point(3, 336);
             this.listViewDublicates.MultiSelect = false;
             this.listViewDublicates.Name = "listViewDublicates";
-            this.listViewDublicates.Size = new System.Drawing.Size(1039, 500);
+            this.listViewDublicates.Size = new System.Drawing.Size(1151, 200);
             this.listViewDublicates.TabIndex = 7;
             this.listViewDublicates.UseCompatibleStateImageBehavior = false;
             this.listViewDublicates.View = System.Windows.Forms.View.Details;
+            // 
+            // splitter1
+            // 
+            this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitter1.Location = new System.Drawing.Point(3, 333);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(1151, 3);
+            this.splitter1.TabIndex = 10;
+            this.splitter1.TabStop = false;
             // 
             // FindForm
             // 
@@ -326,10 +339,10 @@
             this.panelStatistic.ResumeLayout(false);
             this.panelStatistic.PerformLayout();
             this.panelOperations.ResumeLayout(false);
-            this.tabControl.ResumeLayout(false);
             this.tabFilesPage.ResumeLayout(false);
             this.tableLayoutFilesPanel.ResumeLayout(false);
             this.tableLayoutFilesPanel.PerformLayout();
+            this.tabControl.ResumeLayout(false);
             this.tabDuplicatesPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -351,14 +364,15 @@
         private System.Windows.Forms.Label lblCountFindedFiles;
         private System.Windows.Forms.Panel panelOperations;
         private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.Button btnDuplicates;
-        private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabFilesPage;
         private System.Windows.Forms.TableLayoutPanel tableLayoutFilesPanel;
         private System.Windows.Forms.CheckBox chkSelectAllFiles;
         private System.Windows.Forms.ListView listView;
+        private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabDuplicatesPage;
+        private System.Windows.Forms.ListView listViewAllDuplicates;
         private System.Windows.Forms.ListView listViewDublicates;
+        private System.Windows.Forms.Splitter splitter1;
     }
 }
 

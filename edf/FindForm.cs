@@ -20,8 +20,7 @@ namespace SubReal.EasyDuplicateFinder
 
         private void ToggleEnabledUserControls(bool enabled)
         {
-            btnRemove.Enabled = enabled;
-            btnDuplicates.Enabled = enabled;
+            btnRemove.Enabled = enabled;           
         }
 
         /// <summary>
@@ -78,7 +77,7 @@ namespace SubReal.EasyDuplicateFinder
         /// <summary>
         /// Показ результата в ListView.
         /// </summary>
-        public void ShowListFiles()
+        public void ShowListFiles(ListView listView)
         {
             FormatListView(listView);
 
@@ -97,7 +96,7 @@ namespace SubReal.EasyDuplicateFinder
         /// <summary>
         /// Показ дубликаты в ListView.
         /// </summary>
-        public void ShowDuplicatesOnlyListFiles()
+        public void ShowDuplicatesOnlyListFiles(ListView listView)
         {
             FormatListView(listView);
 
@@ -119,7 +118,7 @@ namespace SubReal.EasyDuplicateFinder
         /// Показ конкретного дубликата в ListView.
         /// </summary>
         /// <param name="listView"></param>
-        public void ShowCurrentDublicatesListFiles(string MD5Summ)
+        public void ShowCurrentDublicatesListFiles(ListView listView, string MD5Summ)
         {
             if (MD5Summ == string.Empty)
             {
@@ -130,20 +129,20 @@ namespace SubReal.EasyDuplicateFinder
                 return;
             }
 
-            FormatListView(listViewDublicates);
+            FormatListView(listView);
 
-            listViewDublicates.BeginUpdate();
-            listViewDublicates.Items.Clear();
+            listView.BeginUpdate();
+            listView.Items.Clear();
             foreach (var fileDesc in _edfFiles.FullListFiles)
             {
                 if (fileDesc.MD5Summ == MD5Summ)
                 {
                     var lvi = CreateListViewItem(fileDesc);
-                    listViewDublicates.Items.Add(lvi);
+                    listView.Items.Add(lvi);
                 }
             }
 
-            listViewDublicates.EndUpdate();
+            listView.EndUpdate();
         }
 
         /// <summary>
@@ -164,6 +163,16 @@ namespace SubReal.EasyDuplicateFinder
             listView.EndUpdate();
         }
 
+        /// <summary>
+        /// Очистка всех списков.
+        /// </summary>
+        public void ClearAllItemsListsView()
+        {
+            listView.Items.Clear();
+            listViewAllDuplicates.Items.Clear();
+            listViewDublicates.Items.Clear();
+        }
+
         #endregion ListView Updates
 
         private void BtnSelectDirectory_Click(object sender, EventArgs e)
@@ -177,6 +186,11 @@ namespace SubReal.EasyDuplicateFinder
         private void BtnStartFind_Click(object sender, EventArgs e)
         {
             var watch = Stopwatch.StartNew();
+           
+            ClearAllItemsListsView();
+
+            tabControl.SelectedTab = tabFilesPage;
+
             BlockHeadControls(true);
 
             try
@@ -186,7 +200,7 @@ namespace SubReal.EasyDuplicateFinder
                 if (_edfFiles.GetFiles())
                 {
                     ToggleEnabledUserControls(true);
-                    ShowListFiles();
+                    ShowListFiles(listView);
                     // Выводим информацию о найденных файлах.
                     lblCountFindedFiles.Text = string.Format("Find {0} file(s)", listView.Items.Count);
                     // Устанавливаем параметры общего выделения.
@@ -214,6 +228,7 @@ namespace SubReal.EasyDuplicateFinder
                 BlockHeadControls(false);
             }
 
+            ShowDuplicatesOnlyListFiles(listViewAllDuplicates);
             watch.Stop();
             lblTimeWork.Text = $"Время работы: {watch.Elapsed}";
         }
@@ -275,17 +290,12 @@ namespace SubReal.EasyDuplicateFinder
             }
         }
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            ShowDuplicatesOnlyListFiles();
-        }
-
         private void Button2_Click(object sender, EventArgs e)
         {
-            if (listView.SelectedItems.Count == 0)
+            if (listViewAllDuplicates.SelectedItems.Count == 0)
                 return;
 
-            ShowCurrentDublicatesListFiles(listView.SelectedItems[0].SubItems[3].Text);
+            ShowCurrentDublicatesListFiles(listViewDublicates, listViewAllDuplicates.SelectedItems[0].SubItems[3].Text);
         }
 
         private void DeleteOthersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -294,7 +304,7 @@ namespace SubReal.EasyDuplicateFinder
                 return;
 
             _edfFiles.DeleteAllCurrentDuplicatesFiles(listView.SelectedItems[0].SubItems[3].Text, listView.SelectedItems[0].SubItems[5].Text);
-            ShowListFiles();
+            ShowListFiles(listView);
         }
 
     }
