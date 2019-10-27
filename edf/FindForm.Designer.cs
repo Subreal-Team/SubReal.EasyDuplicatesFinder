@@ -62,6 +62,7 @@
             this.contextMenuDuplicates = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemDuplicates_ShowFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDeleteOthers = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelCopyRight = new System.Windows.Forms.Label();
             this.contextMenuListView.SuspendLayout();
             this.tableLayoutDuplicatesPanel.SuspendLayout();
             this.panelPathFind.SuspendLayout();
@@ -118,6 +119,7 @@
             // 
             // panelPathFind
             // 
+            this.panelPathFind.Controls.Add(this.labelCopyRight);
             this.panelPathFind.Controls.Add(this.linkLabelToSubRealCom);
             this.panelPathFind.Controls.Add(this.btnStartFind);
             this.panelPathFind.Controls.Add(this.btnSelectDirectory);
@@ -330,7 +332,7 @@
             this.tabDuplicatesPage.Location = new System.Drawing.Point(4, 22);
             this.tabDuplicatesPage.Name = "tabDuplicatesPage";
             this.tabDuplicatesPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDuplicatesPage.Size = new System.Drawing.Size(1194, 396);
+            this.tabDuplicatesPage.Size = new System.Drawing.Size(843, 396);
             this.tabDuplicatesPage.TabIndex = 1;
             this.tabDuplicatesPage.Text = "Дубликаты";
             this.tabDuplicatesPage.UseVisualStyleBackColor = true;
@@ -340,7 +342,7 @@
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.splitter1.Location = new System.Drawing.Point(3, 190);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(1188, 3);
+            this.splitter1.Size = new System.Drawing.Size(837, 3);
             this.splitter1.TabIndex = 10;
             this.splitter1.TabStop = false;
             // 
@@ -354,7 +356,7 @@
             this.listViewAllDuplicates.Location = new System.Drawing.Point(3, 3);
             this.listViewAllDuplicates.MultiSelect = false;
             this.listViewAllDuplicates.Name = "listViewAllDuplicates";
-            this.listViewAllDuplicates.Size = new System.Drawing.Size(1188, 190);
+            this.listViewAllDuplicates.Size = new System.Drawing.Size(837, 190);
             this.listViewAllDuplicates.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listViewAllDuplicates.TabIndex = 9;
             this.listViewAllDuplicates.UseCompatibleStateImageBehavior = false;
@@ -396,7 +398,7 @@
             this.listViewDuplicates.Location = new System.Drawing.Point(3, 193);
             this.listViewDuplicates.MultiSelect = false;
             this.listViewDuplicates.Name = "listViewDuplicates";
-            this.listViewDuplicates.Size = new System.Drawing.Size(1188, 200);
+            this.listViewDuplicates.Size = new System.Drawing.Size(837, 200);
             this.listViewDuplicates.TabIndex = 7;
             this.listViewDuplicates.UseCompatibleStateImageBehavior = false;
             this.listViewDuplicates.View = System.Windows.Forms.View.Details;
@@ -423,6 +425,16 @@
             this.toolStripMenuItemDeleteOthers.Size = new System.Drawing.Size(237, 22);
             this.toolStripMenuItemDeleteOthers.Text = "Удалить остальные (Корзина)";
             this.toolStripMenuItemDeleteOthers.Click += new System.EventHandler(this.toolStripMenuItemDeleteOthers_Click);
+            // 
+            // labelCopyRight
+            // 
+            this.labelCopyRight.AutoSize = true;
+            this.labelCopyRight.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCopyRight.Location = new System.Drawing.Point(9, 55);
+            this.labelCopyRight.Name = "labelCopyRight";
+            this.labelCopyRight.Size = new System.Drawing.Size(119, 13);
+            this.labelCopyRight.TabIndex = 6;
+            this.labelCopyRight.Text = "© 2019 SubReal, Team";
             // 
             // FindForm
             // 
@@ -488,6 +500,7 @@
         private System.Windows.Forms.Label labelDuplicatesCount;
         private System.Windows.Forms.Button buttonDeleteDuplicates;
         private System.Windows.Forms.LinkLabel linkLabelToSubRealCom;
+        private System.Windows.Forms.Label labelCopyRight;
     }
 }
 

@@ -508,5 +508,7 @@ namespace SubReal.EasyDuplicateFinder
         {
             System.Diagnostics.Process.Start("https://subreal-team.com/");
         }
+
+
     }
 }
