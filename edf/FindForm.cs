@@ -511,6 +511,10 @@ namespace SubReal.EasyDuplicateFinder
             System.Diagnostics.Process.Start("https://subreal-team.com/");
         }
 
+        private void buttonGoOnSiteDonatePage_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://subreal-team.com/donate-html/");
+        }
 
     }
 }
