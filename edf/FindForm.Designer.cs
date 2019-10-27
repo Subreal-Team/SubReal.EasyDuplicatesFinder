@@ -248,6 +248,7 @@
             // chkSelectAllFiles
             // 
             this.chkSelectAllFiles.AutoSize = true;
+            this.chkSelectAllFiles.Enabled = false;
             this.chkSelectAllFiles.Location = new System.Drawing.Point(2, 8);
             this.chkSelectAllFiles.Margin = new System.Windows.Forms.Padding(2, 8, 2, 0);
             this.chkSelectAllFiles.Name = "chkSelectAllFiles";
@@ -255,6 +256,7 @@
             this.chkSelectAllFiles.TabIndex = 5;
             this.chkSelectAllFiles.Text = "Выбрать все";
             this.chkSelectAllFiles.UseVisualStyleBackColor = true;
+            this.chkSelectAllFiles.Visible = false;
             this.chkSelectAllFiles.Click += new System.EventHandler(this.CheckBox1_CheckedChanged);
             // 
             // listView

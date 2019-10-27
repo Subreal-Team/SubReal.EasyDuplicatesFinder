@@ -20,7 +20,7 @@ namespace SubReal.EasyDuplicateFinder
 
         private void ToggleEnabledUserControls(bool enabled)
         {
-            btnShowDuplicates.Enabled = enabled;           
+            btnShowDuplicates.Enabled = enabled;
         }
 
         /// <summary>
@@ -52,10 +52,10 @@ namespace SubReal.EasyDuplicateFinder
             listView.Columns.Add("MD5", 220);           //3
             listView.Columns.Add("Дубли", 50);    //4          
             listView.Columns.Add("GUID", 220);    //5          
-            listView.CheckBoxes = true;
+            listView.CheckBoxes = false;
             listView.GridLines = true;
             listView.Columns[5].Width = Debugger.IsAttached ? 220 : 0;
-            
+
             listView.EndUpdate();
         }
 
@@ -85,13 +85,13 @@ namespace SubReal.EasyDuplicateFinder
 
             listView.BeginUpdate();
             listView.Items.Clear();
-            
+
             foreach (var file in _edfFiles.FullListFiles)
             {
                 var lvi = CreateListViewItem(file);
                 listView.Items.Add(lvi);
             }
-            
+
             listView.EndUpdate();
         }
 
@@ -201,7 +201,7 @@ namespace SubReal.EasyDuplicateFinder
         private void BtnStartFind_Click(object sender, EventArgs e)
         {
             var watch = Stopwatch.StartNew();
-           
+
             ClearAllItemsListsView();
 
             tabControl.SelectedTab = tabFilesPage;
@@ -238,7 +238,7 @@ namespace SubReal.EasyDuplicateFinder
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-            finally 
+            finally
             {
                 BlockHeadControls(false);
             }
@@ -349,8 +349,17 @@ namespace SubReal.EasyDuplicateFinder
         {
             if (listViewDuplicates.SelectedItems.Count == 0)
                 return;
-
-            _edfFiles.DeleteAllCurrentDuplicatesFiles(listViewDuplicates.SelectedItems[0].SubItems[3].Text, listViewDuplicates.SelectedItems[0].SubItems[5].Text);            
+            if (!checkBoxDisableMessages.Checked)
+            {
+               var result = MessageBox.Show("Удалить дубликаты выбранного файла в корзину?",
+                                "Подтверждение удаления",
+                                 MessageBoxButtons.OKCancel,
+                                 MessageBoxIcon.Question
+                                 );
+                if (result == DialogResult.Cancel) 
+                    return;
+            }
+            _edfFiles.DeleteAllCurrentDuplicatesFiles(listViewDuplicates.SelectedItems[0].SubItems[3].Text, listViewDuplicates.SelectedItems[0].SubItems[5].Text);
             ShowListFiles(listView);
             ShowDuplicatesOnlyListFiles(listViewAllDuplicates);
             listViewDuplicates.SelectedItems[0].SubItems[4].Text = "0";
