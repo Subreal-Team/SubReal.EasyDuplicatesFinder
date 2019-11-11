@@ -19,7 +19,7 @@ namespace SubReal.EasyDuplicateFinder
 
             ToggleEnabledUserControls(false);
             AssemblyName assemName = assem.GetName();
-            this.Text = $"Простой поиск дубликатов файлов v.{assemName.Version.ToString()} Beta1";
+            this.Text = $"Простой поиск дубликатов файлов v.{assemName.Version.ToString()} Beta2";
 
             textBoxFolderPath.Text = Debugger.IsAttached ? @"c:\iac" : Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
         }

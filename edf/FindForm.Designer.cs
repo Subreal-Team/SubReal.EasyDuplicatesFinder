@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FindForm));
             System.Windows.Forms.PictureBox pictureBox1;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FindForm));
             this.contextMenuListView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
@@ -40,6 +40,7 @@
             this.labelCopyRight = new System.Windows.Forms.Label();
             this.linkLabelToSubRealCom = new System.Windows.Forms.LinkLabel();
             this.btnStartFind = new System.Windows.Forms.Button();
+            this.btnSelectDirectory = new System.Windows.Forms.Button();
             this.textBoxFolderPath = new System.Windows.Forms.TextBox();
             this.panelStatistic = new System.Windows.Forms.Panel();
             this.labelDuplicatesCount = new System.Windows.Forms.Label();
@@ -73,9 +74,8 @@
             this.labelProgramName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.btnSelectDirectory = new System.Windows.Forms.Button();
             pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(pictureBox1)).BeginInit();
             this.contextMenuListView.SuspendLayout();
             this.tableLayoutDuplicatesPanel.SuspendLayout();
             this.panelPathFind.SuspendLayout();
@@ -88,8 +88,19 @@
             this.contextMenuAllDuplicates.SuspendLayout();
             this.contextMenuDuplicates.SuspendLayout();
             this.tabAbout.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(pictureBox1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            pictureBox1.Image = global::SubReal.EasyDuplicateFinder.Properties.Resources.edf2;
+            pictureBox1.InitialImage = global::SubReal.EasyDuplicateFinder.Properties.Resources._2019_10_27_18_40_39;
+            pictureBox1.Location = new System.Drawing.Point(11, 6);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new System.Drawing.Size(58, 59);
+            pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            pictureBox1.TabIndex = 12;
+            pictureBox1.TabStop = false;
             // 
             // contextMenuListView
             // 
@@ -171,7 +182,7 @@
             // btnStartFind
             // 
             this.btnStartFind.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnStartFind.Location = new System.Drawing.Point(241, 45);
+            this.btnStartFind.Location = new System.Drawing.Point(241, 64);
             this.btnStartFind.Name = "btnStartFind";
             this.btnStartFind.Size = new System.Drawing.Size(75, 23);
             this.btnStartFind.TabIndex = 4;
@@ -179,13 +190,27 @@
             this.btnStartFind.UseVisualStyleBackColor = true;
             this.btnStartFind.Click += new System.EventHandler(this.BtnStartFind_Click);
             // 
+            // btnSelectDirectory
+            // 
+            this.btnSelectDirectory.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnSelectDirectory.Image = global::SubReal.EasyDuplicateFinder.Properties.Resources.icon_folder_open;
+            this.btnSelectDirectory.Location = new System.Drawing.Point(241, 36);
+            this.btnSelectDirectory.Name = "btnSelectDirectory";
+            this.btnSelectDirectory.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectDirectory.TabIndex = 3;
+            this.btnSelectDirectory.Text = "&Папка";
+            this.btnSelectDirectory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSelectDirectory.UseCompatibleTextRendering = true;
+            this.btnSelectDirectory.UseVisualStyleBackColor = true;
+            this.btnSelectDirectory.Click += new System.EventHandler(this.BtnSelectDirectory_Click);
+            // 
             // textBoxFolderPath
             // 
             this.textBoxFolderPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxFolderPath.Location = new System.Drawing.Point(9, 9);
             this.textBoxFolderPath.Name = "textBoxFolderPath";
-            this.textBoxFolderPath.Size = new System.Drawing.Size(219, 20);
+            this.textBoxFolderPath.Size = new System.Drawing.Size(307, 20);
             this.textBoxFolderPath.TabIndex = 2;
             this.textBoxFolderPath.Text = "c:\\iac";
             // 
@@ -274,24 +299,28 @@
             this.tabFilesPage.Location = new System.Drawing.Point(4, 22);
             this.tabFilesPage.Name = "tabFilesPage";
             this.tabFilesPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFilesPage.Size = new System.Drawing.Size(786, 298);
+            this.tabFilesPage.Size = new System.Drawing.Size(786, 341);
             this.tabFilesPage.TabIndex = 0;
             this.tabFilesPage.Text = "Файлы";
             this.tabFilesPage.UseVisualStyleBackColor = true;
             // 
             // tableLayoutFilesPanel
             // 
+            this.tableLayoutFilesPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutFilesPanel.AutoScroll = true;
             this.tableLayoutFilesPanel.ColumnCount = 1;
             this.tableLayoutFilesPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutFilesPanel.Controls.Add(this.chkSelectAllFiles, 0, 0);
             this.tableLayoutFilesPanel.Controls.Add(this.listView, 0, 1);
-            this.tableLayoutFilesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutFilesPanel.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutFilesPanel.Name = "tableLayoutFilesPanel";
             this.tableLayoutFilesPanel.RowCount = 2;
             this.tableLayoutFilesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutFilesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutFilesPanel.Size = new System.Drawing.Size(780, 292);
+            this.tableLayoutFilesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutFilesPanel.Size = new System.Drawing.Size(780, 335);
             this.tableLayoutFilesPanel.TabIndex = 10;
             // 
             // chkSelectAllFiles
@@ -319,7 +348,7 @@
             this.listView.Location = new System.Drawing.Point(3, 31);
             this.listView.MultiSelect = false;
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(774, 258);
+            this.listView.Size = new System.Drawing.Size(774, 301);
             this.listView.TabIndex = 0;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
@@ -334,7 +363,7 @@
             this.tabControl.Location = new System.Drawing.Point(0, 100);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(794, 324);
+            this.tabControl.Size = new System.Drawing.Size(794, 367);
             this.tabControl.TabIndex = 13;
             // 
             // tabDuplicatesPage
@@ -345,15 +374,16 @@
             this.tabDuplicatesPage.Location = new System.Drawing.Point(4, 22);
             this.tabDuplicatesPage.Name = "tabDuplicatesPage";
             this.tabDuplicatesPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDuplicatesPage.Size = new System.Drawing.Size(786, 298);
+            this.tabDuplicatesPage.Size = new System.Drawing.Size(786, 341);
             this.tabDuplicatesPage.TabIndex = 1;
             this.tabDuplicatesPage.Text = "Дубликаты";
             this.tabDuplicatesPage.UseVisualStyleBackColor = true;
             // 
             // splitter1
             // 
+            this.splitter1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter1.Location = new System.Drawing.Point(3, 173);
+            this.splitter1.Location = new System.Drawing.Point(3, 216);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(780, 3);
             this.splitter1.TabIndex = 10;
@@ -369,7 +399,7 @@
             this.listViewAllDuplicates.Location = new System.Drawing.Point(3, 3);
             this.listViewAllDuplicates.MultiSelect = false;
             this.listViewAllDuplicates.Name = "listViewAllDuplicates";
-            this.listViewAllDuplicates.Size = new System.Drawing.Size(780, 173);
+            this.listViewAllDuplicates.Size = new System.Drawing.Size(780, 216);
             this.listViewAllDuplicates.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listViewAllDuplicates.TabIndex = 9;
             this.listViewAllDuplicates.UseCompatibleStateImageBehavior = false;
@@ -408,7 +438,7 @@
             this.listViewDuplicates.FullRowSelect = true;
             this.listViewDuplicates.GridLines = true;
             this.listViewDuplicates.HideSelection = false;
-            this.listViewDuplicates.Location = new System.Drawing.Point(3, 176);
+            this.listViewDuplicates.Location = new System.Drawing.Point(3, 219);
             this.listViewDuplicates.MultiSelect = false;
             this.listViewDuplicates.Name = "listViewDuplicates";
             this.listViewDuplicates.Size = new System.Drawing.Size(780, 119);
@@ -545,46 +575,11 @@
             this.linkLabel1.UseMnemonic = false;
             this.linkLabel1.Click += new System.EventHandler(this.linkLabelToSubRealCom_Click);
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 402);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(794, 22);
-            this.statusStrip1.TabIndex = 14;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            pictureBox1.Image = global::SubReal.EasyDuplicateFinder.Properties.Resources.edf2;
-            pictureBox1.InitialImage = global::SubReal.EasyDuplicateFinder.Properties.Resources._2019_10_27_18_40_39;
-            pictureBox1.Location = new System.Drawing.Point(11, 6);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new System.Drawing.Size(58, 59);
-            pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            pictureBox1.TabIndex = 12;
-            pictureBox1.TabStop = false;
-            // 
-            // btnSelectDirectory
-            // 
-            this.btnSelectDirectory.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSelectDirectory.Image = global::SubReal.EasyDuplicateFinder.Properties.Resources.icon_folder_open;
-            this.btnSelectDirectory.Location = new System.Drawing.Point(241, 7);
-            this.btnSelectDirectory.Name = "btnSelectDirectory";
-            this.btnSelectDirectory.Size = new System.Drawing.Size(75, 23);
-            this.btnSelectDirectory.TabIndex = 3;
-            this.btnSelectDirectory.Text = "&Папка";
-            this.btnSelectDirectory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSelectDirectory.UseCompatibleTextRendering = true;
-            this.btnSelectDirectory.UseVisualStyleBackColor = true;
-            this.btnSelectDirectory.Click += new System.EventHandler(this.BtnSelectDirectory_Click);
-            // 
             // FindForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(794, 424);
-            this.Controls.Add(this.statusStrip1);
+            this.ClientSize = new System.Drawing.Size(794, 467);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.tableLayoutDuplicatesPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -592,6 +587,7 @@
             this.Name = "FindForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "win.edf";
+            ((System.ComponentModel.ISupportInitialize)(pictureBox1)).EndInit();
             this.contextMenuListView.ResumeLayout(false);
             this.tableLayoutDuplicatesPanel.ResumeLayout(false);
             this.panelPathFind.ResumeLayout(false);
@@ -609,9 +605,7 @@
             this.contextMenuDuplicates.ResumeLayout(false);
             this.tabAbout.ResumeLayout(false);
             this.tabAbout.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -657,7 +651,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxAboutEDF;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Button buttonGoOnSiteDonatePage;
         private System.Windows.Forms.TextBox textBox1;
     }
