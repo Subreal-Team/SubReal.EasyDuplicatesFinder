@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using NUnit.Framework;
-using SubReal.EasyDuplicateFinder;
+using SubReal.EasyDuplicatesFinder;
 
 namespace win.edf.UnitTests
 {

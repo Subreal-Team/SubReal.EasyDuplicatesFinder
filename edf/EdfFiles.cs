@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.FileIO;
 
-namespace SubReal.EasyDuplicateFinder
+namespace SubReal.EasyDuplicatesFinder
 {
     public class EdfFiles
     {

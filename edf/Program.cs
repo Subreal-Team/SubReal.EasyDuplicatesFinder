@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace SubReal.EasyDuplicateFinder
+namespace SubReal.EasyDuplicatesFinder
 {
     static class Program
     {

@@ -1,4 +1,4 @@
-﻿namespace SubReal.EasyDuplicateFinder
+﻿namespace SubReal.EasyDuplicatesFinder
 {
     partial class FindForm
     {
@@ -93,8 +93,6 @@
             // pictureBox1
             // 
             pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            pictureBox1.Image = global::SubReal.EasyDuplicateFinder.Properties.Resources.edf2;
-            pictureBox1.InitialImage = global::SubReal.EasyDuplicateFinder.Properties.Resources._2019_10_27_18_40_39;
             pictureBox1.Location = new System.Drawing.Point(11, 6);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new System.Drawing.Size(58, 59);
@@ -483,7 +481,7 @@
             this.tabAbout.Location = new System.Drawing.Point(4, 22);
             this.tabAbout.Name = "tabAbout";
             this.tabAbout.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAbout.Size = new System.Drawing.Size(786, 298);
+            this.tabAbout.Size = new System.Drawing.Size(786, 341);
             this.tabAbout.TabIndex = 2;
             this.tabAbout.Text = "О программе";
             this.tabAbout.UseVisualStyleBackColor = true;
@@ -538,9 +536,9 @@
             this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.Location = new System.Drawing.Point(5, 141);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(214, 16);
+            this.label3.Size = new System.Drawing.Size(328, 16);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Что такое EasyDuplicateFinder?";
+            this.label3.Text = "Что такое \"Простой поиск дубликатов файлов\"?";
             // 
             // labelProgramName
             // 
@@ -548,9 +546,9 @@
             this.labelProgramName.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelProgramName.Location = new System.Drawing.Point(75, 31);
             this.labelProgramName.Name = "labelProgramName";
-            this.labelProgramName.Size = new System.Drawing.Size(130, 15);
+            this.labelProgramName.Size = new System.Drawing.Size(187, 15);
             this.labelProgramName.TabIndex = 9;
-            this.labelProgramName.Text = "(EasyDuplicateFinder)";
+            this.labelProgramName.Text = "(SubReal.EasyDuplicatesFinder)";
             // 
             // label1
             // 

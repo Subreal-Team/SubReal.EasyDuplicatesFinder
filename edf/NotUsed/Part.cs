@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SubReal.EasyDuplicateFinder
+namespace SubReal.EasyDuplicatesFinder
 {
 
     public class Part : IEquatable<Part>

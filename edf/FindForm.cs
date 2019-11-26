@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Windows.Forms;
 
 
-namespace SubReal.EasyDuplicateFinder
+namespace SubReal.EasyDuplicatesFinder
 {
     public partial class FindForm : Form
     {
