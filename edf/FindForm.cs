@@ -22,6 +22,10 @@ namespace SubReal.EasyDuplicateFinder
             this.Text = $"Простой поиск дубликатов файлов v.{assemName.Version.ToString()} Beta2";
 
             textBoxFolderPath.Text = Debugger.IsAttached ? @"c:\iac" : Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+
+            FormatListView(listView);
+            FormatListView(listViewDuplicates);
+            FormatListView(listViewAllDuplicates);
         }
 
         private void ToggleEnabledUserControls(bool enabled)
@@ -86,9 +90,7 @@ namespace SubReal.EasyDuplicateFinder
         /// Показ результата в ListView.
         /// </summary>
         public void ShowListFiles(ListView listView)
-        {
-            FormatListView(listView);
-
+        {          
             listView.BeginUpdate();
             listView.Items.Clear();
 
@@ -105,8 +107,7 @@ namespace SubReal.EasyDuplicateFinder
         /// Показ дубликаты в ListView.
         /// </summary>
         public void ShowDuplicatesOnlyListFiles(ListView listView)
-        {
-            FormatListView(listView);
+        {         
 
             listView.BeginUpdate();
             listView.Items.Clear();
@@ -141,8 +142,6 @@ namespace SubReal.EasyDuplicateFinder
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-
-            FormatListView(listView);
 
             listView.BeginUpdate();
             listView.Items.Clear();
