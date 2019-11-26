@@ -19,8 +19,9 @@ namespace SubReal.EasyDuplicatesFinder
 
             ToggleEnabledUserControls(false);
             AssemblyName assemName = assem.GetName();
-            this.Text = $"Простой поиск дубликатов файлов v.{assemName.Version.ToString()} Beta2";
-
+            var ver = $"версия {assemName.Version.ToString()} RC1";
+            this.Text = $"Простой поиск дубликатов файлов {ver}";
+            labelVersion.Text = $"{ver}";
             textBoxFolderPath.Text = Debugger.IsAttached ? @"c:\iac" : Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
 
             FormatListView(listView);
