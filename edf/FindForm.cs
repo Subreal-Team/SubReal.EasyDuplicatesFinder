@@ -24,8 +24,8 @@ namespace SubReal.EasyDuplicatesFinder
             textBoxFolderPath.Text = Debugger.IsAttached ? @"c:\iac" : Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
 
             FormatListView(listView);
-            FormatListView(listViewDuplicates);
             FormatListView(listViewAllDuplicates);
+            FormatListView(listViewDuplicates, true);
         }
 
         private void ToggleEnabledUserControls(bool enabled)
@@ -52,7 +52,8 @@ namespace SubReal.EasyDuplicatesFinder
         /// Настройка объекта ListView для показа результатов.
         /// </summary>
         /// <param name="listView"></param>
-        private static void FormatListView(ListView listView)
+        /// <param name="showCheckBoxs">true - show check-boxes, false - hide</param>
+        private static void FormatListView(ListView listView, bool showCheckBoxs = false)
         {
             listView.BeginUpdate();
             listView.Columns.Clear();
@@ -62,7 +63,7 @@ namespace SubReal.EasyDuplicatesFinder
             listView.Columns.Add("MD5", 225);           //3
             listView.Columns.Add("Дубли", 50);    //4          
             listView.Columns.Add("GUID", 220);    //5          
-            listView.CheckBoxes = false;
+            listView.CheckBoxes = showCheckBoxs;
             listView.GridLines = true;
             listView.Columns[5].Width = Debugger.IsAttached ? 220 : 0;
 
@@ -513,6 +514,41 @@ namespace SubReal.EasyDuplicatesFinder
         private void buttonGoOnSiteDonatePage_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://subreal-team.com/donate-html/");
+        }
+
+        private void deleteChekedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var countCheckedFiles = CountCheckedFiles(listViewDuplicates);
+
+            if (countCheckedFiles <= 0)
+            {
+                if (!checkBoxDisableMessages.Checked)
+                {
+                    MessageBox.Show("Не выбраны файлы для удаления",
+                                     "Ошибка",
+                                      MessageBoxButtons.OK,
+                                      MessageBoxIcon.Error
+                                      );
+                }
+
+                return;
+            }
+
+            if (countCheckedFiles == listViewDuplicates.Items.Count)
+            {
+                var result = MessageBox.Show("Вы уверены что хотите удалить все файлы корзину?",
+                                 "Подтверждение удаления",
+                                  MessageBoxButtons.OKCancel,
+                                  MessageBoxIcon.Question
+                                  );
+                if (result == DialogResult.Cancel)
+                    return;
+            }
+
+            _edfFiles.DeleteCheckedFiles(listViewDuplicates);
+            ShowListFiles(listView);
+            ShowDuplicatesOnlyListFiles(listViewAllDuplicates);
+            listViewDuplicates.Clear();
         }
 
     }

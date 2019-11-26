@@ -74,6 +74,7 @@
             this.labelProgramName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.deleteChekedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(pictureBox1)).BeginInit();
             this.contextMenuListView.SuspendLayout();
@@ -93,10 +94,12 @@
             // pictureBox1
             // 
             pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            pictureBox1.Location = new System.Drawing.Point(11, 6);
+            pictureBox1.ErrorImage = null;
+            pictureBox1.Image = global::SubReal.EasyDuplicateFinder.Properties.Resources._2019_10_27_18_40_39;
+            pictureBox1.Location = new System.Drawing.Point(11, 17);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new System.Drawing.Size(58, 59);
-            pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 12;
             pictureBox1.TabStop = false;
             // 
@@ -192,7 +195,7 @@
             // 
             this.btnSelectDirectory.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnSelectDirectory.Image = global::SubReal.EasyDuplicateFinder.Properties.Resources.icon_folder_open;
-            this.btnSelectDirectory.Location = new System.Drawing.Point(241, 36);
+            this.btnSelectDirectory.Location = new System.Drawing.Point(241, 35);
             this.btnSelectDirectory.Name = "btnSelectDirectory";
             this.btnSelectDirectory.Size = new System.Drawing.Size(75, 23);
             this.btnSelectDirectory.TabIndex = 3;
@@ -449,9 +452,10 @@
             // 
             this.contextMenuDuplicates.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemDuplicates_ShowFile,
-            this.toolStripMenuItemDeleteOthers});
+            this.toolStripMenuItemDeleteOthers,
+            this.deleteChekedToolStripMenuItem});
             this.contextMenuDuplicates.Name = "contextMenuListView";
-            this.contextMenuDuplicates.Size = new System.Drawing.Size(238, 48);
+            this.contextMenuDuplicates.Size = new System.Drawing.Size(238, 92);
             // 
             // toolStripMenuItemDuplicates_ShowFile
             // 
@@ -573,6 +577,13 @@
             this.linkLabel1.UseMnemonic = false;
             this.linkLabel1.Click += new System.EventHandler(this.linkLabelToSubRealCom_Click);
             // 
+            // deleteChekedToolStripMenuItem
+            // 
+            this.deleteChekedToolStripMenuItem.Name = "deleteChekedToolStripMenuItem";
+            this.deleteChekedToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.deleteChekedToolStripMenuItem.Text = "Удалить отмеченные";
+            this.deleteChekedToolStripMenuItem.Click += new System.EventHandler(this.deleteChekedToolStripMenuItem_Click);
+            // 
             // FindForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -651,6 +662,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonGoOnSiteDonatePage;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ToolStripMenuItem deleteChekedToolStripMenuItem;
     }
 }
 

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("EasyDuplicateFinder")]
+[assembly: AssemblyTitle("EasyDuplicatesFinder")]
 [assembly: AssemblyDescription("Простой поиск дубликатов файлов")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SubReal, Team")]
-[assembly: AssemblyProduct("create_update")]
+[assembly: AssemblyProduct("EasyDuplicatesFinder")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Можно задать все значения или принять номер сборки и номер редакции по умолчанию.
 // используя "*", как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.9.0.44")]
-[assembly: AssemblyFileVersion("0.9.0.44")]
+[assembly: AssemblyVersion("0.9.0.57")]
+[assembly: AssemblyFileVersion("0.9.0.57")]

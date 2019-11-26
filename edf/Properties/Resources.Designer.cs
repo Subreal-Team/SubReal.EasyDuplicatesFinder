@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SubReal.EasyDuplicatesFinder.Properties {
+namespace SubReal.EasyDuplicateFinder.Properties {
     using System;
     
     
@@ -65,28 +65,18 @@ namespace SubReal.EasyDuplicatesFinder.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _2019_10_27_18_40_39 {
             get {
-                object obj = ResourceManager.GetObject("2019-10-27_18-40-39", resourceCulture);
+                object obj = ResourceManager.GetObject("_2019_10_27_18_40_39", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Bitmap edf2 {
+        internal static System.Drawing.Icon edf2 {
             get {
                 object obj = ResourceManager.GetObject("edf2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap edf2_app {
-            get {
-                object obj = ResourceManager.GetObject("edf2-app", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -95,7 +85,7 @@ namespace SubReal.EasyDuplicatesFinder.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap icon_folder_open {
             get {
-                object obj = ResourceManager.GetObject("icon-folder-open", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_folder_open", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -105,7 +95,7 @@ namespace SubReal.EasyDuplicatesFinder.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap icon_refreshalt {
             get {
-                object obj = ResourceManager.GetObject("icon-refreshalt", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_refreshalt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

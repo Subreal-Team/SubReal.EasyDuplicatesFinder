@@ -152,7 +152,6 @@ namespace SubReal.EasyDuplicatesFinder
             }
             catch (Exception)
             {
-
                 throw;
             }
 
@@ -184,6 +183,30 @@ namespace SubReal.EasyDuplicatesFinder
             foreach (var item in forDeleteFiles)
             {
                 DeleteItem(item.Guid);
+            }
+
+            FindDuplicatedBySize();
+            CountDuplicated();
+        }
+        /// <summary>
+        /// Удаление отмеченных файлов
+        /// </summary>
+        /// <param name="listView"></param>
+        public void DeleteCheckedFiles(ListView listView)
+        {
+            var forDeleteFiles = new List<Guid>();
+
+            foreach (ListViewItem item in listView.Items)
+            {
+                if (item.Checked)
+                {
+                    forDeleteFiles.Add(Guid.Parse(item.SubItems[5].Text));
+                }
+            }
+
+            foreach (var item in forDeleteFiles)
+            {
+                DeleteItem(item);
             }
 
             FindDuplicatedBySize();
