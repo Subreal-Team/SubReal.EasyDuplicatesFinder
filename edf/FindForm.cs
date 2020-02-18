@@ -19,10 +19,23 @@ namespace SubReal.EasyDuplicatesFinder
 
             ToggleEnabledUserControls(false);
             AssemblyName assemName = assem.GetName();
-            var ver = $"версия {assemName.Version.ToString()} RC1";
+            var ver = $"версия {assemName.Version.ToString()} ";
             this.Text = $"Простой поиск дубликатов файлов {ver}";
             labelVersion.Text = $"{ver}";
             textBoxFolderPath.Text = Debugger.IsAttached ? @"c:\iac" : Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+
+            ToolTip toolTipHint = new ToolTip();
+            toolTipHint.ShowAlways = true;
+            toolTipHint.SetToolTip(buttonSelectDirectory, "Выбрать папку для поиска");
+            toolTipHint.SetToolTip(buttonStartFind, "Выполнить поиск в папке");
+            toolTipHint.SetToolTip(buttonShowDuplicates, "Показать дубликаты");
+            toolTipHint.SetToolTip(buttonGoToFile, "Перейти к выбранному файлу");
+            toolTipHint.SetToolTip(buttonDeleteDuplicates, "Удалить дубликаты выбранного файла");
+            toolTipHint.SetToolTip(buttonDeleteChekedFiles, "Удалить отмеченные файлы");
+            toolTipHint.SetToolTip(checkBoxDisableMessages, "Отключить подтверждение при удалении");
+            toolTipHint.SetToolTip(linkLabelToSubRealCom, "Перейти на сайт разработчика");
+            toolTipHint.SetToolTip(linkLabelToSubRealComEDF, "Перейти к странице программы на сайте разработчика");
+            toolTipHint.SetToolTip(linkLabelGoToGitHub, "Перейти к странице программы на GitHub");
 
             FormatListView(listView);
             FormatListView(listViewAllDuplicates);
@@ -31,7 +44,7 @@ namespace SubReal.EasyDuplicatesFinder
 
         private void ToggleEnabledUserControls(bool enabled)
         {
-            btnShowDuplicates.Enabled = enabled;
+            buttonShowDuplicates.Enabled = enabled;
         }
 
         /// <summary>
@@ -41,7 +54,7 @@ namespace SubReal.EasyDuplicatesFinder
         private void BlockHeadControls(bool isBlock)
         {
             // Обрабатываем кнопки.
-            btnStartFind.Enabled = !isBlock;
+            buttonStartFind.Enabled = !isBlock;
             chkSelectAllFiles.Enabled = !isBlock;
             // Устанавливаем курсор.
             Cursor = isBlock ? Cursors.WaitCursor : Cursors.Default;
@@ -552,5 +565,46 @@ namespace SubReal.EasyDuplicatesFinder
             listViewDuplicates.Clear();
         }
 
+        private void button2_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (tabControl.SelectedTab == tabFilesPage)
+            {
+                if (listView.SelectedItems.Count != 0)
+                {
+                    if (File.Exists(listView.SelectedItems[0].SubItems[0].Text))
+                    {
+                        Process.Start(new ProcessStartInfo("explorer.exe", @" /select, " + listView.SelectedItems[0].SubItems[0].Text));
+                    }
+                }
+            }
+            else if (tabControl.SelectedTab == tabDuplicatesPage)
+            {
+                if (listViewDuplicates.SelectedItems.Count != 0)
+                {
+                    if (File.Exists(listViewDuplicates.SelectedItems[0].SubItems[0].Text))
+                    {
+                        Process.Start(new ProcessStartInfo("explorer.exe", @" /select, " + listViewDuplicates.SelectedItems[0].SubItems[0].Text));
+                    }
+                }
+                else if (listViewAllDuplicates.SelectedItems.Count != 0)
+                {
+                    if (File.Exists(listViewAllDuplicates.SelectedItems[0].SubItems[0].Text))
+                    {
+                        Process.Start(new ProcessStartInfo("explorer.exe", @" /select, " + listViewAllDuplicates.SelectedItems[0].SubItems[0].Text));
+                    }
+                }
+            }
+            
+        }
+
+        private void linkLabelToSubRealComEDF_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://subreal-team.com/tools/easyduplicatefinder/");
+        }
+
+        private void linkLabelGoToGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Rewalon/SubReal.EasyDuplicatesFinder");
+        }
     }
 }
