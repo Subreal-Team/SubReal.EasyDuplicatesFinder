@@ -32,6 +32,7 @@
             System.Windows.Forms.PictureBox pictureBox1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FindForm));
             this.contextMenuListView = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openFileListView = new System.Windows.Forms.ToolStripMenuItem();
             this.showFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
@@ -61,10 +62,12 @@
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.listViewAllDuplicates = new System.Windows.Forms.ListView();
             this.contextMenuAllDuplicates = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openFileAllDuplicates = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAllDuplicates_ShowFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.listViewDuplicates = new System.Windows.Forms.ListView();
             this.contextMenuDuplicates = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.OpenFileDuplicates = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDuplicates_ShowFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDeleteOthers = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteChekedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -112,9 +115,18 @@
             // contextMenuListView
             // 
             this.contextMenuListView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openFileListView,
             this.showFileToolStripMenuItem});
             this.contextMenuListView.Name = "contextMenuListView";
-            this.contextMenuListView.Size = new System.Drawing.Size(169, 26);
+            this.contextMenuListView.Size = new System.Drawing.Size(169, 48);
+            // 
+            // openFileListView
+            // 
+            this.openFileListView.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.openFileListView.Name = "openFileListView";
+            this.openFileListView.Size = new System.Drawing.Size(180, 22);
+            this.openFileListView.Text = "Открыть файл";
+            this.openFileListView.Click += new System.EventHandler(this.openFileListView_Click);
             // 
             // showFileToolStripMenuItem
             // 
@@ -264,11 +276,11 @@
             // 
             // buttonShowDuplicates
             // 
-            this.buttonShowDuplicates.Location = new System.Drawing.Point(206, 64);
+            this.buttonShowDuplicates.Location = new System.Drawing.Point(194, 64);
             this.buttonShowDuplicates.Name = "buttonShowDuplicates";
-            this.buttonShowDuplicates.Size = new System.Drawing.Size(55, 23);
+            this.buttonShowDuplicates.Size = new System.Drawing.Size(67, 23);
             this.buttonShowDuplicates.TabIndex = 14;
-            this.buttonShowDuplicates.Text = "Показать дубли";
+            this.buttonShowDuplicates.Text = "Дубли";
             this.buttonShowDuplicates.UseVisualStyleBackColor = true;
             this.buttonShowDuplicates.Visible = false;
             this.buttonShowDuplicates.Click += new System.EventHandler(this.btnShowDuplicates_Click);
@@ -446,10 +458,19 @@
             // contextMenuAllDuplicates
             // 
             this.contextMenuAllDuplicates.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openFileAllDuplicates,
             this.toolStripMenuItemAllDuplicates_ShowFile,
             this.toolStripMenuItem2});
             this.contextMenuAllDuplicates.Name = "contextMenuListView";
-            this.contextMenuAllDuplicates.Size = new System.Drawing.Size(169, 48);
+            this.contextMenuAllDuplicates.Size = new System.Drawing.Size(169, 70);
+            // 
+            // openFileAllDuplicates
+            // 
+            this.openFileAllDuplicates.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.openFileAllDuplicates.Name = "openFileAllDuplicates";
+            this.openFileAllDuplicates.Size = new System.Drawing.Size(168, 22);
+            this.openFileAllDuplicates.Text = "Открыть файл";
+            this.openFileAllDuplicates.Click += new System.EventHandler(this.openFileAllDuplicates_Click);
             // 
             // toolStripMenuItemAllDuplicates_ShowFile
             // 
@@ -485,11 +506,20 @@
             // contextMenuDuplicates
             // 
             this.contextMenuDuplicates.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpenFileDuplicates,
             this.toolStripMenuItemDuplicates_ShowFile,
             this.toolStripMenuItemDeleteOthers,
             this.deleteChekedToolStripMenuItem});
             this.contextMenuDuplicates.Name = "contextMenuListView";
-            this.contextMenuDuplicates.Size = new System.Drawing.Size(248, 70);
+            this.contextMenuDuplicates.Size = new System.Drawing.Size(248, 92);
+            // 
+            // OpenFileDuplicates
+            // 
+            this.OpenFileDuplicates.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.OpenFileDuplicates.Name = "OpenFileDuplicates";
+            this.OpenFileDuplicates.Size = new System.Drawing.Size(247, 22);
+            this.OpenFileDuplicates.Text = "Открыть файл";
+            this.OpenFileDuplicates.Click += new System.EventHandler(this.OpenFileDuplicates_Click);
             // 
             // toolStripMenuItemDuplicates_ShowFile
             // 
@@ -741,6 +771,9 @@
         private System.Windows.Forms.GroupBox groupBoxDonate;
         private System.Windows.Forms.Button buttonGoToFile;
         private System.Windows.Forms.LinkLabel linkLabelGoToGitHub;
+        private System.Windows.Forms.ToolStripMenuItem OpenFileDuplicates;
+        private System.Windows.Forms.ToolStripMenuItem openFileListView;
+        private System.Windows.Forms.ToolStripMenuItem openFileAllDuplicates;
     }
 }
 

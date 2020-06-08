@@ -433,6 +433,18 @@ namespace SubReal.EasyDuplicatesFinder
             }
             return fileLists;
         }
+/// <summary>
+/// Открытие файла ассоциированной для расширения программой.
+/// </summary>
+/// <param name="fileName">Полный путь к файлу.</param>
+/// <returns><see langword="true"/>Для успешного запуска.</returns>
+        private bool OpenFilebyPath(string fileName)
+        {
+            var proc = new System.Diagnostics.Process();
+            proc.StartInfo.FileName = fileName;
+            proc.StartInfo.UseShellExecute = true;
+            return proc.Start();
+        }
 
         private void ShowFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -605,6 +617,39 @@ namespace SubReal.EasyDuplicatesFinder
         private void linkLabelGoToGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/Rewalon/SubReal.EasyDuplicatesFinder");
+        }
+
+        private void openFileListView_Click(object sender, EventArgs e)
+        {
+            if (listView.SelectedItems.Count == 0)
+                return;
+
+            if (File.Exists(listView.SelectedItems[0].SubItems[0].Text))
+            {
+                OpenFilebyPath(listView.SelectedItems[0].SubItems[0].Text);
+            }
+        }
+
+        private void openFileAllDuplicates_Click(object sender, EventArgs e)
+        {
+            if (listViewAllDuplicates.SelectedItems.Count == 0)
+                return;
+
+            if (File.Exists(listViewAllDuplicates.SelectedItems[0].SubItems[0].Text))
+            {
+                OpenFilebyPath(listViewAllDuplicates.SelectedItems[0].SubItems[0].Text);
+            }
+        }
+
+        private void OpenFileDuplicates_Click(object sender, EventArgs e)
+        {
+            if (listViewDuplicates.SelectedItems.Count == 0)
+                return;
+
+            if (File.Exists(listViewDuplicates.SelectedItems[0].SubItems[0].Text))
+            {
+                OpenFilebyPath(listViewDuplicates.SelectedItems[0].SubItems[0].Text);
+            }
         }
     }
 }
