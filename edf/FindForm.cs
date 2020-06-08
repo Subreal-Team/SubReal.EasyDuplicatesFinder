@@ -438,8 +438,12 @@ namespace SubReal.EasyDuplicatesFinder
 /// </summary>
 /// <param name="fileName">Полный путь к файлу.</param>
 /// <returns><see langword="true"/>Для успешного запуска.</returns>
-        private bool OpenFilebyPath(string fileName)
+        private bool OpenFileByPath(string fileName)
         {
+            if (File.Exists(listView.SelectedItems[0].SubItems[0].Text))
+            {
+                return false;
+            }
             var proc = new System.Diagnostics.Process();
             proc.StartInfo.FileName = fileName;
             proc.StartInfo.UseShellExecute = true;
@@ -623,33 +627,21 @@ namespace SubReal.EasyDuplicatesFinder
         {
             if (listView.SelectedItems.Count == 0)
                 return;
-
-            if (File.Exists(listView.SelectedItems[0].SubItems[0].Text))
-            {
-                OpenFilebyPath(listView.SelectedItems[0].SubItems[0].Text);
-            }
+            OpenFileByPath(listView.SelectedItems[0].SubItems[0].Text);
         }
 
         private void openFileAllDuplicates_Click(object sender, EventArgs e)
         {
             if (listViewAllDuplicates.SelectedItems.Count == 0)
                 return;
-
-            if (File.Exists(listViewAllDuplicates.SelectedItems[0].SubItems[0].Text))
-            {
-                OpenFilebyPath(listViewAllDuplicates.SelectedItems[0].SubItems[0].Text);
-            }
+            OpenFileByPath(listViewAllDuplicates.SelectedItems[0].SubItems[0].Text);
         }
 
         private void OpenFileDuplicates_Click(object sender, EventArgs e)
         {
             if (listViewDuplicates.SelectedItems.Count == 0)
                 return;
-
-            if (File.Exists(listViewDuplicates.SelectedItems[0].SubItems[0].Text))
-            {
-                OpenFilebyPath(listViewDuplicates.SelectedItems[0].SubItems[0].Text);
-            }
+            OpenFileByPath(listViewDuplicates.SelectedItems[0].SubItems[0].Text);
         }
     }
 }
