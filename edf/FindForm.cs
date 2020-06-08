@@ -433,14 +433,14 @@ namespace SubReal.EasyDuplicatesFinder
             }
             return fileLists;
         }
-/// <summary>
-/// Открытие файла ассоциированной для расширения программой.
-/// </summary>
-/// <param name="fileName">Полный путь к файлу.</param>
-/// <returns><see langword="true"/>Для успешного запуска.</returns>
+        /// <summary>
+        /// Открытие файла ассоциированной для расширения программой.
+        /// </summary>
+        /// <param name="fileName">Полный путь к файлу.</param>
+        /// <returns><see langword="true"/>Для успешного запуска.</returns>
         private bool OpenFileByPath(string fileName)
         {
-            if (File.Exists(listView.SelectedItems[0].SubItems[0].Text))
+            if (!File.Exists(listView.SelectedItems[0].SubItems[0].Text))
             {
                 return false;
             }
