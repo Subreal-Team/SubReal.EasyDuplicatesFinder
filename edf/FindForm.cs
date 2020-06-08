@@ -520,6 +520,7 @@ namespace SubReal.EasyDuplicatesFinder
             ShowDuplicatesOnlyListFiles(listViewAllDuplicates);
             listViewDuplicates.SelectedItems[0].SubItems[4].Text = "0";
             ThereCanBeOnlyOne(listViewDuplicates, listViewDuplicates.SelectedItems[0]);
+            listViewDuplicates.Items.Clear();
         }
 
         private void listView_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -578,7 +579,7 @@ namespace SubReal.EasyDuplicatesFinder
             _edfFiles.DeleteCheckedFiles(listViewDuplicates);
             ShowListFiles(listView);
             ShowDuplicatesOnlyListFiles(listViewAllDuplicates);
-            listViewDuplicates.Clear();
+            listViewDuplicates.Items.Clear();
         }
 
         private void button2_MouseClick(object sender, MouseEventArgs e)
