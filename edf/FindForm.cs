@@ -549,7 +549,7 @@ namespace SubReal.EasyDuplicatesFinder
 
         private void deleteChekedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO:  Вставить провреку наличия дублей   
+            // TODO:  Вставить проверку наличия дублей   
             var countCheckedFiles = CountCheckedFiles(listViewDuplicates);
 
             if (countCheckedFiles <= 0)

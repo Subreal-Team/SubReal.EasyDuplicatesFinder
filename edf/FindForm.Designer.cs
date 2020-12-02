@@ -49,10 +49,6 @@
             this.lblTimeWork = new System.Windows.Forms.Label();
             this.buttonShowDuplicates = new System.Windows.Forms.Button();
             this.lblCountFindedFiles = new System.Windows.Forms.Label();
-            this.panelOperations = new System.Windows.Forms.Panel();
-            this.buttonDeleteChekedFiles = new System.Windows.Forms.Button();
-            this.buttonDeleteDuplicates = new System.Windows.Forms.Button();
-            this.checkBoxDisableMessages = new System.Windows.Forms.CheckBox();
             this.tabFilesPage = new System.Windows.Forms.TabPage();
             this.tableLayoutFilesPanel = new System.Windows.Forms.TableLayoutPanel();
             this.chkSelectAllFiles = new System.Windows.Forms.CheckBox();
@@ -65,6 +61,7 @@
             this.openFileAllDuplicates = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAllDuplicates_ShowFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemDeleteAllOthers = new System.Windows.Forms.ToolStripMenuItem();
             this.listViewDuplicates = new System.Windows.Forms.ListView();
             this.contextMenuDuplicates = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.OpenFileDuplicates = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,14 +80,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.linkLabelGoToGitHub = new System.Windows.Forms.LinkLabel();
             this.linkLabelToSubRealComEDF = new System.Windows.Forms.LinkLabel();
-            this.toolStripMenuItemDeleteAllOthers = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabOptions = new System.Windows.Forms.TabPage();
+            this.checkBoxDisableMessages = new System.Windows.Forms.CheckBox();
+            this.buttonDeleteDuplicates = new System.Windows.Forms.Button();
+            this.buttonDeleteChekedFiles = new System.Windows.Forms.Button();
+            this.panelOperations = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(pictureBox1)).BeginInit();
             this.contextMenuListView.SuspendLayout();
             this.tableLayoutDuplicatesPanel.SuspendLayout();
             this.panelPathFind.SuspendLayout();
             this.panelStatistic.SuspendLayout();
-            this.panelOperations.SuspendLayout();
             this.tabFilesPage.SuspendLayout();
             this.tableLayoutFilesPanel.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -99,6 +100,9 @@
             this.contextMenuDuplicates.SuspendLayout();
             this.tabAbout.SuspendLayout();
             this.groupBoxDonate.SuspendLayout();
+            this.tabOptions.SuspendLayout();
+            this.panelOperations.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -295,49 +299,6 @@
             this.lblCountFindedFiles.TabIndex = 13;
             this.lblCountFindedFiles.Text = "Найдено";
             // 
-            // panelOperations
-            // 
-            this.panelOperations.Controls.Add(this.buttonDeleteChekedFiles);
-            this.panelOperations.Controls.Add(this.buttonDeleteDuplicates);
-            this.panelOperations.Controls.Add(this.checkBoxDisableMessages);
-            this.panelOperations.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelOperations.Location = new System.Drawing.Point(601, 3);
-            this.panelOperations.Name = "panelOperations";
-            this.panelOperations.Size = new System.Drawing.Size(180, 94);
-            this.panelOperations.TabIndex = 2;
-            // 
-            // buttonDeleteChekedFiles
-            // 
-            this.buttonDeleteChekedFiles.AllowDrop = true;
-            this.buttonDeleteChekedFiles.Location = new System.Drawing.Point(11, 62);
-            this.buttonDeleteChekedFiles.Name = "buttonDeleteChekedFiles";
-            this.buttonDeleteChekedFiles.Size = new System.Drawing.Size(163, 23);
-            this.buttonDeleteChekedFiles.TabIndex = 16;
-            this.buttonDeleteChekedFiles.Text = "Удалить отмеченные";
-            this.buttonDeleteChekedFiles.UseVisualStyleBackColor = true;
-            this.buttonDeleteChekedFiles.Click += new System.EventHandler(this.deleteChekedToolStripMenuItem_Click);
-            // 
-            // buttonDeleteDuplicates
-            // 
-            this.buttonDeleteDuplicates.AllowDrop = true;
-            this.buttonDeleteDuplicates.Location = new System.Drawing.Point(11, 29);
-            this.buttonDeleteDuplicates.Name = "buttonDeleteDuplicates";
-            this.buttonDeleteDuplicates.Size = new System.Drawing.Size(163, 23);
-            this.buttonDeleteDuplicates.TabIndex = 16;
-            this.buttonDeleteDuplicates.Text = "Удалить остальные";
-            this.buttonDeleteDuplicates.UseVisualStyleBackColor = true;
-            this.buttonDeleteDuplicates.Click += new System.EventHandler(this.toolStripMenuItemDeleteOthers_Click);
-            // 
-            // checkBoxDisableMessages
-            // 
-            this.checkBoxDisableMessages.AutoSize = true;
-            this.checkBoxDisableMessages.Location = new System.Drawing.Point(11, 6);
-            this.checkBoxDisableMessages.Name = "checkBoxDisableMessages";
-            this.checkBoxDisableMessages.Size = new System.Drawing.Size(169, 17);
-            this.checkBoxDisableMessages.TabIndex = 15;
-            this.checkBoxDisableMessages.Text = "Отключить предупреждения";
-            this.checkBoxDisableMessages.UseVisualStyleBackColor = true;
-            // 
             // tabFilesPage
             // 
             this.tabFilesPage.Controls.Add(this.tableLayoutFilesPanel);
@@ -405,6 +366,7 @@
             // 
             this.tabControl.Controls.Add(this.tabFilesPage);
             this.tabControl.Controls.Add(this.tabDuplicatesPage);
+            this.tabControl.Controls.Add(this.tabOptions);
             this.tabControl.Controls.Add(this.tabAbout);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 100);
@@ -464,7 +426,7 @@
             this.toolStripMenuItem2,
             this.toolStripMenuItemDeleteAllOthers});
             this.contextMenuAllDuplicates.Name = "contextMenuListView";
-            this.contextMenuAllDuplicates.Size = new System.Drawing.Size(274, 114);
+            this.contextMenuAllDuplicates.Size = new System.Drawing.Size(274, 92);
             // 
             // openFileAllDuplicates
             // 
@@ -487,6 +449,13 @@
             this.toolStripMenuItem2.Size = new System.Drawing.Size(273, 22);
             this.toolStripMenuItem2.Text = "Показать дубли";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.btnShowDuplicates_Click);
+            // 
+            // toolStripMenuItemDeleteAllOthers
+            // 
+            this.toolStripMenuItemDeleteAllOthers.Name = "toolStripMenuItemDeleteAllOthers";
+            this.toolStripMenuItemDeleteAllOthers.Size = new System.Drawing.Size(273, 22);
+            this.toolStripMenuItemDeleteAllOthers.Text = "Удалить остальные дубли (Корзина)";
+            this.toolStripMenuItemDeleteAllOthers.Click += new System.EventHandler(this.toolStripMenuItemDeleteAllOthers_Click);
             // 
             // listViewDuplicates
             // 
@@ -687,12 +656,67 @@
             this.linkLabelToSubRealComEDF.UseMnemonic = false;
             this.linkLabelToSubRealComEDF.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelToSubRealComEDF_LinkClicked);
             // 
-            // toolStripMenuItemDeleteAllOthers
+            // tabOptions
             // 
-            this.toolStripMenuItemDeleteAllOthers.Name = "toolStripMenuItemDeleteAllOthers";
-            this.toolStripMenuItemDeleteAllOthers.Size = new System.Drawing.Size(273, 22);
-            this.toolStripMenuItemDeleteAllOthers.Text = "Удалить остальные дубли (Корзина)";
-            this.toolStripMenuItemDeleteAllOthers.Click += new System.EventHandler(this.toolStripMenuItemDeleteAllOthers_Click);
+            this.tabOptions.Controls.Add(this.panel1);
+            this.tabOptions.Location = new System.Drawing.Point(4, 22);
+            this.tabOptions.Name = "tabOptions";
+            this.tabOptions.Size = new System.Drawing.Size(776, 358);
+            this.tabOptions.TabIndex = 3;
+            this.tabOptions.Text = "Настройки";
+            this.tabOptions.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxDisableMessages
+            // 
+            this.checkBoxDisableMessages.AutoSize = true;
+            this.checkBoxDisableMessages.Location = new System.Drawing.Point(11, 16);
+            this.checkBoxDisableMessages.Name = "checkBoxDisableMessages";
+            this.checkBoxDisableMessages.Size = new System.Drawing.Size(169, 17);
+            this.checkBoxDisableMessages.TabIndex = 15;
+            this.checkBoxDisableMessages.Text = "Отключить предупреждения";
+            this.checkBoxDisableMessages.UseVisualStyleBackColor = true;
+            // 
+            // buttonDeleteDuplicates
+            // 
+            this.buttonDeleteDuplicates.AllowDrop = true;
+            this.buttonDeleteDuplicates.Location = new System.Drawing.Point(11, 29);
+            this.buttonDeleteDuplicates.Name = "buttonDeleteDuplicates";
+            this.buttonDeleteDuplicates.Size = new System.Drawing.Size(163, 23);
+            this.buttonDeleteDuplicates.TabIndex = 16;
+            this.buttonDeleteDuplicates.Text = "Удалить остальные";
+            this.buttonDeleteDuplicates.UseVisualStyleBackColor = true;
+            this.buttonDeleteDuplicates.Click += new System.EventHandler(this.toolStripMenuItemDeleteOthers_Click);
+            // 
+            // buttonDeleteChekedFiles
+            // 
+            this.buttonDeleteChekedFiles.AllowDrop = true;
+            this.buttonDeleteChekedFiles.Location = new System.Drawing.Point(11, 62);
+            this.buttonDeleteChekedFiles.Name = "buttonDeleteChekedFiles";
+            this.buttonDeleteChekedFiles.Size = new System.Drawing.Size(163, 23);
+            this.buttonDeleteChekedFiles.TabIndex = 16;
+            this.buttonDeleteChekedFiles.Text = "Удалить отмеченные";
+            this.buttonDeleteChekedFiles.UseVisualStyleBackColor = true;
+            this.buttonDeleteChekedFiles.Click += new System.EventHandler(this.deleteChekedToolStripMenuItem_Click);
+            // 
+            // panelOperations
+            // 
+            this.panelOperations.Controls.Add(this.buttonDeleteChekedFiles);
+            this.panelOperations.Controls.Add(this.buttonDeleteDuplicates);
+            this.panelOperations.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelOperations.Location = new System.Drawing.Point(601, 3);
+            this.panelOperations.Name = "panelOperations";
+            this.panelOperations.Size = new System.Drawing.Size(180, 94);
+            this.panelOperations.TabIndex = 2;
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.checkBoxDisableMessages);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(776, 358);
+            this.panel1.TabIndex = 16;
             // 
             // FindForm
             // 
@@ -713,8 +737,6 @@
             this.panelPathFind.PerformLayout();
             this.panelStatistic.ResumeLayout(false);
             this.panelStatistic.PerformLayout();
-            this.panelOperations.ResumeLayout(false);
-            this.panelOperations.PerformLayout();
             this.tabFilesPage.ResumeLayout(false);
             this.tableLayoutFilesPanel.ResumeLayout(false);
             this.tableLayoutFilesPanel.PerformLayout();
@@ -726,6 +748,10 @@
             this.tabAbout.PerformLayout();
             this.groupBoxDonate.ResumeLayout(false);
             this.groupBoxDonate.PerformLayout();
+            this.tabOptions.ResumeLayout(false);
+            this.panelOperations.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -743,7 +769,6 @@
         private System.Windows.Forms.Panel panelStatistic;
         private System.Windows.Forms.Label lblTimeWork;
         private System.Windows.Forms.Label lblCountFindedFiles;
-        private System.Windows.Forms.Panel panelOperations;
         private System.Windows.Forms.Button buttonShowDuplicates;
         private System.Windows.Forms.TabPage tabFilesPage;
         private System.Windows.Forms.TableLayoutPanel tableLayoutFilesPanel;
@@ -760,9 +785,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuDuplicates;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDuplicates_ShowFile;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDeleteOthers;
-        private System.Windows.Forms.CheckBox checkBoxDisableMessages;
         private System.Windows.Forms.Label labelDuplicatesCount;
-        private System.Windows.Forms.Button buttonDeleteDuplicates;
         private System.Windows.Forms.LinkLabel linkLabelToSubRealCom;
         private System.Windows.Forms.Label labelCopyRight;
         private System.Windows.Forms.TabPage tabAbout;
@@ -775,7 +798,6 @@
         private System.Windows.Forms.Button buttonGoOnSiteDonatePage;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ToolStripMenuItem deleteChekedToolStripMenuItem;
-        private System.Windows.Forms.Button buttonDeleteChekedFiles;
         private System.Windows.Forms.Label labelVersion;
         private System.Windows.Forms.GroupBox groupBoxDonate;
         private System.Windows.Forms.Button buttonGoToFile;
@@ -784,6 +806,12 @@
         private System.Windows.Forms.ToolStripMenuItem openFileListView;
         private System.Windows.Forms.ToolStripMenuItem openFileAllDuplicates;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDeleteAllOthers;
+        private System.Windows.Forms.Panel panelOperations;
+        private System.Windows.Forms.Button buttonDeleteChekedFiles;
+        private System.Windows.Forms.Button buttonDeleteDuplicates;
+        private System.Windows.Forms.TabPage tabOptions;
+        private System.Windows.Forms.CheckBox checkBoxDisableMessages;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
