@@ -70,6 +70,7 @@ namespace SubReal.EasyDuplicatesFinder
         private static void FormatListView(ListView listView, bool showCheckBoxs = false)
         {
             listView.BeginUpdate();
+
             listView.Columns.Clear();
             listView.Columns.Add("Имя файла", 370);  //0
             listView.Columns.Add("Размер", 90);       //1
@@ -123,7 +124,6 @@ namespace SubReal.EasyDuplicatesFinder
         /// </summary>
         public void ShowDuplicatesOnlyListFiles(ListView listView)
         {         
-
             listView.BeginUpdate();
             listView.Items.Clear();
             foreach (var file in _edfFiles.FullListFiles)
@@ -549,6 +549,7 @@ namespace SubReal.EasyDuplicatesFinder
 
         private void deleteChekedToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // TODO:  Вставить провреку наличия дублей   
             var countCheckedFiles = CountCheckedFiles(listViewDuplicates);
 
             if (countCheckedFiles <= 0)
@@ -643,6 +644,32 @@ namespace SubReal.EasyDuplicatesFinder
             if (listViewDuplicates.SelectedItems.Count == 0)
                 return;
             OpenFileByPath(listViewDuplicates.SelectedItems[0].SubItems[0].Text);
+        }
+
+        private void toolStripMenuItemDeleteAllOthers_Click(object sender, EventArgs e)
+        {
+            // TODO:  Вставить провреку наличия дублей   
+            //
+            if (listViewAllDuplicates.SelectedItems.Count == 0)
+                return;
+            if (!checkBoxDisableMessages.Checked)
+            {
+                var result = MessageBox.Show("Удалить дубликаты выбранного файла в корзину?",
+                                 "Подтверждение удаления",
+                                  MessageBoxButtons.OKCancel,
+                                  MessageBoxIcon.Question
+                                  );
+                if (result == DialogResult.Cancel)
+                    return;
+            }
+
+            _edfFiles.DeleteAllCurrentDuplicatesFiles(listViewAllDuplicates.SelectedItems[0].SubItems[3].Text,                                                                          listViewAllDuplicates.SelectedItems[0].SubItems[5].Text);
+            ShowListFiles(listView);
+            ShowDuplicatesOnlyListFiles(listViewAllDuplicates);
+           // listViewDuplicates.SelectedItems[0].SubItems[4].Text = "0";
+//            ThereCanBeOnlyOne(listViewAllDuplicates, listViewDuplicates.SelectedItems[0]);
+            listViewDuplicates.Items.Clear();
+
         }
     }
 }

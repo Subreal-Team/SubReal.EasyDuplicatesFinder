@@ -83,6 +83,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.linkLabelGoToGitHub = new System.Windows.Forms.LinkLabel();
             this.linkLabelToSubRealComEDF = new System.Windows.Forms.LinkLabel();
+            this.toolStripMenuItemDeleteAllOthers = new System.Windows.Forms.ToolStripMenuItem();
             pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(pictureBox1)).BeginInit();
             this.contextMenuListView.SuspendLayout();
@@ -124,7 +125,7 @@
             // 
             this.openFileListView.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.openFileListView.Name = "openFileListView";
-            this.openFileListView.Size = new System.Drawing.Size(180, 22);
+            this.openFileListView.Size = new System.Drawing.Size(168, 22);
             this.openFileListView.Text = "Открыть файл";
             this.openFileListView.Click += new System.EventHandler(this.openFileListView_Click);
             // 
@@ -460,29 +461,30 @@
             this.contextMenuAllDuplicates.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openFileAllDuplicates,
             this.toolStripMenuItemAllDuplicates_ShowFile,
-            this.toolStripMenuItem2});
+            this.toolStripMenuItem2,
+            this.toolStripMenuItemDeleteAllOthers});
             this.contextMenuAllDuplicates.Name = "contextMenuListView";
-            this.contextMenuAllDuplicates.Size = new System.Drawing.Size(169, 70);
+            this.contextMenuAllDuplicates.Size = new System.Drawing.Size(274, 114);
             // 
             // openFileAllDuplicates
             // 
             this.openFileAllDuplicates.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.openFileAllDuplicates.Name = "openFileAllDuplicates";
-            this.openFileAllDuplicates.Size = new System.Drawing.Size(168, 22);
+            this.openFileAllDuplicates.Size = new System.Drawing.Size(273, 22);
             this.openFileAllDuplicates.Text = "Открыть файл";
             this.openFileAllDuplicates.Click += new System.EventHandler(this.openFileAllDuplicates_Click);
             // 
             // toolStripMenuItemAllDuplicates_ShowFile
             // 
             this.toolStripMenuItemAllDuplicates_ShowFile.Name = "toolStripMenuItemAllDuplicates_ShowFile";
-            this.toolStripMenuItemAllDuplicates_ShowFile.Size = new System.Drawing.Size(168, 22);
+            this.toolStripMenuItemAllDuplicates_ShowFile.Size = new System.Drawing.Size(273, 22);
             this.toolStripMenuItemAllDuplicates_ShowFile.Text = "Перейти к файлу";
             this.toolStripMenuItemAllDuplicates_ShowFile.Click += new System.EventHandler(this.toolStripMenuItemAllDuplicates_ShowFile_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(168, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(273, 22);
             this.toolStripMenuItem2.Text = "Показать дубли";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.btnShowDuplicates_Click);
             // 
@@ -685,6 +687,13 @@
             this.linkLabelToSubRealComEDF.UseMnemonic = false;
             this.linkLabelToSubRealComEDF.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelToSubRealComEDF_LinkClicked);
             // 
+            // toolStripMenuItemDeleteAllOthers
+            // 
+            this.toolStripMenuItemDeleteAllOthers.Name = "toolStripMenuItemDeleteAllOthers";
+            this.toolStripMenuItemDeleteAllOthers.Size = new System.Drawing.Size(273, 22);
+            this.toolStripMenuItemDeleteAllOthers.Text = "Удалить остальные дубли (Корзина)";
+            this.toolStripMenuItemDeleteAllOthers.Click += new System.EventHandler(this.toolStripMenuItemDeleteAllOthers_Click);
+            // 
             // FindForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -774,6 +783,7 @@
         private System.Windows.Forms.ToolStripMenuItem OpenFileDuplicates;
         private System.Windows.Forms.ToolStripMenuItem openFileListView;
         private System.Windows.Forms.ToolStripMenuItem openFileAllDuplicates;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDeleteAllOthers;
     }
 }
 
