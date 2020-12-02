@@ -86,6 +86,9 @@
             this.buttonDeleteChekedFiles = new System.Windows.Forms.Button();
             this.panelOperations = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBoxEnableFullDelete = new System.Windows.Forms.CheckBox();
+            this.checkBoxSortOnDefault = new System.Windows.Forms.CheckBox();
+            this.checkBoxGoToDuplicatesIfFind = new System.Windows.Forms.CheckBox();
             pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(pictureBox1)).BeginInit();
             this.contextMenuListView.SuspendLayout();
@@ -711,12 +714,48 @@
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.checkBoxGoToDuplicatesIfFind);
+            this.panel1.Controls.Add(this.checkBoxSortOnDefault);
+            this.panel1.Controls.Add(this.checkBoxEnableFullDelete);
             this.panel1.Controls.Add(this.checkBoxDisableMessages);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(776, 358);
             this.panel1.TabIndex = 16;
+            // 
+            // checkBoxEnableFullDelete
+            // 
+            this.checkBoxEnableFullDelete.AutoSize = true;
+            this.checkBoxEnableFullDelete.Enabled = false;
+            this.checkBoxEnableFullDelete.Location = new System.Drawing.Point(11, 39);
+            this.checkBoxEnableFullDelete.Name = "checkBoxEnableFullDelete";
+            this.checkBoxEnableFullDelete.Size = new System.Drawing.Size(309, 17);
+            this.checkBoxEnableFullDelete.TabIndex = 14;
+            this.checkBoxEnableFullDelete.Text = "Удалять минуя корзину (безвозвратно) /В разработке/";
+            this.checkBoxEnableFullDelete.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxSortOnDefault
+            // 
+            this.checkBoxSortOnDefault.AutoSize = true;
+            this.checkBoxSortOnDefault.Enabled = false;
+            this.checkBoxSortOnDefault.Location = new System.Drawing.Point(11, 62);
+            this.checkBoxSortOnDefault.Name = "checkBoxSortOnDefault";
+            this.checkBoxSortOnDefault.Size = new System.Drawing.Size(242, 17);
+            this.checkBoxSortOnDefault.TabIndex = 16;
+            this.checkBoxSortOnDefault.Text = "Сортировка по умолчанию /В разработке/";
+            this.checkBoxSortOnDefault.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxGoToDuplicatesIfFind
+            // 
+            this.checkBoxGoToDuplicatesIfFind.AutoSize = true;
+            this.checkBoxGoToDuplicatesIfFind.Enabled = false;
+            this.checkBoxGoToDuplicatesIfFind.Location = new System.Drawing.Point(11, 85);
+            this.checkBoxGoToDuplicatesIfFind.Name = "checkBoxGoToDuplicatesIfFind";
+            this.checkBoxGoToDuplicatesIfFind.Size = new System.Drawing.Size(374, 17);
+            this.checkBoxGoToDuplicatesIfFind.TabIndex = 17;
+            this.checkBoxGoToDuplicatesIfFind.Text = "Показывать вкладку \'Дубликаты\' если они найдены /В разработке/";
+            this.checkBoxGoToDuplicatesIfFind.UseVisualStyleBackColor = true;
             // 
             // FindForm
             // 
@@ -812,6 +851,9 @@
         private System.Windows.Forms.TabPage tabOptions;
         private System.Windows.Forms.CheckBox checkBoxDisableMessages;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox checkBoxGoToDuplicatesIfFind;
+        private System.Windows.Forms.CheckBox checkBoxSortOnDefault;
+        private System.Windows.Forms.CheckBox checkBoxEnableFullDelete;
     }
 }
 

@@ -32,7 +32,11 @@ namespace SubReal.EasyDuplicatesFinder
             toolTipHint.SetToolTip(buttonGoToFile, "Перейти к выбранному файлу");
             toolTipHint.SetToolTip(buttonDeleteDuplicates, "Удалить дубликаты выбранного файла");
             toolTipHint.SetToolTip(buttonDeleteChekedFiles, "Удалить отмеченные файлы");
-            toolTipHint.SetToolTip(checkBoxDisableMessages, "Отключить подтверждение при удалении");
+            toolTipHint.SetToolTip(checkBoxDisableMessages, "Подтверждений при удалении больше не будет. Будьте внимательны.");
+            toolTipHint.SetToolTip(checkBoxEnableFullDelete, "Включает удаление файлов минуя корзину. Файлы будут удаляется не в корзину, а безвозвратно.");
+            toolTipHint.SetToolTip(checkBoxGoToDuplicatesIfFind, "Если в результате поиска найдены дубликаты файлов, автоматически открывается вкладка 'Дубликаты'.");
+            toolTipHint.SetToolTip(checkBoxSortOnDefault, "Включает сортировку по-умолчанию.");
+
             toolTipHint.SetToolTip(linkLabelToSubRealCom, "Перейти на сайт разработчика");
             toolTipHint.SetToolTip(linkLabelToSubRealComEDF, "Перейти к странице программы на сайте разработчика");
             toolTipHint.SetToolTip(linkLabelGoToGitHub, "Перейти к странице программы на GitHub");
