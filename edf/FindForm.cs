@@ -138,8 +138,8 @@ namespace SubReal.EasyDuplicatesFinder
                     listView.Items.Add(lvi);
                 }
             }
-            labelDuplicatesCount.Text = $"Найдено дубликатов {listView.Items.Count - _edfFiles.CountUnique}" +
-                $" для {_edfFiles.CountUnique} файл(а,ов)";
+            labelDuplicatesCount.Text = $"Найдено дубликатов {_edfFiles.GetDuplicatesCount}" +
+                $" для {_edfFiles.GetUniqueCount} файл(а,ов)";
 
             listView.Sorting = (listView.Sorting == SortOrder.Ascending) ? SortOrder.Descending : SortOrder.Ascending;
             listView.Sort();
@@ -361,7 +361,7 @@ namespace SubReal.EasyDuplicatesFinder
                     ToggleEnabledUserControls(true);
                     ShowListFiles(listView);
                     // Выводим информацию о найденных файлах.
-                    lblCountFindedFiles.Text = $"Найдено {listView.Items.Count} файл(а,ов)";
+                    lblCountFindedFiles.Text = $"Найдено {_edfFiles.GetTotalCount} файл(а,ов)";
                     // Устанавливаем параметры общего выделения.
                     CheckAllFiles(false);
                 }

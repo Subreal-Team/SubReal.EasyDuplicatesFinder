@@ -13,12 +13,33 @@ namespace SubReal.EasyDuplicatesFinder
         private string Path { get; }
 
         public List<FileDesc> FullListFiles { get; }
+        
+        /// <summary>
+        /// Количество уникальных файлов
+        /// </summary>
+        private int CountUnique;
+        public int GetUniqueCount => CountUnique;
 
-        public int CountUnique { get; set; }
+        /// <summary>
+        /// Количество найденных файлов
+        /// </summary>
+        private int Count;
+        public int GetTotalCount => Count;
+        /// <summary>
+        /// Количество дубликатов файлов
+        /// </summary>
+        private int CountDuplicates ;
+
+        public int GetDuplicatesCount => CountDuplicates - CountUnique;
+
+
+
         public EdfFiles(string path)
         {
             Path = path;
             FullListFiles = new List<FileDesc>();
+            Count = 0;
+
         }
 
         /// <summary>
@@ -30,7 +51,7 @@ namespace SubReal.EasyDuplicatesFinder
             {
                 return false;
             }
-
+            Count = 0;
             foreach (var fileName in Directory.GetFiles(Path, "*", System.IO.SearchOption.AllDirectories))
             {
                 var fileInfo = new FileInfo(fileName);
@@ -45,6 +66,7 @@ namespace SubReal.EasyDuplicatesFinder
                 };
 
                 FullListFiles.Add(fileDesc);
+                Count++;
             }
 
             FindDuplicatedBySize();
@@ -88,6 +110,7 @@ namespace SubReal.EasyDuplicatesFinder
                      .Where(_ => _.count > 1)
                      .ToArray();
             this.CountUnique = 0;
+            this.CountDuplicates = 0;
             foreach (var info in groupByMD5)
             {
                 CountUnique++;
@@ -97,6 +120,7 @@ namespace SubReal.EasyDuplicatesFinder
                     if (FullListFiles[i].MD5Summ == info.md5)
                     {
                         FullListFiles[i].CountDuplicates = info.count;
+                        CountDuplicates++;
                     }
                 }
             }
