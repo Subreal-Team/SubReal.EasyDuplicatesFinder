@@ -354,7 +354,7 @@ namespace SubReal.EasyDuplicatesFinder
 
             try
             {
-                _edfFiles = new EdfFiles(textBoxFolderPath.Text);
+                _edfFiles = new EdfFiles(textBoxFolderPath.Text, checkBoxEnableFullDelete.Checked);
 
                 if (_edfFiles.GetFiles())
                 {
@@ -445,7 +445,7 @@ namespace SubReal.EasyDuplicatesFinder
         /// Открытие файла ассоциированной для расширения программой.
         /// </summary>
         /// <param name="fileName">Полный путь к файлу.</param>
-        /// <returns><see langword="true"/>Для успешного запуска.</returns>
+        /// <returns><see langword="true "/>Для успешного запуска.</returns>
         private bool OpenFileByPath(string fileName)
         {
             if (!File.Exists(listView.SelectedItems[0].SubItems[0].Text))
@@ -656,7 +656,7 @@ namespace SubReal.EasyDuplicatesFinder
 
         private void toolStripMenuItemDeleteAllOthers_Click(object sender, EventArgs e)
         {
-            // TODO:  Вставить провреку наличия дублей   
+            // TODO:  Вставить проверку наличия дублей   
             //
             if (listViewAllDuplicates.SelectedItems.Count == 0)
                 return;
@@ -678,6 +678,26 @@ namespace SubReal.EasyDuplicatesFinder
 //            ThereCanBeOnlyOne(listViewAllDuplicates, listViewDuplicates.SelectedItems[0]);
             listViewDuplicates.Items.Clear();
 
+        }
+
+        private void checkBoxEnableFullDelete_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxEnableFullDelete.Checked)
+            {
+                var result = MessageBox.Show("Вы действительно хотите удалять файлы безвозвратно?",
+                                 "Внимание!",
+                                  MessageBoxButtons.OKCancel,
+                                  MessageBoxIcon.Warning
+                                  );
+                if (result == DialogResult.Cancel) 
+                {
+                    checkBoxEnableFullDelete.Checked = false;
+                    return;
+                }
+                    
+            }
+            if (_edfFiles != null)
+                _edfFiles.SetFullDeleteFiles = checkBoxEnableFullDelete.Checked;
         }
     }
 }

@@ -89,6 +89,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.linkLabelGoToGitHub = new System.Windows.Forms.LinkLabel();
             this.linkLabelToSubRealComEDF = new System.Windows.Forms.LinkLabel();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(pictureBox1)).BeginInit();
             this.contextMenuListView.SuspendLayout();
@@ -595,13 +596,13 @@
             // checkBoxEnableFullDelete
             // 
             this.checkBoxEnableFullDelete.AutoSize = true;
-            this.checkBoxEnableFullDelete.Enabled = false;
             this.checkBoxEnableFullDelete.Location = new System.Drawing.Point(11, 39);
             this.checkBoxEnableFullDelete.Name = "checkBoxEnableFullDelete";
-            this.checkBoxEnableFullDelete.Size = new System.Drawing.Size(309, 17);
+            this.checkBoxEnableFullDelete.Size = new System.Drawing.Size(227, 17);
             this.checkBoxEnableFullDelete.TabIndex = 14;
-            this.checkBoxEnableFullDelete.Text = "Удалять минуя корзину (безвозвратно) /В разработке/";
+            this.checkBoxEnableFullDelete.Text = "Удалять минуя корзину (безвозвратно)";
             this.checkBoxEnableFullDelete.UseVisualStyleBackColor = true;
+            this.checkBoxEnableFullDelete.CheckedChanged += new System.EventHandler(this.checkBoxEnableFullDelete_CheckedChanged);
             // 
             // checkBoxDisableMessages
             // 
@@ -853,6 +854,7 @@
         private System.Windows.Forms.CheckBox checkBoxGoToDuplicatesIfFind;
         private System.Windows.Forms.CheckBox checkBoxSortOnDefault;
         private System.Windows.Forms.CheckBox checkBoxEnableFullDelete;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

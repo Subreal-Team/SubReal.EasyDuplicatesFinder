@@ -30,17 +30,30 @@ namespace SubReal.EasyDuplicatesFinder
         /// Количество дубликатов файлов
         /// </summary>
         private int CountDuplicates ;
-
         public int GetDuplicatesCount => CountDuplicates - CountUnique;
 
+        private static bool isFullDelete;
+        public bool SetFullDeleteFiles
+        {
+            set
+            {
+                isFullDelete = value;
+            }
+        }
 
-
-        public EdfFiles(string path)
+        public EdfFiles(string path) : this(path, false) { }
+        
+        /// <summary>
+        ///  Инициализация
+        /// </summary>
+        /// <param name="path">Путь к папке поиска</param>
+        /// <param name="isfulldelete"><see langword="true"/>Безвозвратное удаление<see langword="false"/>Удаление в корзину.</param>
+        public EdfFiles(string path, bool isfulldelete)
         {
             Path = path;
             FullListFiles = new List<FileDesc>();
+            isFullDelete = isfulldelete;
             Count = 0;
-
         }
 
         /// <summary>
@@ -171,13 +184,29 @@ namespace SubReal.EasyDuplicatesFinder
         /// <param name="fileName">Имя файла.</param>
         public static void DeleteFile(string fileName)
         {
-            try
+            if (!File.Exists(fileName)) return;
+            
+            if (isFullDelete)
             {
-                FileSystem.DeleteFile(fileName, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin, UICancelOption.ThrowException);
+                try
+                {
+                    File.Delete(fileName);
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             }
-            catch (Exception)
+            else
             {
-                throw;
+                try
+                {
+                    FileSystem.DeleteFile(fileName, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin, UICancelOption.ThrowException);
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             }
 
         }
