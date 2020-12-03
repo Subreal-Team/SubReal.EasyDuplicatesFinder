@@ -388,6 +388,10 @@ namespace SubReal.EasyDuplicatesFinder
             }
 
             ShowDuplicatesOnlyListFiles(listViewAllDuplicates);
+            if (checkBoxGoToDuplicatesIfFind.Checked && _edfFiles.GetDuplicatesCount > 0)
+            {
+                tabControl.SelectTab(tabDuplicatesPage);
+            }
             watch.Stop();
             lblTimeWork.Text = $"Время работы: {watch.Elapsed}";
         }

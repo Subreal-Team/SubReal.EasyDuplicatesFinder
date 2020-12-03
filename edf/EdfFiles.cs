@@ -25,6 +25,7 @@ namespace SubReal.EasyDuplicatesFinder
         /// </summary>
         private int Count;
         public int GetTotalCount => Count;
+       
         /// <summary>
         /// Количество дубликатов файлов
         /// </summary>

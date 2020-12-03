@@ -49,6 +49,9 @@
             this.lblTimeWork = new System.Windows.Forms.Label();
             this.buttonShowDuplicates = new System.Windows.Forms.Button();
             this.lblCountFindedFiles = new System.Windows.Forms.Label();
+            this.panelOperations = new System.Windows.Forms.Panel();
+            this.buttonDeleteChekedFiles = new System.Windows.Forms.Button();
+            this.buttonDeleteDuplicates = new System.Windows.Forms.Button();
             this.tabFilesPage = new System.Windows.Forms.TabPage();
             this.tableLayoutFilesPanel = new System.Windows.Forms.TableLayoutPanel();
             this.chkSelectAllFiles = new System.Windows.Forms.CheckBox();
@@ -68,6 +71,12 @@
             this.toolStripMenuItemDuplicates_ShowFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDeleteOthers = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteChekedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabOptions = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBoxGoToDuplicatesIfFind = new System.Windows.Forms.CheckBox();
+            this.checkBoxSortOnDefault = new System.Windows.Forms.CheckBox();
+            this.checkBoxEnableFullDelete = new System.Windows.Forms.CheckBox();
+            this.checkBoxDisableMessages = new System.Windows.Forms.CheckBox();
             this.tabAbout = new System.Windows.Forms.TabPage();
             this.groupBoxDonate = new System.Windows.Forms.GroupBox();
             this.buttonGoOnSiteDonatePage = new System.Windows.Forms.Button();
@@ -80,32 +89,23 @@
             this.label1 = new System.Windows.Forms.Label();
             this.linkLabelGoToGitHub = new System.Windows.Forms.LinkLabel();
             this.linkLabelToSubRealComEDF = new System.Windows.Forms.LinkLabel();
-            this.tabOptions = new System.Windows.Forms.TabPage();
-            this.checkBoxDisableMessages = new System.Windows.Forms.CheckBox();
-            this.buttonDeleteDuplicates = new System.Windows.Forms.Button();
-            this.buttonDeleteChekedFiles = new System.Windows.Forms.Button();
-            this.panelOperations = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.checkBoxEnableFullDelete = new System.Windows.Forms.CheckBox();
-            this.checkBoxSortOnDefault = new System.Windows.Forms.CheckBox();
-            this.checkBoxGoToDuplicatesIfFind = new System.Windows.Forms.CheckBox();
             pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(pictureBox1)).BeginInit();
             this.contextMenuListView.SuspendLayout();
             this.tableLayoutDuplicatesPanel.SuspendLayout();
             this.panelPathFind.SuspendLayout();
             this.panelStatistic.SuspendLayout();
+            this.panelOperations.SuspendLayout();
             this.tabFilesPage.SuspendLayout();
             this.tableLayoutFilesPanel.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabDuplicatesPage.SuspendLayout();
             this.contextMenuAllDuplicates.SuspendLayout();
             this.contextMenuDuplicates.SuspendLayout();
+            this.tabOptions.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.tabAbout.SuspendLayout();
             this.groupBoxDonate.SuspendLayout();
-            this.tabOptions.SuspendLayout();
-            this.panelOperations.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -301,6 +301,38 @@
             this.lblCountFindedFiles.Size = new System.Drawing.Size(51, 13);
             this.lblCountFindedFiles.TabIndex = 13;
             this.lblCountFindedFiles.Text = "Найдено";
+            // 
+            // panelOperations
+            // 
+            this.panelOperations.Controls.Add(this.buttonDeleteChekedFiles);
+            this.panelOperations.Controls.Add(this.buttonDeleteDuplicates);
+            this.panelOperations.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelOperations.Location = new System.Drawing.Point(601, 3);
+            this.panelOperations.Name = "panelOperations";
+            this.panelOperations.Size = new System.Drawing.Size(180, 94);
+            this.panelOperations.TabIndex = 2;
+            // 
+            // buttonDeleteChekedFiles
+            // 
+            this.buttonDeleteChekedFiles.AllowDrop = true;
+            this.buttonDeleteChekedFiles.Location = new System.Drawing.Point(11, 62);
+            this.buttonDeleteChekedFiles.Name = "buttonDeleteChekedFiles";
+            this.buttonDeleteChekedFiles.Size = new System.Drawing.Size(163, 23);
+            this.buttonDeleteChekedFiles.TabIndex = 16;
+            this.buttonDeleteChekedFiles.Text = "Удалить отмеченные";
+            this.buttonDeleteChekedFiles.UseVisualStyleBackColor = true;
+            this.buttonDeleteChekedFiles.Click += new System.EventHandler(this.deleteChekedToolStripMenuItem_Click);
+            // 
+            // buttonDeleteDuplicates
+            // 
+            this.buttonDeleteDuplicates.AllowDrop = true;
+            this.buttonDeleteDuplicates.Location = new System.Drawing.Point(11, 29);
+            this.buttonDeleteDuplicates.Name = "buttonDeleteDuplicates";
+            this.buttonDeleteDuplicates.Size = new System.Drawing.Size(163, 23);
+            this.buttonDeleteDuplicates.TabIndex = 16;
+            this.buttonDeleteDuplicates.Text = "Удалить остальные";
+            this.buttonDeleteDuplicates.UseVisualStyleBackColor = true;
+            this.buttonDeleteDuplicates.Click += new System.EventHandler(this.toolStripMenuItemDeleteOthers_Click);
             // 
             // tabFilesPage
             // 
@@ -516,6 +548,71 @@
             this.deleteChekedToolStripMenuItem.Text = "Удалить отмеченные (Корзина)";
             this.deleteChekedToolStripMenuItem.Click += new System.EventHandler(this.deleteChekedToolStripMenuItem_Click);
             // 
+            // tabOptions
+            // 
+            this.tabOptions.Controls.Add(this.panel1);
+            this.tabOptions.Location = new System.Drawing.Point(4, 22);
+            this.tabOptions.Name = "tabOptions";
+            this.tabOptions.Size = new System.Drawing.Size(776, 358);
+            this.tabOptions.TabIndex = 3;
+            this.tabOptions.Text = "Настройки";
+            this.tabOptions.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.checkBoxGoToDuplicatesIfFind);
+            this.panel1.Controls.Add(this.checkBoxSortOnDefault);
+            this.panel1.Controls.Add(this.checkBoxEnableFullDelete);
+            this.panel1.Controls.Add(this.checkBoxDisableMessages);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(776, 358);
+            this.panel1.TabIndex = 16;
+            // 
+            // checkBoxGoToDuplicatesIfFind
+            // 
+            this.checkBoxGoToDuplicatesIfFind.AutoSize = true;
+            this.checkBoxGoToDuplicatesIfFind.Location = new System.Drawing.Point(11, 85);
+            this.checkBoxGoToDuplicatesIfFind.Name = "checkBoxGoToDuplicatesIfFind";
+            this.checkBoxGoToDuplicatesIfFind.Size = new System.Drawing.Size(292, 17);
+            this.checkBoxGoToDuplicatesIfFind.TabIndex = 17;
+            this.checkBoxGoToDuplicatesIfFind.Text = "Показывать вкладку \'Дубликаты\' если они найдены";
+            this.checkBoxGoToDuplicatesIfFind.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxSortOnDefault
+            // 
+            this.checkBoxSortOnDefault.AutoSize = true;
+            this.checkBoxSortOnDefault.Enabled = false;
+            this.checkBoxSortOnDefault.Location = new System.Drawing.Point(11, 62);
+            this.checkBoxSortOnDefault.Name = "checkBoxSortOnDefault";
+            this.checkBoxSortOnDefault.Size = new System.Drawing.Size(242, 17);
+            this.checkBoxSortOnDefault.TabIndex = 16;
+            this.checkBoxSortOnDefault.Text = "Сортировка по умолчанию /В разработке/";
+            this.checkBoxSortOnDefault.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxEnableFullDelete
+            // 
+            this.checkBoxEnableFullDelete.AutoSize = true;
+            this.checkBoxEnableFullDelete.Enabled = false;
+            this.checkBoxEnableFullDelete.Location = new System.Drawing.Point(11, 39);
+            this.checkBoxEnableFullDelete.Name = "checkBoxEnableFullDelete";
+            this.checkBoxEnableFullDelete.Size = new System.Drawing.Size(309, 17);
+            this.checkBoxEnableFullDelete.TabIndex = 14;
+            this.checkBoxEnableFullDelete.Text = "Удалять минуя корзину (безвозвратно) /В разработке/";
+            this.checkBoxEnableFullDelete.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxDisableMessages
+            // 
+            this.checkBoxDisableMessages.AutoSize = true;
+            this.checkBoxDisableMessages.Location = new System.Drawing.Point(11, 16);
+            this.checkBoxDisableMessages.Name = "checkBoxDisableMessages";
+            this.checkBoxDisableMessages.Size = new System.Drawing.Size(169, 17);
+            this.checkBoxDisableMessages.TabIndex = 15;
+            this.checkBoxDisableMessages.Text = "Отключить предупреждения";
+            this.checkBoxDisableMessages.UseVisualStyleBackColor = true;
+            // 
             // tabAbout
             // 
             this.tabAbout.Controls.Add(this.groupBoxDonate);
@@ -659,104 +756,6 @@
             this.linkLabelToSubRealComEDF.UseMnemonic = false;
             this.linkLabelToSubRealComEDF.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelToSubRealComEDF_LinkClicked);
             // 
-            // tabOptions
-            // 
-            this.tabOptions.Controls.Add(this.panel1);
-            this.tabOptions.Location = new System.Drawing.Point(4, 22);
-            this.tabOptions.Name = "tabOptions";
-            this.tabOptions.Size = new System.Drawing.Size(776, 358);
-            this.tabOptions.TabIndex = 3;
-            this.tabOptions.Text = "Настройки";
-            this.tabOptions.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxDisableMessages
-            // 
-            this.checkBoxDisableMessages.AutoSize = true;
-            this.checkBoxDisableMessages.Location = new System.Drawing.Point(11, 16);
-            this.checkBoxDisableMessages.Name = "checkBoxDisableMessages";
-            this.checkBoxDisableMessages.Size = new System.Drawing.Size(169, 17);
-            this.checkBoxDisableMessages.TabIndex = 15;
-            this.checkBoxDisableMessages.Text = "Отключить предупреждения";
-            this.checkBoxDisableMessages.UseVisualStyleBackColor = true;
-            // 
-            // buttonDeleteDuplicates
-            // 
-            this.buttonDeleteDuplicates.AllowDrop = true;
-            this.buttonDeleteDuplicates.Location = new System.Drawing.Point(11, 29);
-            this.buttonDeleteDuplicates.Name = "buttonDeleteDuplicates";
-            this.buttonDeleteDuplicates.Size = new System.Drawing.Size(163, 23);
-            this.buttonDeleteDuplicates.TabIndex = 16;
-            this.buttonDeleteDuplicates.Text = "Удалить остальные";
-            this.buttonDeleteDuplicates.UseVisualStyleBackColor = true;
-            this.buttonDeleteDuplicates.Click += new System.EventHandler(this.toolStripMenuItemDeleteOthers_Click);
-            // 
-            // buttonDeleteChekedFiles
-            // 
-            this.buttonDeleteChekedFiles.AllowDrop = true;
-            this.buttonDeleteChekedFiles.Location = new System.Drawing.Point(11, 62);
-            this.buttonDeleteChekedFiles.Name = "buttonDeleteChekedFiles";
-            this.buttonDeleteChekedFiles.Size = new System.Drawing.Size(163, 23);
-            this.buttonDeleteChekedFiles.TabIndex = 16;
-            this.buttonDeleteChekedFiles.Text = "Удалить отмеченные";
-            this.buttonDeleteChekedFiles.UseVisualStyleBackColor = true;
-            this.buttonDeleteChekedFiles.Click += new System.EventHandler(this.deleteChekedToolStripMenuItem_Click);
-            // 
-            // panelOperations
-            // 
-            this.panelOperations.Controls.Add(this.buttonDeleteChekedFiles);
-            this.panelOperations.Controls.Add(this.buttonDeleteDuplicates);
-            this.panelOperations.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelOperations.Location = new System.Drawing.Point(601, 3);
-            this.panelOperations.Name = "panelOperations";
-            this.panelOperations.Size = new System.Drawing.Size(180, 94);
-            this.panelOperations.TabIndex = 2;
-            // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.checkBoxGoToDuplicatesIfFind);
-            this.panel1.Controls.Add(this.checkBoxSortOnDefault);
-            this.panel1.Controls.Add(this.checkBoxEnableFullDelete);
-            this.panel1.Controls.Add(this.checkBoxDisableMessages);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(776, 358);
-            this.panel1.TabIndex = 16;
-            // 
-            // checkBoxEnableFullDelete
-            // 
-            this.checkBoxEnableFullDelete.AutoSize = true;
-            this.checkBoxEnableFullDelete.Enabled = false;
-            this.checkBoxEnableFullDelete.Location = new System.Drawing.Point(11, 39);
-            this.checkBoxEnableFullDelete.Name = "checkBoxEnableFullDelete";
-            this.checkBoxEnableFullDelete.Size = new System.Drawing.Size(309, 17);
-            this.checkBoxEnableFullDelete.TabIndex = 14;
-            this.checkBoxEnableFullDelete.Text = "Удалять минуя корзину (безвозвратно) /В разработке/";
-            this.checkBoxEnableFullDelete.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxSortOnDefault
-            // 
-            this.checkBoxSortOnDefault.AutoSize = true;
-            this.checkBoxSortOnDefault.Enabled = false;
-            this.checkBoxSortOnDefault.Location = new System.Drawing.Point(11, 62);
-            this.checkBoxSortOnDefault.Name = "checkBoxSortOnDefault";
-            this.checkBoxSortOnDefault.Size = new System.Drawing.Size(242, 17);
-            this.checkBoxSortOnDefault.TabIndex = 16;
-            this.checkBoxSortOnDefault.Text = "Сортировка по умолчанию /В разработке/";
-            this.checkBoxSortOnDefault.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxGoToDuplicatesIfFind
-            // 
-            this.checkBoxGoToDuplicatesIfFind.AutoSize = true;
-            this.checkBoxGoToDuplicatesIfFind.Enabled = false;
-            this.checkBoxGoToDuplicatesIfFind.Location = new System.Drawing.Point(11, 85);
-            this.checkBoxGoToDuplicatesIfFind.Name = "checkBoxGoToDuplicatesIfFind";
-            this.checkBoxGoToDuplicatesIfFind.Size = new System.Drawing.Size(374, 17);
-            this.checkBoxGoToDuplicatesIfFind.TabIndex = 17;
-            this.checkBoxGoToDuplicatesIfFind.Text = "Показывать вкладку \'Дубликаты\' если они найдены /В разработке/";
-            this.checkBoxGoToDuplicatesIfFind.UseVisualStyleBackColor = true;
-            // 
             // FindForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -776,6 +775,7 @@
             this.panelPathFind.PerformLayout();
             this.panelStatistic.ResumeLayout(false);
             this.panelStatistic.PerformLayout();
+            this.panelOperations.ResumeLayout(false);
             this.tabFilesPage.ResumeLayout(false);
             this.tableLayoutFilesPanel.ResumeLayout(false);
             this.tableLayoutFilesPanel.PerformLayout();
@@ -783,14 +783,13 @@
             this.tabDuplicatesPage.ResumeLayout(false);
             this.contextMenuAllDuplicates.ResumeLayout(false);
             this.contextMenuDuplicates.ResumeLayout(false);
+            this.tabOptions.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.tabAbout.ResumeLayout(false);
             this.tabAbout.PerformLayout();
             this.groupBoxDonate.ResumeLayout(false);
             this.groupBoxDonate.PerformLayout();
-            this.tabOptions.ResumeLayout(false);
-            this.panelOperations.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
