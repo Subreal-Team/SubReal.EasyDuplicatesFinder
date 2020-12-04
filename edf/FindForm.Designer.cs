@@ -90,6 +90,7 @@
             this.linkLabelGoToGitHub = new System.Windows.Forms.LinkLabel();
             this.linkLabelToSubRealComEDF = new System.Windows.Forms.LinkLabel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.buttonSaveOptions = new System.Windows.Forms.Button();
             pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(pictureBox1)).BeginInit();
             this.contextMenuListView.SuspendLayout();
@@ -562,6 +563,7 @@
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.buttonSaveOptions);
             this.panel1.Controls.Add(this.checkBoxGoToDuplicatesIfFind);
             this.panel1.Controls.Add(this.checkBoxSortOnDefault);
             this.panel1.Controls.Add(this.checkBoxEnableFullDelete);
@@ -581,6 +583,7 @@
             this.checkBoxGoToDuplicatesIfFind.TabIndex = 17;
             this.checkBoxGoToDuplicatesIfFind.Text = "Показывать вкладку \'Дубликаты\' если они найдены";
             this.checkBoxGoToDuplicatesIfFind.UseVisualStyleBackColor = true;
+            this.checkBoxGoToDuplicatesIfFind.CheckedChanged += new System.EventHandler(this.checkBoxGoToDuplicatesIfFind_CheckedChanged);
             // 
             // checkBoxSortOnDefault
             // 
@@ -600,6 +603,7 @@
             this.checkBoxEnableFullDelete.Name = "checkBoxEnableFullDelete";
             this.checkBoxEnableFullDelete.Size = new System.Drawing.Size(227, 17);
             this.checkBoxEnableFullDelete.TabIndex = 14;
+            this.checkBoxEnableFullDelete.Tag = "0";
             this.checkBoxEnableFullDelete.Text = "Удалять минуя корзину (безвозвратно)";
             this.checkBoxEnableFullDelete.UseVisualStyleBackColor = true;
             this.checkBoxEnableFullDelete.CheckedChanged += new System.EventHandler(this.checkBoxEnableFullDelete_CheckedChanged);
@@ -613,6 +617,7 @@
             this.checkBoxDisableMessages.TabIndex = 15;
             this.checkBoxDisableMessages.Text = "Отключить предупреждения";
             this.checkBoxDisableMessages.UseVisualStyleBackColor = true;
+            this.checkBoxDisableMessages.CheckedChanged += new System.EventHandler(this.checkBoxDisableMessages_CheckedChanged);
             // 
             // tabAbout
             // 
@@ -757,6 +762,17 @@
             this.linkLabelToSubRealComEDF.UseMnemonic = false;
             this.linkLabelToSubRealComEDF.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelToSubRealComEDF_LinkClicked);
             // 
+            // buttonSaveOptions
+            // 
+            this.buttonSaveOptions.Enabled = false;
+            this.buttonSaveOptions.Location = new System.Drawing.Point(372, 12);
+            this.buttonSaveOptions.Name = "buttonSaveOptions";
+            this.buttonSaveOptions.Size = new System.Drawing.Size(219, 23);
+            this.buttonSaveOptions.TabIndex = 18;
+            this.buttonSaveOptions.Text = "Сохранить настройки";
+            this.buttonSaveOptions.UseVisualStyleBackColor = true;
+            this.buttonSaveOptions.Click += new System.EventHandler(this.buttonSaveOptions_Click);
+            // 
             // FindForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -769,6 +785,8 @@
             this.Name = "FindForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "win.edf";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FindForm_FormClosing);
+            this.Load += new System.EventHandler(this.FindForm_Load);
             ((System.ComponentModel.ISupportInitialize)(pictureBox1)).EndInit();
             this.contextMenuListView.ResumeLayout(false);
             this.tableLayoutDuplicatesPanel.ResumeLayout(false);
@@ -855,6 +873,7 @@
         private System.Windows.Forms.CheckBox checkBoxSortOnDefault;
         private System.Windows.Forms.CheckBox checkBoxEnableFullDelete;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button buttonSaveOptions;
     }
 }
 

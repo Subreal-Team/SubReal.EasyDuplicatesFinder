@@ -4,15 +4,24 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using System.Text.Json;
 
 
 namespace SubReal.EasyDuplicatesFinder
 {
     public partial class FindForm : Form
     {
-        private EdfFiles _edfFiles;
+        private EdfFiles _edfFiles;     
+        
+        const string optionsFileName = "optionsefd.json";
+        public class OptionsEDF
+        {
+            public bool DisableQuestions { get; set; } = false;
+            public bool EnableFullDelete { get; set; } = false;
+            public bool EnableShowTabDuplicated { get; set; } = false;
+        } 
 
-        public FindForm()
+    public FindForm()
         {
             Assembly assem = typeof(FindForm).Assembly;
             InitializeComponent();
@@ -44,6 +53,41 @@ namespace SubReal.EasyDuplicatesFinder
             FormatListView(listView);
             FormatListView(listViewAllDuplicates);
             FormatListView(listViewDuplicates, true);
+        }
+
+        private bool SaveOptions(string fileName)
+        {
+            var options = new OptionsEDF { DisableQuestions = checkBoxDisableMessages.Checked, EnableFullDelete = checkBoxEnableFullDelete.Checked, EnableShowTabDuplicated = checkBoxGoToDuplicatesIfFind.Checked};
+            string json = JsonSerializer.Serialize<OptionsEDF>(options);
+
+            File.WriteAllText(fileName, json);
+            return true;
+         }
+
+        private bool LoadOptions(string fileName)
+        {
+            if (File.Exists(fileName))
+            {
+                string json = File.ReadAllText(fileName);
+                var options = JsonSerializer.Deserialize<OptionsEDF>(json);
+                ApplyOptions(options);
+                return true;
+            }
+            else
+            {
+                var options = new OptionsEDF();
+                ApplyOptions(options);
+                return false;
+            }
+        }
+
+        private void ApplyOptions(OptionsEDF options)
+        {
+            checkBoxDisableMessages.Checked = options.DisableQuestions;
+            checkBoxEnableFullDelete.Checked = options.EnableFullDelete;
+            checkBoxGoToDuplicatesIfFind.Checked = options.EnableShowTabDuplicated;
+            checkBoxEnableFullDelete.Tag = 1;  // используется как флаг
+            buttonSaveOptions.Enabled = false;        
         }
 
         private void ToggleEnabledUserControls(bool enabled)
@@ -682,7 +726,7 @@ namespace SubReal.EasyDuplicatesFinder
 
         private void checkBoxEnableFullDelete_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxEnableFullDelete.Checked)
+            if (Convert.ToInt32(checkBoxEnableFullDelete.Tag) == 1 && checkBoxEnableFullDelete.Checked)
             {
                 var result = MessageBox.Show("Вы действительно хотите удалять файлы безвозвратно?",
                                  "Внимание!",
@@ -698,6 +742,33 @@ namespace SubReal.EasyDuplicatesFinder
             }
             if (_edfFiles != null)
                 _edfFiles.SetFullDeleteFiles = checkBoxEnableFullDelete.Checked;
+            buttonSaveOptions.Enabled = true;
+        }
+
+        private void buttonSaveOptions_Click(object sender, EventArgs e)
+        {
+            SaveOptions(optionsFileName);
+            buttonSaveOptions.Enabled = false;            
+        }
+
+        private void checkBoxDisableMessages_CheckedChanged(object sender, EventArgs e)
+        {
+            buttonSaveOptions.Enabled = true;
+        }
+
+        private void checkBoxGoToDuplicatesIfFind_CheckedChanged(object sender, EventArgs e)
+        {
+            buttonSaveOptions.Enabled = true;
+        }
+
+        private void FindForm_Load(object sender, EventArgs e)
+        {
+            LoadOptions(optionsFileName);
+        }
+
+        private void FindForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveOptions(optionsFileName);
         }
     }
 }
