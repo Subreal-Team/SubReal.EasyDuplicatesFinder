@@ -5,7 +5,7 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using System.Text.Json;
-
+using SubReal.EasyDuplicateFinder;
 
 namespace SubReal.EasyDuplicatesFinder
 {
@@ -32,7 +32,7 @@ namespace SubReal.EasyDuplicatesFinder
             this.Text = $"Простой поиск дубликатов файлов {ver}";
             labelVersion.Text = $"{ver}";
             textBoxFolderPath.Text = Debugger.IsAttached ? @"c:\edf.test" : Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-
+            
             ToolTip toolTipHint = new ToolTip();
             toolTipHint.ShowAlways = true;
             toolTipHint.SetToolTip(buttonSelectDirectory, "Выбрать папку для поиска");
@@ -46,9 +46,9 @@ namespace SubReal.EasyDuplicatesFinder
             toolTipHint.SetToolTip(checkBoxGoToDuplicatesIfFind, "Если в результате поиска найдены дубликаты файлов, автоматически открывается вкладка 'Дубликаты'.");
             toolTipHint.SetToolTip(checkBoxSortOnDefault, "Включает сортировку по-умолчанию.");
 
-            toolTipHint.SetToolTip(linkLabelToSubRealCom, "Перейти на сайт разработчика");
-            toolTipHint.SetToolTip(linkLabelToSubRealComEDF, "Перейти к странице программы на сайте разработчика");
-            toolTipHint.SetToolTip(linkLabelGoToGitHub, "Перейти к странице программы на GitHub");
+            toolTipHint.SetToolTip(linkLabelToSubRealCom, "Перейти на сайт разработчиков");
+            //toolTipHint.SetToolTip(linkLabelToSubRealComEDF, "Перейти к странице программы на сайте разработчика");
+            //toolTipHint.SetToolTip(linkLabelGoToGitHub, "Перейти к странице программы на GitHub");
 
             FormatListView(listView);
             FormatListView(listViewAllDuplicates);
@@ -594,11 +594,6 @@ namespace SubReal.EasyDuplicatesFinder
             System.Diagnostics.Process.Start("https://subreal-team.com/");
         }
 
-        private void buttonGoOnSiteDonatePage_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://subreal-team.com/donate-html/");
-        }
-
         private void deleteChekedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // TODO:  Вставить проверку наличия дублей   
@@ -769,6 +764,12 @@ namespace SubReal.EasyDuplicatesFinder
         private void FindForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveOptions(optionsFileName);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AboutBox aboutBox = new AboutBox();
+            aboutBox.Show();
         }
     }
 }
