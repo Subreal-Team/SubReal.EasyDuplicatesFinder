@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.PictureBox pictureBox1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FindForm));
             this.contextMenuListView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openFileListView = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,6 +49,7 @@
             this.buttonShowDuplicates = new System.Windows.Forms.Button();
             this.lblCountFindedFiles = new System.Windows.Forms.Label();
             this.panelOperations = new System.Windows.Forms.Panel();
+            this.buttonShowAboutBox = new System.Windows.Forms.Button();
             this.buttonDeleteChekedFiles = new System.Windows.Forms.Button();
             this.buttonDeleteDuplicates = new System.Windows.Forms.Button();
             this.tabFilesPage = new System.Windows.Forms.TabPage();
@@ -73,26 +73,12 @@
             this.deleteChekedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabOptions = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonSaveOptions = new System.Windows.Forms.Button();
             this.checkBoxGoToDuplicatesIfFind = new System.Windows.Forms.CheckBox();
             this.checkBoxSortOnDefault = new System.Windows.Forms.CheckBox();
             this.checkBoxEnableFullDelete = new System.Windows.Forms.CheckBox();
             this.checkBoxDisableMessages = new System.Windows.Forms.CheckBox();
-            this.tabAbout = new System.Windows.Forms.TabPage();
-            this.groupBoxDonate = new System.Windows.Forms.GroupBox();
-            this.buttonGoOnSiteDonatePage = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.labelVersion = new System.Windows.Forms.Label();
-            this.textBoxAboutEDF = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.labelProgramName = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.linkLabelGoToGitHub = new System.Windows.Forms.LinkLabel();
-            this.linkLabelToSubRealComEDF = new System.Windows.Forms.LinkLabel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.buttonSaveOptions = new System.Windows.Forms.Button();
-            pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(pictureBox1)).BeginInit();
             this.contextMenuListView.SuspendLayout();
             this.tableLayoutDuplicatesPanel.SuspendLayout();
             this.panelPathFind.SuspendLayout();
@@ -106,21 +92,7 @@
             this.contextMenuDuplicates.SuspendLayout();
             this.tabOptions.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.tabAbout.SuspendLayout();
-            this.groupBoxDonate.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            pictureBox1.ErrorImage = null;
-            pictureBox1.Image = global::SubReal.EasyDuplicateFinder.Properties.Resources._2019_10_27_18_40_39;
-            pictureBox1.Location = new System.Drawing.Point(11, 17);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new System.Drawing.Size(58, 59);
-            pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 12;
-            pictureBox1.TabStop = false;
             // 
             // contextMenuListView
             // 
@@ -306,6 +278,7 @@
             // 
             // panelOperations
             // 
+            this.panelOperations.Controls.Add(this.buttonShowAboutBox);
             this.panelOperations.Controls.Add(this.buttonDeleteChekedFiles);
             this.panelOperations.Controls.Add(this.buttonDeleteDuplicates);
             this.panelOperations.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -313,6 +286,16 @@
             this.panelOperations.Name = "panelOperations";
             this.panelOperations.Size = new System.Drawing.Size(180, 94);
             this.panelOperations.TabIndex = 2;
+            // 
+            // buttonShowAboutBox
+            // 
+            this.buttonShowAboutBox.Location = new System.Drawing.Point(11, 6);
+            this.buttonShowAboutBox.Name = "buttonShowAboutBox";
+            this.buttonShowAboutBox.Size = new System.Drawing.Size(163, 23);
+            this.buttonShowAboutBox.TabIndex = 17;
+            this.buttonShowAboutBox.Text = "О программе";
+            this.buttonShowAboutBox.UseVisualStyleBackColor = true;
+            this.buttonShowAboutBox.Click += new System.EventHandler(this.button1_Click);
             // 
             // buttonDeleteChekedFiles
             // 
@@ -328,7 +311,7 @@
             // buttonDeleteDuplicates
             // 
             this.buttonDeleteDuplicates.AllowDrop = true;
-            this.buttonDeleteDuplicates.Location = new System.Drawing.Point(11, 29);
+            this.buttonDeleteDuplicates.Location = new System.Drawing.Point(11, 35);
             this.buttonDeleteDuplicates.Name = "buttonDeleteDuplicates";
             this.buttonDeleteDuplicates.Size = new System.Drawing.Size(163, 23);
             this.buttonDeleteDuplicates.TabIndex = 16;
@@ -404,7 +387,6 @@
             this.tabControl.Controls.Add(this.tabFilesPage);
             this.tabControl.Controls.Add(this.tabDuplicatesPage);
             this.tabControl.Controls.Add(this.tabOptions);
-            this.tabControl.Controls.Add(this.tabAbout);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 100);
             this.tabControl.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -574,6 +556,17 @@
             this.panel1.Size = new System.Drawing.Size(776, 358);
             this.panel1.TabIndex = 16;
             // 
+            // buttonSaveOptions
+            // 
+            this.buttonSaveOptions.Enabled = false;
+            this.buttonSaveOptions.Location = new System.Drawing.Point(372, 12);
+            this.buttonSaveOptions.Name = "buttonSaveOptions";
+            this.buttonSaveOptions.Size = new System.Drawing.Size(219, 23);
+            this.buttonSaveOptions.TabIndex = 18;
+            this.buttonSaveOptions.Text = "Сохранить настройки";
+            this.buttonSaveOptions.UseVisualStyleBackColor = true;
+            this.buttonSaveOptions.Click += new System.EventHandler(this.buttonSaveOptions_Click);
+            // 
             // checkBoxGoToDuplicatesIfFind
             // 
             this.checkBoxGoToDuplicatesIfFind.AutoSize = true;
@@ -619,160 +612,6 @@
             this.checkBoxDisableMessages.UseVisualStyleBackColor = true;
             this.checkBoxDisableMessages.CheckedChanged += new System.EventHandler(this.checkBoxDisableMessages_CheckedChanged);
             // 
-            // tabAbout
-            // 
-            this.tabAbout.Controls.Add(this.groupBoxDonate);
-            this.tabAbout.Controls.Add(this.labelVersion);
-            this.tabAbout.Controls.Add(pictureBox1);
-            this.tabAbout.Controls.Add(this.textBoxAboutEDF);
-            this.tabAbout.Controls.Add(this.label2);
-            this.tabAbout.Controls.Add(this.label3);
-            this.tabAbout.Controls.Add(this.labelProgramName);
-            this.tabAbout.Controls.Add(this.label1);
-            this.tabAbout.Controls.Add(this.linkLabelGoToGitHub);
-            this.tabAbout.Controls.Add(this.linkLabelToSubRealComEDF);
-            this.tabAbout.Location = new System.Drawing.Point(4, 22);
-            this.tabAbout.Name = "tabAbout";
-            this.tabAbout.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAbout.Size = new System.Drawing.Size(776, 358);
-            this.tabAbout.TabIndex = 2;
-            this.tabAbout.Text = "О программе";
-            this.tabAbout.UseVisualStyleBackColor = true;
-            // 
-            // groupBoxDonate
-            // 
-            this.groupBoxDonate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxDonate.Controls.Add(this.buttonGoOnSiteDonatePage);
-            this.groupBoxDonate.Controls.Add(this.textBox1);
-            this.groupBoxDonate.Location = new System.Drawing.Point(333, 15);
-            this.groupBoxDonate.Name = "groupBoxDonate";
-            this.groupBoxDonate.Size = new System.Drawing.Size(429, 105);
-            this.groupBoxDonate.TabIndex = 14;
-            this.groupBoxDonate.TabStop = false;
-            this.groupBoxDonate.Text = "Поддержать";
-            // 
-            // buttonGoOnSiteDonatePage
-            // 
-            this.buttonGoOnSiteDonatePage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonGoOnSiteDonatePage.Location = new System.Drawing.Point(153, 76);
-            this.buttonGoOnSiteDonatePage.Name = "buttonGoOnSiteDonatePage";
-            this.buttonGoOnSiteDonatePage.Size = new System.Drawing.Size(120, 23);
-            this.buttonGoOnSiteDonatePage.TabIndex = 11;
-            this.buttonGoOnSiteDonatePage.Text = "Поддержать";
-            this.buttonGoOnSiteDonatePage.UseVisualStyleBackColor = true;
-            this.buttonGoOnSiteDonatePage.Click += new System.EventHandler(this.buttonGoOnSiteDonatePage_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(44, 19);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(375, 48);
-            this.textBox1.TabIndex = 10;
-            this.textBox1.Text = "Если вам понравилась программа, Вы можете поддержать ее развитие.\r\nЭто может быть" +
-    " совет, сообщение об ошибке или финансовая помощь. \r\nПодробности по кнопке \"Подд" +
-    "ержать\"";
-            // 
-            // labelVersion
-            // 
-            this.labelVersion.AutoSize = true;
-            this.labelVersion.Location = new System.Drawing.Point(79, 46);
-            this.labelVersion.Name = "labelVersion";
-            this.labelVersion.Size = new System.Drawing.Size(41, 13);
-            this.labelVersion.TabIndex = 13;
-            this.labelVersion.Text = "version";
-            // 
-            // textBoxAboutEDF
-            // 
-            this.textBoxAboutEDF.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxAboutEDF.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxAboutEDF.Location = new System.Drawing.Point(6, 160);
-            this.textBoxAboutEDF.Multiline = true;
-            this.textBoxAboutEDF.Name = "textBoxAboutEDF";
-            this.textBoxAboutEDF.Size = new System.Drawing.Size(756, 67);
-            this.textBoxAboutEDF.TabIndex = 10;
-            this.textBoxAboutEDF.Text = resources.GetString("textBoxAboutEDF.Text");
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(75, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(240, 16);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Простой поиск дубликатов файлов";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(5, 141);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(328, 16);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Что такое \"Простой поиск дубликатов файлов\"?";
-            // 
-            // labelProgramName
-            // 
-            this.labelProgramName.AutoSize = true;
-            this.labelProgramName.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelProgramName.Location = new System.Drawing.Point(75, 31);
-            this.labelProgramName.Name = "labelProgramName";
-            this.labelProgramName.Size = new System.Drawing.Size(187, 15);
-            this.labelProgramName.TabIndex = 9;
-            this.labelProgramName.Text = "(SubReal.EasyDuplicatesFinder)";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(79, 68);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(147, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "© 2019-2020 SubReal, Team";
-            // 
-            // linkLabelGoToGitHub
-            // 
-            this.linkLabelGoToGitHub.AutoSize = true;
-            this.linkLabelGoToGitHub.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.linkLabelGoToGitHub.Location = new System.Drawing.Point(79, 101);
-            this.linkLabelGoToGitHub.Name = "linkLabelGoToGitHub";
-            this.linkLabelGoToGitHub.Size = new System.Drawing.Size(95, 13);
-            this.linkLabelGoToGitHub.TabIndex = 7;
-            this.linkLabelGoToGitHub.TabStop = true;
-            this.linkLabelGoToGitHub.Text = "https://github.com";
-            this.linkLabelGoToGitHub.UseMnemonic = false;
-            this.linkLabelGoToGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelGoToGitHub_LinkClicked);
-            // 
-            // linkLabelToSubRealComEDF
-            // 
-            this.linkLabelToSubRealComEDF.AutoSize = true;
-            this.linkLabelToSubRealComEDF.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.linkLabelToSubRealComEDF.Location = new System.Drawing.Point(79, 84);
-            this.linkLabelToSubRealComEDF.Name = "linkLabelToSubRealComEDF";
-            this.linkLabelToSubRealComEDF.Size = new System.Drawing.Size(126, 13);
-            this.linkLabelToSubRealComEDF.TabIndex = 7;
-            this.linkLabelToSubRealComEDF.TabStop = true;
-            this.linkLabelToSubRealComEDF.Text = "https://subreal-team.com";
-            this.linkLabelToSubRealComEDF.UseMnemonic = false;
-            this.linkLabelToSubRealComEDF.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelToSubRealComEDF_LinkClicked);
-            // 
-            // buttonSaveOptions
-            // 
-            this.buttonSaveOptions.Enabled = false;
-            this.buttonSaveOptions.Location = new System.Drawing.Point(372, 12);
-            this.buttonSaveOptions.Name = "buttonSaveOptions";
-            this.buttonSaveOptions.Size = new System.Drawing.Size(219, 23);
-            this.buttonSaveOptions.TabIndex = 18;
-            this.buttonSaveOptions.Text = "Сохранить настройки";
-            this.buttonSaveOptions.UseVisualStyleBackColor = true;
-            this.buttonSaveOptions.Click += new System.EventHandler(this.buttonSaveOptions_Click);
-            // 
             // FindForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -787,7 +626,6 @@
             this.Text = "win.edf";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FindForm_FormClosing);
             this.Load += new System.EventHandler(this.FindForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(pictureBox1)).EndInit();
             this.contextMenuListView.ResumeLayout(false);
             this.tableLayoutDuplicatesPanel.ResumeLayout(false);
             this.panelPathFind.ResumeLayout(false);
@@ -805,10 +643,6 @@
             this.tabOptions.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tabAbout.ResumeLayout(false);
-            this.tabAbout.PerformLayout();
-            this.groupBoxDonate.ResumeLayout(false);
-            this.groupBoxDonate.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -845,20 +679,8 @@
         private System.Windows.Forms.Label labelDuplicatesCount;
         private System.Windows.Forms.LinkLabel linkLabelToSubRealCom;
         private System.Windows.Forms.Label labelCopyRight;
-        private System.Windows.Forms.TabPage tabAbout;
-        private System.Windows.Forms.Label labelProgramName;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.LinkLabel linkLabelToSubRealComEDF;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxAboutEDF;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button buttonGoOnSiteDonatePage;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ToolStripMenuItem deleteChekedToolStripMenuItem;
-        private System.Windows.Forms.Label labelVersion;
-        private System.Windows.Forms.GroupBox groupBoxDonate;
         private System.Windows.Forms.Button buttonGoToFile;
-        private System.Windows.Forms.LinkLabel linkLabelGoToGitHub;
         private System.Windows.Forms.ToolStripMenuItem OpenFileDuplicates;
         private System.Windows.Forms.ToolStripMenuItem openFileListView;
         private System.Windows.Forms.ToolStripMenuItem openFileAllDuplicates;
@@ -874,6 +696,7 @@
         private System.Windows.Forms.CheckBox checkBoxEnableFullDelete;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button buttonSaveOptions;
+        private System.Windows.Forms.Button buttonShowAboutBox;
     }
 }
 
