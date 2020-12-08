@@ -13,7 +13,7 @@ namespace SubReal.EasyDuplicatesFinder
     {
         private EdfFiles _edfFiles;     
         
-        const string optionsFileName = "optionsefd.json";
+        const string optionsFileName = "edf-settings.json";
         public class OptionsEDF
         {
             public bool DisableQuestions { get; set; } = false;
@@ -30,8 +30,9 @@ namespace SubReal.EasyDuplicatesFinder
             AssemblyName assemName = assem.GetName();
             var ver = $"версия {assemName.Version.ToString()} ";
             this.Text = $"Простой поиск дубликатов файлов {ver}";
-            textBoxFolderPath.Text = Debugger.IsAttached ? @"c:\iac" : Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-
+            labelVersion.Text = $"{ver}";
+            textBoxFolderPath.Text = Debugger.IsAttached ? @"c:\edf.test" : Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            
             ToolTip toolTipHint = new ToolTip();
             toolTipHint.ShowAlways = true;
             toolTipHint.SetToolTip(buttonSelectDirectory, "Выбрать папку для поиска");
