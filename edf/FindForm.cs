@@ -30,7 +30,6 @@ namespace SubReal.EasyDuplicatesFinder
             AssemblyName assemName = assem.GetName();
             var ver = $"версия {assemName.Version.ToString()} ";
             this.Text = $"Простой поиск дубликатов файлов {ver}";
-            labelVersion.Text = $"{ver}";
             textBoxFolderPath.Text = Debugger.IsAttached ? @"c:\edf.test" : Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
             
             ToolTip toolTipHint = new ToolTip();
