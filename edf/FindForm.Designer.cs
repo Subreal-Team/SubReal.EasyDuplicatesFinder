@@ -50,8 +50,6 @@
             this.lblCountFindedFiles = new System.Windows.Forms.Label();
             this.panelOperations = new System.Windows.Forms.Panel();
             this.buttonShowAboutBox = new System.Windows.Forms.Button();
-            this.buttonDeleteChekedFiles = new System.Windows.Forms.Button();
-            this.buttonDeleteDuplicates = new System.Windows.Forms.Button();
             this.contextMenuAllDuplicates = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openFileAllDuplicates = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAllDuplicates_ShowFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,23 +63,26 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tabOptions = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.checkBoxDisableMessages = new System.Windows.Forms.CheckBox();
-            this.checkBoxEnableFullDelete = new System.Windows.Forms.CheckBox();
-            this.checkBoxSortOnDefault = new System.Windows.Forms.CheckBox();
-            this.checkBoxGoToDuplicatesIfFind = new System.Windows.Forms.CheckBox();
             this.buttonSaveOptions = new System.Windows.Forms.Button();
+            this.checkBoxGoToDuplicatesIfFind = new System.Windows.Forms.CheckBox();
+            this.checkBoxSortOnDefault = new System.Windows.Forms.CheckBox();
+            this.checkBoxEnableFullDelete = new System.Windows.Forms.CheckBox();
+            this.checkBoxDisableMessages = new System.Windows.Forms.CheckBox();
             this.tabDuplicatesPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelDuplicatesFiles = new System.Windows.Forms.Panel();
             this.listViewDuplicates = new System.Windows.Forms.ListView();
-            this.listViewAllDuplicates = new System.Windows.Forms.ListView();
-            this.splitterDuplicatesTab = new System.Windows.Forms.Splitter();
-            this.panelButtonsDuplicates = new System.Windows.Forms.Panel();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabFilesPage = new System.Windows.Forms.TabPage();
             this.tableLayoutFilesPanel = new System.Windows.Forms.TableLayoutPanel();
             this.listView = new System.Windows.Forms.ListView();
             this.chkSelectAllFiles = new System.Windows.Forms.CheckBox();
+            this.splitterDuplicatesTab = new System.Windows.Forms.Splitter();
+            this.listViewAllDuplicates = new System.Windows.Forms.ListView();
+            this.panelButtonsDuplicates = new System.Windows.Forms.Panel();
+            this.buttonDeleteDuplicates = new System.Windows.Forms.Button();
+            this.buttonDeleteChekedFiles = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.contextMenuListView.SuspendLayout();
             this.tableLayoutDuplicatesPanel.SuspendLayout();
             this.panelPathFind.SuspendLayout();
@@ -94,10 +95,10 @@
             this.tabDuplicatesPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelDuplicatesFiles.SuspendLayout();
-            this.panelButtonsDuplicates.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabFilesPage.SuspendLayout();
             this.tableLayoutFilesPanel.SuspendLayout();
+            this.panelButtonsDuplicates.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuListView
@@ -301,28 +302,6 @@
             this.buttonShowAboutBox.UseVisualStyleBackColor = true;
             this.buttonShowAboutBox.Click += new System.EventHandler(this.button1_Click);
             // 
-            // buttonDeleteChekedFiles
-            // 
-            this.buttonDeleteChekedFiles.AllowDrop = true;
-            this.buttonDeleteChekedFiles.Location = new System.Drawing.Point(174, 7);
-            this.buttonDeleteChekedFiles.Name = "buttonDeleteChekedFiles";
-            this.buttonDeleteChekedFiles.Size = new System.Drawing.Size(163, 23);
-            this.buttonDeleteChekedFiles.TabIndex = 16;
-            this.buttonDeleteChekedFiles.Text = "Удалить отмеченные";
-            this.buttonDeleteChekedFiles.UseVisualStyleBackColor = true;
-            this.buttonDeleteChekedFiles.Click += new System.EventHandler(this.deleteChekedToolStripMenuItem_Click);
-            // 
-            // buttonDeleteDuplicates
-            // 
-            this.buttonDeleteDuplicates.AllowDrop = true;
-            this.buttonDeleteDuplicates.Location = new System.Drawing.Point(5, 7);
-            this.buttonDeleteDuplicates.Name = "buttonDeleteDuplicates";
-            this.buttonDeleteDuplicates.Size = new System.Drawing.Size(163, 23);
-            this.buttonDeleteDuplicates.TabIndex = 16;
-            this.buttonDeleteDuplicates.Text = "Удалить остальные";
-            this.buttonDeleteDuplicates.UseVisualStyleBackColor = true;
-            this.buttonDeleteDuplicates.Click += new System.EventHandler(this.toolStripMenuItemDeleteOthers_Click);
-            // 
             // contextMenuAllDuplicates
             // 
             this.contextMenuAllDuplicates.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -425,16 +404,38 @@
             this.panel1.Size = new System.Drawing.Size(776, 358);
             this.panel1.TabIndex = 16;
             // 
-            // checkBoxDisableMessages
+            // buttonSaveOptions
             // 
-            this.checkBoxDisableMessages.AutoSize = true;
-            this.checkBoxDisableMessages.Location = new System.Drawing.Point(11, 16);
-            this.checkBoxDisableMessages.Name = "checkBoxDisableMessages";
-            this.checkBoxDisableMessages.Size = new System.Drawing.Size(169, 17);
-            this.checkBoxDisableMessages.TabIndex = 15;
-            this.checkBoxDisableMessages.Text = "Отключить предупреждения";
-            this.checkBoxDisableMessages.UseVisualStyleBackColor = true;
-            this.checkBoxDisableMessages.CheckedChanged += new System.EventHandler(this.checkBoxDisableMessages_CheckedChanged);
+            this.buttonSaveOptions.Enabled = false;
+            this.buttonSaveOptions.Location = new System.Drawing.Point(372, 12);
+            this.buttonSaveOptions.Name = "buttonSaveOptions";
+            this.buttonSaveOptions.Size = new System.Drawing.Size(219, 23);
+            this.buttonSaveOptions.TabIndex = 18;
+            this.buttonSaveOptions.Text = "Сохранить настройки";
+            this.buttonSaveOptions.UseVisualStyleBackColor = true;
+            this.buttonSaveOptions.Click += new System.EventHandler(this.buttonSaveOptions_Click);
+            // 
+            // checkBoxGoToDuplicatesIfFind
+            // 
+            this.checkBoxGoToDuplicatesIfFind.AutoSize = true;
+            this.checkBoxGoToDuplicatesIfFind.Location = new System.Drawing.Point(11, 85);
+            this.checkBoxGoToDuplicatesIfFind.Name = "checkBoxGoToDuplicatesIfFind";
+            this.checkBoxGoToDuplicatesIfFind.Size = new System.Drawing.Size(292, 17);
+            this.checkBoxGoToDuplicatesIfFind.TabIndex = 17;
+            this.checkBoxGoToDuplicatesIfFind.Text = "Показывать вкладку \'Дубликаты\' если они найдены";
+            this.checkBoxGoToDuplicatesIfFind.UseVisualStyleBackColor = true;
+            this.checkBoxGoToDuplicatesIfFind.CheckedChanged += new System.EventHandler(this.checkBoxGoToDuplicatesIfFind_CheckedChanged);
+            // 
+            // checkBoxSortOnDefault
+            // 
+            this.checkBoxSortOnDefault.AutoSize = true;
+            this.checkBoxSortOnDefault.Enabled = false;
+            this.checkBoxSortOnDefault.Location = new System.Drawing.Point(11, 62);
+            this.checkBoxSortOnDefault.Name = "checkBoxSortOnDefault";
+            this.checkBoxSortOnDefault.Size = new System.Drawing.Size(242, 17);
+            this.checkBoxSortOnDefault.TabIndex = 16;
+            this.checkBoxSortOnDefault.Text = "Сортировка по умолчанию /В разработке/";
+            this.checkBoxSortOnDefault.UseVisualStyleBackColor = true;
             // 
             // checkBoxEnableFullDelete
             // 
@@ -448,38 +449,16 @@
             this.checkBoxEnableFullDelete.UseVisualStyleBackColor = true;
             this.checkBoxEnableFullDelete.CheckedChanged += new System.EventHandler(this.checkBoxEnableFullDelete_CheckedChanged);
             // 
-            // checkBoxSortOnDefault
+            // checkBoxDisableMessages
             // 
-            this.checkBoxSortOnDefault.AutoSize = true;
-            this.checkBoxSortOnDefault.Enabled = false;
-            this.checkBoxSortOnDefault.Location = new System.Drawing.Point(11, 62);
-            this.checkBoxSortOnDefault.Name = "checkBoxSortOnDefault";
-            this.checkBoxSortOnDefault.Size = new System.Drawing.Size(242, 17);
-            this.checkBoxSortOnDefault.TabIndex = 16;
-            this.checkBoxSortOnDefault.Text = "Сортировка по умолчанию /В разработке/";
-            this.checkBoxSortOnDefault.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxGoToDuplicatesIfFind
-            // 
-            this.checkBoxGoToDuplicatesIfFind.AutoSize = true;
-            this.checkBoxGoToDuplicatesIfFind.Location = new System.Drawing.Point(11, 85);
-            this.checkBoxGoToDuplicatesIfFind.Name = "checkBoxGoToDuplicatesIfFind";
-            this.checkBoxGoToDuplicatesIfFind.Size = new System.Drawing.Size(292, 17);
-            this.checkBoxGoToDuplicatesIfFind.TabIndex = 17;
-            this.checkBoxGoToDuplicatesIfFind.Text = "Показывать вкладку \'Дубликаты\' если они найдены";
-            this.checkBoxGoToDuplicatesIfFind.UseVisualStyleBackColor = true;
-            this.checkBoxGoToDuplicatesIfFind.CheckedChanged += new System.EventHandler(this.checkBoxGoToDuplicatesIfFind_CheckedChanged);
-            // 
-            // buttonSaveOptions
-            // 
-            this.buttonSaveOptions.Enabled = false;
-            this.buttonSaveOptions.Location = new System.Drawing.Point(372, 12);
-            this.buttonSaveOptions.Name = "buttonSaveOptions";
-            this.buttonSaveOptions.Size = new System.Drawing.Size(219, 23);
-            this.buttonSaveOptions.TabIndex = 18;
-            this.buttonSaveOptions.Text = "Сохранить настройки";
-            this.buttonSaveOptions.UseVisualStyleBackColor = true;
-            this.buttonSaveOptions.Click += new System.EventHandler(this.buttonSaveOptions_Click);
+            this.checkBoxDisableMessages.AutoSize = true;
+            this.checkBoxDisableMessages.Location = new System.Drawing.Point(11, 16);
+            this.checkBoxDisableMessages.Name = "checkBoxDisableMessages";
+            this.checkBoxDisableMessages.Size = new System.Drawing.Size(169, 17);
+            this.checkBoxDisableMessages.TabIndex = 15;
+            this.checkBoxDisableMessages.Text = "Отключить предупреждения";
+            this.checkBoxDisableMessages.UseVisualStyleBackColor = true;
+            this.checkBoxDisableMessages.CheckedChanged += new System.EventHandler(this.checkBoxDisableMessages_CheckedChanged);
             // 
             // tabDuplicatesPage
             // 
@@ -496,14 +475,17 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.panelButtonsDuplicates, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.checkBox1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panelButtonsDuplicates, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.panelDuplicatesFiles, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(770, 352);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -513,9 +495,9 @@
             this.panelDuplicatesFiles.Controls.Add(this.listViewAllDuplicates);
             this.panelDuplicatesFiles.Controls.Add(this.listViewDuplicates);
             this.panelDuplicatesFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDuplicatesFiles.Location = new System.Drawing.Point(3, 43);
+            this.panelDuplicatesFiles.Location = new System.Drawing.Point(3, 23);
             this.panelDuplicatesFiles.Name = "panelDuplicatesFiles";
-            this.panelDuplicatesFiles.Size = new System.Drawing.Size(764, 306);
+            this.panelDuplicatesFiles.Size = new System.Drawing.Size(764, 286);
             this.panelDuplicatesFiles.TabIndex = 1;
             // 
             // listViewDuplicates
@@ -526,7 +508,7 @@
             this.listViewDuplicates.FullRowSelect = true;
             this.listViewDuplicates.GridLines = true;
             this.listViewDuplicates.HideSelection = false;
-            this.listViewDuplicates.Location = new System.Drawing.Point(0, 187);
+            this.listViewDuplicates.Location = new System.Drawing.Point(0, 167);
             this.listViewDuplicates.MultiSelect = false;
             this.listViewDuplicates.Name = "listViewDuplicates";
             this.listViewDuplicates.Size = new System.Drawing.Size(764, 119);
@@ -534,44 +516,6 @@
             this.listViewDuplicates.UseCompatibleStateImageBehavior = false;
             this.listViewDuplicates.View = System.Windows.Forms.View.Details;
             this.listViewDuplicates.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView_ColumnClick);
-            // 
-            // listViewAllDuplicates
-            // 
-            this.listViewAllDuplicates.ContextMenuStrip = this.contextMenuAllDuplicates;
-            this.listViewAllDuplicates.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewAllDuplicates.FullRowSelect = true;
-            this.listViewAllDuplicates.GridLines = true;
-            this.listViewAllDuplicates.HideSelection = false;
-            this.listViewAllDuplicates.Location = new System.Drawing.Point(0, 0);
-            this.listViewAllDuplicates.MultiSelect = false;
-            this.listViewAllDuplicates.Name = "listViewAllDuplicates";
-            this.listViewAllDuplicates.Size = new System.Drawing.Size(764, 187);
-            this.listViewAllDuplicates.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.listViewAllDuplicates.TabIndex = 12;
-            this.listViewAllDuplicates.UseCompatibleStateImageBehavior = false;
-            this.listViewAllDuplicates.View = System.Windows.Forms.View.Details;
-            this.listViewAllDuplicates.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView_ColumnClick);
-            this.listViewAllDuplicates.Click += new System.EventHandler(this.btnShowDuplicates_Click);
-            // 
-            // splitterDuplicatesTab
-            // 
-            this.splitterDuplicatesTab.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.splitterDuplicatesTab.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitterDuplicatesTab.Location = new System.Drawing.Point(0, 184);
-            this.splitterDuplicatesTab.Name = "splitterDuplicatesTab";
-            this.splitterDuplicatesTab.Size = new System.Drawing.Size(764, 3);
-            this.splitterDuplicatesTab.TabIndex = 13;
-            this.splitterDuplicatesTab.TabStop = false;
-            // 
-            // panelButtonsDuplicates
-            // 
-            this.panelButtonsDuplicates.Controls.Add(this.buttonDeleteDuplicates);
-            this.panelButtonsDuplicates.Controls.Add(this.buttonDeleteChekedFiles);
-            this.panelButtonsDuplicates.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelButtonsDuplicates.Location = new System.Drawing.Point(3, 3);
-            this.panelButtonsDuplicates.Name = "panelButtonsDuplicates";
-            this.panelButtonsDuplicates.Size = new System.Drawing.Size(764, 34);
-            this.panelButtonsDuplicates.TabIndex = 0;
             // 
             // tabControl
             // 
@@ -609,7 +553,7 @@
             this.tableLayoutFilesPanel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 5);
             this.tableLayoutFilesPanel.Name = "tableLayoutFilesPanel";
             this.tableLayoutFilesPanel.RowCount = 2;
-            this.tableLayoutFilesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutFilesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutFilesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutFilesPanel.Size = new System.Drawing.Size(770, 352);
             this.tableLayoutFilesPanel.TabIndex = 10;
@@ -622,10 +566,10 @@
             this.listView.FullRowSelect = true;
             this.listView.GridLines = true;
             this.listView.HideSelection = false;
-            this.listView.Location = new System.Drawing.Point(3, 43);
+            this.listView.Location = new System.Drawing.Point(3, 23);
             this.listView.MultiSelect = false;
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(764, 306);
+            this.listView.Size = new System.Drawing.Size(764, 326);
             this.listView.TabIndex = 0;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
@@ -634,15 +578,92 @@
             // chkSelectAllFiles
             // 
             this.chkSelectAllFiles.AutoSize = true;
+            this.chkSelectAllFiles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkSelectAllFiles.Enabled = false;
-            this.chkSelectAllFiles.Location = new System.Drawing.Point(2, 8);
-            this.chkSelectAllFiles.Margin = new System.Windows.Forms.Padding(2, 8, 2, 0);
+            this.chkSelectAllFiles.Location = new System.Drawing.Point(4, 0);
+            this.chkSelectAllFiles.Margin = new System.Windows.Forms.Padding(4, 0, 2, 0);
             this.chkSelectAllFiles.Name = "chkSelectAllFiles";
-            this.chkSelectAllFiles.Size = new System.Drawing.Size(91, 17);
+            this.chkSelectAllFiles.Size = new System.Drawing.Size(764, 20);
             this.chkSelectAllFiles.TabIndex = 5;
             this.chkSelectAllFiles.Text = "Выбрать все";
             this.chkSelectAllFiles.UseVisualStyleBackColor = true;
             this.chkSelectAllFiles.Visible = false;
+            // 
+            // splitterDuplicatesTab
+            // 
+            this.splitterDuplicatesTab.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.splitterDuplicatesTab.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitterDuplicatesTab.Location = new System.Drawing.Point(0, 164);
+            this.splitterDuplicatesTab.Name = "splitterDuplicatesTab";
+            this.splitterDuplicatesTab.Size = new System.Drawing.Size(764, 3);
+            this.splitterDuplicatesTab.TabIndex = 15;
+            this.splitterDuplicatesTab.TabStop = false;
+            // 
+            // listViewAllDuplicates
+            // 
+            this.listViewAllDuplicates.ContextMenuStrip = this.contextMenuAllDuplicates;
+            this.listViewAllDuplicates.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewAllDuplicates.FullRowSelect = true;
+            this.listViewAllDuplicates.GridLines = true;
+            this.listViewAllDuplicates.HideSelection = false;
+            this.listViewAllDuplicates.Location = new System.Drawing.Point(0, 0);
+            this.listViewAllDuplicates.MultiSelect = false;
+            this.listViewAllDuplicates.Name = "listViewAllDuplicates";
+            this.listViewAllDuplicates.Size = new System.Drawing.Size(764, 167);
+            this.listViewAllDuplicates.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.listViewAllDuplicates.TabIndex = 14;
+            this.listViewAllDuplicates.UseCompatibleStateImageBehavior = false;
+            this.listViewAllDuplicates.View = System.Windows.Forms.View.Details;
+            this.listViewAllDuplicates.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView_ColumnClick);
+            this.listViewAllDuplicates.Click += new System.EventHandler(this.btnShowDuplicates_Click);
+            // 
+            // panelButtonsDuplicates
+            // 
+            this.panelButtonsDuplicates.Controls.Add(this.buttonDeleteDuplicates);
+            this.panelButtonsDuplicates.Controls.Add(this.buttonDeleteChekedFiles);
+            this.panelButtonsDuplicates.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelButtonsDuplicates.Location = new System.Drawing.Point(3, 315);
+            this.panelButtonsDuplicates.Name = "panelButtonsDuplicates";
+            this.panelButtonsDuplicates.Size = new System.Drawing.Size(764, 34);
+            this.panelButtonsDuplicates.TabIndex = 2;
+            // 
+            // buttonDeleteDuplicates
+            // 
+            this.buttonDeleteDuplicates.AllowDrop = true;
+            this.buttonDeleteDuplicates.Enabled = false;
+            this.buttonDeleteDuplicates.Location = new System.Drawing.Point(5, 5);
+            this.buttonDeleteDuplicates.Name = "buttonDeleteDuplicates";
+            this.buttonDeleteDuplicates.Size = new System.Drawing.Size(163, 23);
+            this.buttonDeleteDuplicates.TabIndex = 16;
+            this.buttonDeleteDuplicates.Text = "Удалить остальные";
+            this.buttonDeleteDuplicates.UseVisualStyleBackColor = true;
+            this.buttonDeleteDuplicates.Click += new System.EventHandler(this.toolStripMenuItemDeleteOthers_Click);
+            // 
+            // buttonDeleteChekedFiles
+            // 
+            this.buttonDeleteChekedFiles.AllowDrop = true;
+            this.buttonDeleteChekedFiles.Enabled = false;
+            this.buttonDeleteChekedFiles.Location = new System.Drawing.Point(174, 5);
+            this.buttonDeleteChekedFiles.Name = "buttonDeleteChekedFiles";
+            this.buttonDeleteChekedFiles.Size = new System.Drawing.Size(163, 23);
+            this.buttonDeleteChekedFiles.TabIndex = 16;
+            this.buttonDeleteChekedFiles.Text = "Удалить отмеченные";
+            this.buttonDeleteChekedFiles.UseVisualStyleBackColor = true;
+            this.buttonDeleteChekedFiles.Click += new System.EventHandler(this.deleteChekedToolStripMenuItem_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBox1.Enabled = false;
+            this.checkBox1.Location = new System.Drawing.Point(4, 0);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 0, 2, 0);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(764, 20);
+            this.checkBox1.TabIndex = 18;
+            this.checkBox1.Text = "Выбрать все";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Visible = false;
             // 
             // FindForm
             // 
@@ -672,12 +693,13 @@
             this.panel1.PerformLayout();
             this.tabDuplicatesPage.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.panelDuplicatesFiles.ResumeLayout(false);
-            this.panelButtonsDuplicates.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this.tabFilesPage.ResumeLayout(false);
             this.tableLayoutFilesPanel.ResumeLayout(false);
             this.tableLayoutFilesPanel.PerformLayout();
+            this.panelButtonsDuplicates.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -712,8 +734,6 @@
         private System.Windows.Forms.ToolStripMenuItem openFileAllDuplicates;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDeleteAllOthers;
         private System.Windows.Forms.Panel panelOperations;
-        private System.Windows.Forms.Button buttonDeleteChekedFiles;
-        private System.Windows.Forms.Button buttonDeleteDuplicates;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button buttonShowAboutBox;
         private System.Windows.Forms.TabPage tabOptions;
@@ -725,16 +745,19 @@
         private System.Windows.Forms.CheckBox checkBoxDisableMessages;
         private System.Windows.Forms.TabPage tabDuplicatesPage;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panelButtonsDuplicates;
         private System.Windows.Forms.Panel panelDuplicatesFiles;
-        private System.Windows.Forms.Splitter splitterDuplicatesTab;
-        private System.Windows.Forms.ListView listViewAllDuplicates;
         private System.Windows.Forms.ListView listViewDuplicates;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabFilesPage;
         private System.Windows.Forms.TableLayoutPanel tableLayoutFilesPanel;
         private System.Windows.Forms.ListView listView;
         private System.Windows.Forms.CheckBox chkSelectAllFiles;
+        private System.Windows.Forms.Panel panelButtonsDuplicates;
+        private System.Windows.Forms.Button buttonDeleteDuplicates;
+        private System.Windows.Forms.Button buttonDeleteChekedFiles;
+        private System.Windows.Forms.Splitter splitterDuplicatesTab;
+        private System.Windows.Forms.ListView listViewAllDuplicates;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

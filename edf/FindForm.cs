@@ -447,6 +447,19 @@ namespace SubReal.EasyDuplicatesFinder
             watch.Stop();
             lblTimeWork.Text = $"Время работы: {watch.Elapsed}";
         }
+
+        private void SetStatusButtons()
+        {
+            buttonDeleteDuplicates.Enabled = isContainsfiles(listViewDuplicates);
+            buttonDeleteChekedFiles.Enabled = buttonDeleteDuplicates.Enabled;
+            buttonDeleteDuplicates.Refresh();
+        }
+
+        private bool isContainsfiles (ListView list)
+        {
+            return (list.Items.Count > 0) ? true : false;
+        }
+
         /// <summary>
         /// Получение количества отмеченных файлов.
         /// </summary>
@@ -518,6 +531,7 @@ namespace SubReal.EasyDuplicatesFinder
                 return;
 
             ShowCurrentDuplicatesListFiles(listViewDuplicates, listViewAllDuplicates.SelectedItems[0].SubItems[3].Text);
+            SetStatusButtons();
         }
 
         private void DeleteOthersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -555,7 +569,17 @@ namespace SubReal.EasyDuplicatesFinder
         private void toolStripMenuItemDeleteOthers_Click(object sender, EventArgs e)
         {
             if (listViewDuplicates.SelectedItems.Count == 0)
+            {
+                if (!checkBoxDisableMessages.Checked)
+                {
+                    MessageBox.Show("Не выбран основной файл. Невозможно определить файлы для удаления.",
+                                     "Ошибка",
+                                      MessageBoxButtons.OK,
+                                      MessageBoxIcon.Error
+                                      );
+                }
                 return;
+            }
             if (!checkBoxDisableMessages.Checked)
             {
                var result = MessageBox.Show("Удалить дубликаты выбранного файла в корзину?",
@@ -572,6 +596,7 @@ namespace SubReal.EasyDuplicatesFinder
             listViewDuplicates.SelectedItems[0].SubItems[4].Text = "0";
             ThereCanBeOnlyOne(listViewDuplicates, listViewDuplicates.SelectedItems[0]);
             listViewDuplicates.Items.Clear();
+            SetStatusButtons();
         }
 
         private void listView_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -627,6 +652,7 @@ namespace SubReal.EasyDuplicatesFinder
             ShowListFiles(listView);
             ShowDuplicatesOnlyListFiles(listViewAllDuplicates);
             listViewDuplicates.Items.Clear();
+            SetStatusButtons();
         }
 
         private void button2_MouseClick(object sender, MouseEventArgs e)
