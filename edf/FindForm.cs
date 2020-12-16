@@ -504,11 +504,11 @@ namespace SubReal.EasyDuplicatesFinder
         /// <returns><see langword="true "/>Для успешного запуска.</returns>
         private bool OpenFileByPath(string fileName)
         {
-            if (!File.Exists(listView.SelectedItems[0].SubItems[0].Text))
+            if (!File.Exists(fileName))
             {
                 return false;
             }
-
+            
             try
             {
                 var proc = new Process
