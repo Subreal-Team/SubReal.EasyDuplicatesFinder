@@ -10,6 +10,8 @@ namespace SubReal.EasyDuplicatesFinder
 {
     public class EdfFiles
     {
+
+
         private string Path { get; }
 
         public List<FileDesc> FullListFiles { get; }
@@ -62,7 +64,7 @@ namespace SubReal.EasyDuplicatesFinder
         }      
 
         /// <summary>
-        ///  Инициализация
+        ///  Инициализация.
         /// </summary>
         /// <param name="path">Путь к папке поиска</param>
         /// <param name="isfulldelete"><see langword="true"/>Безвозвратное удаление<see langword="false"/>Удаление в корзину.</param>
@@ -263,7 +265,7 @@ namespace SubReal.EasyDuplicatesFinder
             CountDuplicated();
         }
         /// <summary>
-        /// Удалить отмеченные файлы
+        /// Удалить отмеченные файлы.
         /// </summary>
         /// <param name="listView"></param>
         public void DeleteCheckedFiles(ListView listView)
@@ -287,7 +289,6 @@ namespace SubReal.EasyDuplicatesFinder
             CountDuplicated();
         }
     }
-
     public class FileDesc
     {
         /// <summary>
@@ -295,7 +296,6 @@ namespace SubReal.EasyDuplicatesFinder
         /// </summary>
         public string Name { get; set; }
         public long Size { get; set; }
-        public int ControlSum { get; set; }
         public DateTime CreationTime { get; set; }
         public string MD5Summ { get; set; }
         public int CountDuplicates { get; set; }
