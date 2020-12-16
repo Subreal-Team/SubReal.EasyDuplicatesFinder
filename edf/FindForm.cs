@@ -21,7 +21,7 @@ namespace SubReal.EasyDuplicatesFinder
             public bool EnableShowTabDuplicated { get; set; } = false;
         } 
 
-    public FindForm()
+        public FindForm()
         {
             Assembly assem = typeof(FindForm).Assembly;
             InitializeComponent();
@@ -461,7 +461,7 @@ namespace SubReal.EasyDuplicatesFinder
         }
 
         /// <summary>
-        /// Получение количества отмеченных файлов.
+        /// Получить количество отмеченных файлов.
         /// </summary>
         /// <param name="list">ListView</param>
         /// <returns></returns>
@@ -479,7 +479,7 @@ namespace SubReal.EasyDuplicatesFinder
         }
 
         /// <summary>
-        /// Получаем список отмеченных файлов.
+        /// Получить список отмеченных файлов.
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
@@ -504,14 +504,34 @@ namespace SubReal.EasyDuplicatesFinder
         /// <returns><see langword="true "/>Для успешного запуска.</returns>
         private bool OpenFileByPath(string fileName)
         {
-            if (!File.Exists(listView.SelectedItems[0].SubItems[0].Text))
+            if (!File.Exists(fileName))
             {
                 return false;
             }
-            var proc = new System.Diagnostics.Process();
-            proc.StartInfo.FileName = fileName;
-            proc.StartInfo.UseShellExecute = true;
-            return proc.Start();
+            
+            try
+            {
+                var proc = new Process
+                {
+                    StartInfo =
+                    {
+                        FileName = fileName, 
+                        UseShellExecute = true
+                    }
+                };
+
+                return proc.Start();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message,
+                    "Ошибка при открытии файла",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+
+            return false;
         }
 
         private void ShowFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -549,10 +569,7 @@ namespace SubReal.EasyDuplicatesFinder
             if (listViewAllDuplicates.SelectedItems.Count == 0)
                 return;
 
-            if (File.Exists(listViewAllDuplicates.SelectedItems[0].SubItems[0].Text))
-            {
-                Process.Start(new ProcessStartInfo("explorer.exe", @" /select, " + listViewAllDuplicates.SelectedItems[0].SubItems[0].Text));
-            }
+            GoToExplorer(listViewAllDuplicates.SelectedItems[0].SubItems[0].Text);
         }
 
         private void toolStripMenuItemDuplicates_ShowFile_Click(object sender, EventArgs e)
@@ -560,9 +577,15 @@ namespace SubReal.EasyDuplicatesFinder
             if (listViewDuplicates.SelectedItems.Count == 0)
                 return;
 
-            if (File.Exists(listViewAllDuplicates.SelectedItems[0].SubItems[0].Text))
+            GoToExplorer(listViewAllDuplicates.SelectedItems[0].SubItems[0].Text);
+        }
+        
+        private static void GoToExplorer(string fileName)
+        {
+            if (File.Exists(fileName))
             {
-                Process.Start(new ProcessStartInfo("explorer.exe", @" /select, " + listViewDuplicates.SelectedItems[0].SubItems[0].Text));
+                Process.Start(new ProcessStartInfo("explorer.exe",
+                    @" /select, " + fileName));
             }
         }
 
@@ -615,7 +638,7 @@ namespace SubReal.EasyDuplicatesFinder
 
         private void linkLabelToSubRealCom_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://subreal-team.com/");
+            Process.Start("https://subreal-team.com/");
         }
 
         private void deleteChekedToolStripMenuItem_Click(object sender, EventArgs e)
@@ -661,40 +684,20 @@ namespace SubReal.EasyDuplicatesFinder
             {
                 if (listView.SelectedItems.Count != 0)
                 {
-                    if (File.Exists(listView.SelectedItems[0].SubItems[0].Text))
-                    {
-                        Process.Start(new ProcessStartInfo("explorer.exe", @" /select, " + listView.SelectedItems[0].SubItems[0].Text));
-                    }
+                    GoToExplorer(listView.SelectedItems[0].SubItems[0].Text);
                 }
             }
             else if (tabControl.SelectedTab == tabDuplicatesPage)
             {
                 if (listViewDuplicates.SelectedItems.Count != 0)
                 {
-                    if (File.Exists(listViewDuplicates.SelectedItems[0].SubItems[0].Text))
-                    {
-                        Process.Start(new ProcessStartInfo("explorer.exe", @" /select, " + listViewDuplicates.SelectedItems[0].SubItems[0].Text));
-                    }
+                    GoToExplorer(listViewDuplicates.SelectedItems[0].SubItems[0].Text);
                 }
                 else if (listViewAllDuplicates.SelectedItems.Count != 0)
                 {
-                    if (File.Exists(listViewAllDuplicates.SelectedItems[0].SubItems[0].Text))
-                    {
-                        Process.Start(new ProcessStartInfo("explorer.exe", @" /select, " + listViewAllDuplicates.SelectedItems[0].SubItems[0].Text));
-                    }
+                    GoToExplorer(listViewAllDuplicates.SelectedItems[0].SubItems[0].Text);
                 }
             }
-            
-        }
-
-        private void linkLabelToSubRealComEDF_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://subreal-team.com/tools/easyduplicatefinder/");
-        }
-
-        private void linkLabelGoToGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/Rewalon/SubReal.EasyDuplicatesFinder");
         }
 
         private void openFileListView_Click(object sender, EventArgs e)

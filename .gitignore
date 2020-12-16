@@ -18,3 +18,4 @@ SubReal.EasyDuplicateFinder.Localization/Languages/ru/Ы.png
 SubReal.EasyDuplicateFinder.Localization/obj/Release/win.edf.Localization.csproj.FileListAbsolute.txt
 .idea/
 edf/publish/
+*.DotSettings.user
