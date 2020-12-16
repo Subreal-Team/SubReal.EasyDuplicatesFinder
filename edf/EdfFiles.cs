@@ -13,36 +13,54 @@ namespace SubReal.EasyDuplicatesFinder
         private string Path { get; }
 
         public List<FileDesc> FullListFiles { get; }
-        
+
         /// <summary>
-        /// Количество уникальных файлов
+        /// Количество уникальных файлов.
         /// </summary>
         private int CountUnique;
+
+        /// <summary>
+        /// Получить количество уникальных файлов.
+        /// </summary>
         public int GetUniqueCount => CountUnique;
 
         /// <summary>
-        /// Количество найденных файлов
+        /// Количество найденных файлов.
         /// </summary>
         private int Count;
-        public int GetTotalCount => Count;
-       
+
         /// <summary>
-        /// Количество дубликатов файлов
+        /// Получить количество найденных файлов.
         /// </summary>
-        private int CountDuplicates ;
+        public int GetTotalCount => Count;
+
+        /// <summary>
+        /// Количество дубликатов файлов.
+        /// </summary>
+        private int CountDuplicates;
+
+        /// <summary>
+        /// Получить количество дубликатов файлов.
+        /// </summary>
         public int GetDuplicatesCount => CountDuplicates - CountUnique;
 
+
+        /// <summary>
+        /// Флаг использования функции полного удаления файлов.
+        /// </summary>
         private static bool isFullDelete;
+        
+        /// <summary>
+        /// Установить флаг функции полного удаления файлов.
+        /// </summary>
         public bool SetFullDeleteFiles
         {
             set
             {
                 isFullDelete = value;
             }
-        }
+        }      
 
-        public EdfFiles(string path) : this(path, false) { }
-        
         /// <summary>
         ///  Инициализация
         /// </summary>
@@ -55,6 +73,8 @@ namespace SubReal.EasyDuplicatesFinder
             isFullDelete = isfulldelete;
             Count = 0;
         }
+
+        public EdfFiles(string path) : this(path, false) { }
 
         /// <summary>
         /// Получить список файлов из указанного пути.
@@ -75,7 +95,7 @@ namespace SubReal.EasyDuplicatesFinder
                     Size = fileInfo.Length,
                     CreationTime = fileInfo.CreationTime,
                     Guid = Guid.NewGuid(),
-                    MD5Summ = "",
+                    MD5Summ = string.Empty,
                     CountDuplicates = 0
                 };
 
@@ -88,8 +108,9 @@ namespace SubReal.EasyDuplicatesFinder
 
             return true;
         }
+
         /// <summary>
-        /// Отбор дубликатов по размеру файла и расчет для них контрольной суммы.
+        /// Отобрать дубликаты по размеру файла и рассчитать для них контрольную сумму.
         /// </summary>
         private void FindDuplicatedBySize()
         {
@@ -114,7 +135,7 @@ namespace SubReal.EasyDuplicatesFinder
         }
 
         /// <summary>
-        /// Подсчет дубликатов по контрольной сумме и размеру.
+        /// Подсчитать дубликаты по контрольной сумме и размеру.
         /// </summary>
         private void CountDuplicated()
         {
@@ -141,7 +162,7 @@ namespace SubReal.EasyDuplicatesFinder
         }
 
         /// <summary>
-        /// Получение MD5 для файла.
+        /// Получить MD5 для файла.
         /// </summary>
         /// <param name="fileName">Имя файла.</param>
         /// <returns></returns>
@@ -156,9 +177,8 @@ namespace SubReal.EasyDuplicatesFinder
             }
         }
 
-
         /// <summary>
-        /// Проверка корректности указания пути поиска.
+        /// Проверить корректность  пути поиска.
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
@@ -168,7 +188,7 @@ namespace SubReal.EasyDuplicatesFinder
         }
 
         /// <summary>
-        /// Удаление элемента из списка по идентификатору
+        /// Удалить элемент из списка по идентификатору.
         /// </summary>
         /// <param name="id"></param>
         public void DeleteItem(Guid id)
@@ -179,13 +199,14 @@ namespace SubReal.EasyDuplicatesFinder
         }
 
         /// <summary>
-        /// Удаление файла с диска.
+        /// Удалить файл с диска.
         /// </summary>
         /// <param name="fileName">Имя файла.</param>
         public static void DeleteFile(string fileName)
         {
             if (!File.Exists(fileName)) return;
-            
+
+            // В зависимости от флага удаляем полностью или в корзину.
             if (isFullDelete)
             {
                 try
@@ -208,11 +229,10 @@ namespace SubReal.EasyDuplicatesFinder
                     throw;
                 }
             }
-
         }
 
         /// <summary>
-        /// Удаление копий файлов в ListView.
+        /// Удалить копии файлов в ListView по MD5.
         /// </summary>
         public void DeleteAllCurrentDuplicatesFiles(string md5Summ, string guid)
         {
@@ -243,7 +263,7 @@ namespace SubReal.EasyDuplicatesFinder
             CountDuplicated();
         }
         /// <summary>
-        /// Удаление отмеченных файлов
+        /// Удалить отмеченные файлы
         /// </summary>
         /// <param name="listView"></param>
         public void DeleteCheckedFiles(ListView listView)
@@ -266,7 +286,6 @@ namespace SubReal.EasyDuplicatesFinder
             FindDuplicatedBySize();
             CountDuplicated();
         }
-
     }
 
     public class FileDesc
@@ -282,5 +301,4 @@ namespace SubReal.EasyDuplicatesFinder
         public int CountDuplicates { get; set; }
         public Guid Guid { get; set; }
     }
-
 }
